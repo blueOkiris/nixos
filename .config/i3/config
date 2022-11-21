@@ -206,19 +206,19 @@ gaps inner 20
 gaps outer 0
 smart_gaps on
 
-# Start polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
-# Handle multi-display
-exec --no-startup-id $HOME/.config/i3/arandr.sh
-exec --no-startup-id brightnessctl set 100%
+# Handle displays and launch bar
+exec $HOME/.config/i3/arandr.sh
+exec brightnessctl set 100%
 
 # Background stuff
-exec --no-startup-id $HOME/Apps/i3-alternating-layout/alternating_layouts.py
+exec_always --no-startup-id $HOME/Apps/i3-alternating-layout/alternating_layouts.py
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 exec --no-startup-id spotifyd
 exec --no-startup-id steam
 exec --no-startup-id megasync-instances
-exec --no-startup-id /usr/libexec/kf5/polkit-kde-authentication-agent-1
+exec_always --no-startup-id /usr/libexec/kf5/polkit-kde-authentication-agent-1
+
+# Turn on numlock
+exec_always --no-startup-id numlockx on
 
