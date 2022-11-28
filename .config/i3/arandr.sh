@@ -15,3 +15,5 @@ fi
 
 source $HOME/.config/polybar/launch.sh
 
+source $HOME/.config/i3/tray-apps.sh
+

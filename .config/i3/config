@@ -196,17 +196,13 @@ gaps inner 20
 gaps outer 0
 smart_gaps on
 
-# Handle displays and launch bar
+# Handle displays and launch bar (along with tray stuff after)
 exec $HOME/.config/i3/arandr.sh
 exec brightnessctl set 100%
 
 # Background stuff
 exec_always --no-startup-id $HOME/Apps/i3-alternating-layout/alternating_layouts.py
-exec --no-startup-id nm-applet
-exec --no-startup-id blueman-applet
 exec --no-startup-id spotifyd
-exec --no-startup-id steam
-exec --no-startup-id megasync-instances
 exec_always --no-startup-id /usr/libexec/kf5/polkit-kde-authentication-agent-1
 
 # Turn on numlock
