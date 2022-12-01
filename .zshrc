@@ -18,7 +18,7 @@ export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude .vim'
 
 alias rm="gio trash"
-alias rbpf="make -C Apps/paleofetch-fedora/ clean && make -C Apps/paleofetch-fedora"
+alias rbpf="make -C Apps/paleofetch-fedora/ clean && make -C Apps/paleofetch-fedora && make -C Apps/paleofetch-fedora install"
 
 # Source /etc/profile
 source /etc/profile
@@ -36,5 +36,5 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # Draw some system compatibility
-paleofetch
+paleofetch --recache
 
