@@ -154,39 +154,88 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 # Colors (Tomorrow Night Bright)
+
+# Decent:
+#colors:
+#  # Default colors
+#  primary:
+#    background: '#282a36'
+#    foreground: '#f8f8f2'
+#
+#  # Normal colors
+#  normal:
+#    black: '#000000'
+#    red: '#ff5555'
+#    green: '#50fa7b'
+#    yellow: '#f1fa8c'
+#    blue: '#0066cf'
+#    magenta: '#ff79c6'
+#    cyan: '#8be9fd'
+#    white: '#bfbfbf'
+
+#  # Bright colors
+#  bright:
+#    black: '#575b70'
+#    red: '#ff6e67'
+#    green: '#5af78e'
+#    yellow: '#f4f99d'
+#    blue: '#1177ff'
+#    magenta: '#ff92d0'
+#    cyan: '#9aedfe'
+#    white: '#e6e6e6'
+
+# Dracula
 colors:
-  # Default colors
   primary:
     background: '#282a36'
     foreground: '#f8f8f2'
-
-  # Normal colors
+    bright_foreground: '#ffffff'
+  cursor:
+    text: CellBackground
+    cursor: CellForeground
+  vi_mode_cursor:
+    text: CellBackground
+    cursor: CellForeground
+  search:
+    matches:
+      foreground: '#44475a'
+      background: '#50fa7b'
+    focused_match:
+      foreground: '#44475a'
+      background: '#ffb86c'
+    bar:
+      background: '#282a36'
+      foreground: '#f8f8f2'
+  hints:
+    start:
+      foreground: '#282a36'
+      background: '#f1fa8c'
+    end:
+      foreground: '#f1fa8c'
+      background: '#282a36'
+  line_indicator:
+    foreground: None
+    background: None
+  selection:
+    text: CellForeground
+    background: '#44475a'
   normal:
-    black: '#000000'
+    black: '#21222c'
     red: '#ff5555'
     green: '#50fa7b'
     yellow: '#f1fa8c'
-    blue: '#caa9fa'
+    #blue: '#bd93f9'
+    blue: '#0066cf'
     magenta: '#ff79c6'
     cyan: '#8be9fd'
-    white: '#bfbfbf'
-
-  # Bright colors
+    white: '#f8f8f2'
   bright:
-    black: '#575b70'
-    red: '#ff6e67'
-    green: '#5af78e'
-    yellow: '#f4f99d'
-    blue: '#caa9fa'
-    magenta: '#ff92d0'
-    cyan: '#9aedfe'
-    white: '#e6e6e6'
-theme: Dracula
-black: '#1d2021'
-red: '#421e1e'
-green: '#232b0f'
-yellow: '#4d3b27'
-blue: '#2b3c44'
-magenta: '#4e3d45'
-cyan: '#205161'
-white: '#f4e8ba'
+    black: '#6272a4'
+    red: '#ff6e6e'
+    green: '#69ff94'
+    yellow: '#ffffa5'
+    #blue: '#d6acff'
+    blue: '#1177ff'
+    magenta: '#ff92df'
+    cyan: '#a4ffff'
+    white: '#ffffff'
