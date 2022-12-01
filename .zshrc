@@ -19,6 +19,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclu
 
 alias rm="gio trash"
 alias rbpf="make -C Apps/paleofetch-fedora/ clean && make -C Apps/paleofetch-fedora && make -C Apps/paleofetch-fedora install"
+alias $(date +%Y)='echo "YEAR OF THE LINUX DESKTOP"'
 
 # Source /etc/profile
 source /etc/profile
