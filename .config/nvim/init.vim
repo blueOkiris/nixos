@@ -137,3 +137,6 @@ silent! helptags ALL
 " Start rust-tools
 lua require('rust-tools').setup({})
 
+" Code folding
+set foldmethod=indent
+
