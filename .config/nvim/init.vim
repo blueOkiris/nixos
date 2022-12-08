@@ -31,6 +31,9 @@ call plug#begin("~/.vim/plugged")
     Plug 'mhinz/vim-startify'                           " Start page plugin
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }   " Code completion engine
 
+    " Markdown preview
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
     " LaTeX stuff
     Plug 'lervag/vimtex'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -139,4 +142,6 @@ lua require('rust-tools').setup({})
 
 " Code folding
 set foldmethod=indent
+
+
 
