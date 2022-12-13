@@ -208,3 +208,5 @@ exec_always --no-startup-id /usr/libexec/kf5/polkit-kde-authentication-agent-1
 # Turn on numlock
 exec_always --no-startup-id numlockx on
 
+exec msi-perkeyrgb --model GE75 -p chakra
+
