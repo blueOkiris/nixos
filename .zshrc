@@ -17,7 +17,7 @@ export PATH="/home/dylan/Apps/arduino-cli:$PATH"
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude .vim'
 
-alias rm="gio trash"
+alias rm="trash"
 alias rbpf="make -C Apps/paleofetch-fedora/ clean && make -C Apps/paleofetch-fedora && make -C Apps/paleofetch-fedora install"
 alias $(date +%Y)='echo "YEAR OF THE LINUX DESKTOP"'
 
