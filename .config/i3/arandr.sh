@@ -12,7 +12,7 @@ if [ "$MONITOR_FOUND" != "" ]; then
     sleep 1
     xrandr \
         --output DP-0 --primary --mode 3440x1440 --pos 0x0 --rotate normal \
-        --output eDP-1-1 --mode 1920x1080 --pos 3440x1208 --rotate normal
+        --output eDP-1-1 --mode 1920x1080 --pos 2961x1440 --rotate normal
     sleep 1
     feh --bg-fill \
         $HOME/Pictures/Wallpapers/botw-widexcf.png \
