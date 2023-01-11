@@ -19,7 +19,8 @@ if [ "$MONITOR_FOUND" != "" ]; then
         $HOME/Pictures/Wallpapers/botw1.jpg
 fi
 
-source $HOME/.config/polybar/launch.sh
+#source $HOME/.config/polybar/launch.sh
+xfce4-panel --disable-wm-check &
 
 source $HOME/.config/i3/tray-apps.sh
 
