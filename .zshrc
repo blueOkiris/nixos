@@ -1,4 +1,4 @@
-export ZSH="/home/dylan/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="gentoo"
 
 zstyle ':omz:update' mode auto      # update automatically without asking
@@ -10,15 +10,15 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/home/dylan/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="/var/lib/snapd/snap/bin:$PATH"
-export PATH="/home/dylan/.cargo/bin:$PATH"
-export PATH="/home/dylan/Apps/arduino-cli:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/Applications/arduino-cli:$PATH"
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude .vim'
 
 alias rm="trash"
-alias rbpf="make -C Apps/paleofetch-fedora/ clean && make -C Apps/paleofetch-fedora && make -C Apps/paleofetch-fedora install"
+alias rbpf="make -C Applications/paleofetch-fedora/ clean && make -C Applications/paleofetch-fedora && make -C Applications/paleofetch-fedora install"
 alias $(date +%Y)='echo "YEAR OF THE LINUX DESKTOP"'
 
 # Source /etc/profile
