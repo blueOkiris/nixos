@@ -24,7 +24,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # Useful applications
 bindsym $mod+Shift+s exec --no-startup-id gnome-screenshot -i
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec --no-startup-id aipman run alacritty
 bindsym $mod+s exec "rofi -modi drun,run -show drun"
 
 # Window Management
