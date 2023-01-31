@@ -53,6 +53,7 @@
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="blueman-tray"/>
         <value type="string" value="thunar"/>
         <value type="string" value="nextcloud"/>
         <value type="string" value="blueman"/>
@@ -62,6 +63,7 @@
         <value type="string" value="ethernet network connection “default profile” active"/>
       </property>
       <property name="known-items" type="array">
+        <value type="string" value="vlc"/>
         <value type="string" value="obs"/>
         <value type="string" value="MEGAsync"/>
         <value type="string" value="Microsoft Teams - Insiders1"/>
@@ -75,7 +77,7 @@
     <property name="plugin-8" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="show-notifications" type="bool" value="true"/>
-      <property name="mpris-players" type="string" value="firefox.instance25229;firefox.instance3949;firefox.instance437631;firefox.instance4794;firefox.instance49613;firefox.instance5519;firefox.instance6638;firefox.instance7072;firefox.instance8884;spotify"/>
+      <property name="mpris-players" type="string" value="firefox.instance1264657;firefox.instance25229;firefox.instance3632;firefox.instance3778;firefox.instance3949;firefox.instance437631;firefox.instance4794;firefox.instance49613;firefox.instance5519;firefox.instance5844;firefox.instance6638;firefox.instance7072;firefox.instance8884;spotify;vlc"/>
     </property>
     <property name="plugin-11" type="string" value="separator">
       <property name="style" type="uint" value="0"/>

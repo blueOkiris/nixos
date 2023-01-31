@@ -14,12 +14,13 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="/var/lib/snapd/snap/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/Applications/arduino-cli:$PATH"
-export EDITOR=nvim
+export EDITOR="aipman run neovim"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude .vim'
 
 alias rm="trash"
 alias rbpf="make -C Applications/paleofetch-fedora/ clean && make -C Applications/paleofetch-fedora && make -C Applications/paleofetch-fedora install"
 alias $(date +%Y)='echo "YEAR OF THE LINUX DESKTOP"'
+alias nvim="aipman run neovim"
 
 # Source /etc/profile
 source /etc/profile

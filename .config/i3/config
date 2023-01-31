@@ -7,7 +7,6 @@ font pango:monospace 8
 exec --no-startup-id dex --autostart --environment i3
 floating_modifier $mod
 bindsym $mod+x kill
-bindsym $mod+f ful
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec i3-msg exitlscreen toggle
