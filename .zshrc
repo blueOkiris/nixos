@@ -22,6 +22,15 @@ alias rbpf="make -C Applications/paleofetch-fedora/ clean && make -C Application
 alias $(date +%Y)='echo "YEAR OF THE LINUX DESKTOP"'
 alias nvim="aipman run neovim"
 
+# Allow neovim AppImage to run w/ sudo
+function sudo() {
+    if [[ "$@" == "nvim"* ]]; then
+        command sudo aipman run neovim ${@#*nvim}
+    else
+        command sudo "$@"
+    fi
+}
+
 # Source /etc/profile
 source /etc/profile
 
