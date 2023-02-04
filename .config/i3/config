@@ -23,6 +23,10 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
+# Use brightnessctl to adjust brightness on laptop screens
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+
 # Useful applications
 bindsym $mod+Shift+s exec --no-startup-id gnome-screenshot -i
 bindsym $mod+Return exec --no-startup-id aipman run alacritty
