@@ -29,7 +29,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 # Useful applications
 bindsym $mod+Shift+s exec --no-startup-id gnome-screenshot -i
-bindsym $mod+Return exec --no-startup-id aipman run alacritty
+bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+s exec "rofi -modi drun,run -show drun"
 
 # Window Management
