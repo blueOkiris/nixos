@@ -9,5 +9,5 @@ nm-applet &
 blueman-applet &
 steam &
 $HOME/Applications/nextcloud*.AppImage &
-# megasync-instances
+dunst &
 
