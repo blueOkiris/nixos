@@ -1,0 +1,93 @@
+{
+    "layer": "top",
+    "height": 34, // Waybar height (to be removed for auto height)
+    "spacing": 0, // Gaps between modules (4px)
+
+    // Choose the order of the modules
+    "modules-left": [ "wlr/workspaces", "wlr/taskbar" ],
+    "modules-center": [ "gamemode" ],
+    "modules-right": [ "tray", "pulseaudio", "battery", "disk",  "disk#games", "clock" ],
+    
+    // Modules configuration
+    "wlr/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}",
+    },
+    "hyprland/window": {
+        "format": "{}"
+    },
+    "wlr/taskbar": {
+        "format": "{icon} {name}",
+        "icon-size": 14,
+        "icon-theme": "Papirus-Dark",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "all-outputs": true
+    },
+    "gamemode": {
+        "format": "{glyph}",
+        "format-alt": "{glyph} {count}",
+        "glyph": "",
+        "hide-not-running": true,
+        "use-icon": true,
+        "icon-name": "input-gaming-symbolic",
+        "icon-spacing": 4,
+        "icon-size": 20,
+        "tooltip": true,
+        "tooltip-format": "Games running: {count}"
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 12
+    },
+    "clock": {
+        "interval": 1,
+        "timezone": "US/Central",
+        "format": "{:%A, %B %d %X}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "disk": {
+        "interval": 60,
+        "format": "Root: {percentage_used}%",
+        "path": "/"
+    },
+    "disk#games": {
+        "interval": 60,
+        "format": "Games: {percentage_used}%",
+        "path": "/home/dylan/Games"
+    },
+    "battery": {
+        "states": {
+            "full": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "🔋 {capacity}%",
+        "format-charging": "+🔋 {capacity}%",
+        "format-plugged": "🔌🔋 {capacity}%",
+        "format-warning": "🪫 {capacity}%",
+        "format-critical": "🪫 {capacity}%",
+        "format-full": "🔋 Full"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    }
+}
+
