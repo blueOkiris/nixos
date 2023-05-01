@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Lutris
+Comment=Video Game Preservation Platform
+Categories=Game;
+Keywords=gaming;wine;emulator;
+Exec=lutris %U
+Icon=lutris
+Terminal=false
+Type=Application
+MimeType=x-scheme-handler/lutris;
+X-GNOME-UsesNotifications=true
+X-Desktop-File-Install-Version=0.26
+X-XFCE-Source=file:///usr/share/applications/net.lutris.Lutris.desktop
