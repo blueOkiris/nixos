@@ -32,6 +32,9 @@ bindsym $mod+Shift+s exec --no-startup-id gnome-screenshot -i
 bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+s exec "rofi -modi drun,run -show drun"
 
+# Enable the compose key
+exec --no-startup-id setxkbmap -option compose:ralt
+
 # Window Management
 
 bindsym $mod+Left focus left
