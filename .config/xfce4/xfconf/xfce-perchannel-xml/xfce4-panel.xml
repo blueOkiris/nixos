@@ -15,7 +15,6 @@
         <value type="int" value="1"/>
         <value type="int" value="20"/>
         <value type="int" value="17"/>
-        <value type="int" value="19"/>
         <value type="int" value="21"/>
         <value type="int" value="18"/>
         <value type="int" value="2"/>
@@ -60,64 +59,10 @@
     </property>
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
-      <property name="known-legacy-items" type="array">
-        <value type="string" value="ethernet network connection “ni vpn dns” active"/>
-        <value type="string" value="steam"/>
-        <value type="string" value="wi-fi network connection “keep it on the download-5g 1” active: keep it on the download-5g (83%)"/>
-        <value type="string" value="wi-fi network connection “keep it on the download-5g 1” active: keep it on the download-5g (86%)"/>
-        <value type="string" value="wi-fi network connection “keep it on the download-5g 1” active: keep it on the download-5g (93%)"/>
-        <value type="string" value="wi-fi network connection “keep it on the download-5g 1” active: keep it on the download-5g (87%)"/>
-        <value type="string" value="wi-fi network connection “keep it on the download-5g 1” active: keep it on the download-5g (77%)"/>
-        <value type="string" value="wi-fi network connection “keep it on the download-5g 1” active: keep it on the download-5g (54%)"/>
-        <value type="string" value="wi-fi network connection “keep it on the download-5g 1” active: keep it on the download-5g (73%)"/>
-        <value type="string" value="wi-fi network connection “keep it on the download-5g 1” active: keep it on the download-5g (74%)"/>
-        <value type="string" value="wi-fi network connection “keep it on the download-5g 1” active: keep it on the download-5g (80%)"/>
-        <value type="string" value="wi-fi network connection “2021turnerland-5g 1” active: 2021turnerland-5g (66%)"/>
-        <value type="string" value="wi-fi network connection “keep it on the download-5g 1” active: keep it on the download-5g (85%)"/>
-        <value type="string" value="wi-fi network connection “keep it on the download-5g 1” active: keep it on the download-5g (79%)"/>
-        <value type="string" value="wi-fi network connection “keep it on the download-5g 1” active: keep it on the download-5g (88%)"/>
-        <value type="string" value="wi-fi network connection “keep it on the download-5g 1” active: keep it on the download-5g (82%)"/>
-        <value type="string" value="wi-fi network connection “keep it on the download-5g 1” active: keep it on the download-5g (78%)"/>
-        <value type="string" value="wi-fi network connection “2021turnerland-5g 1” active: 2021turnerland-5g (73%)"/>
-        <value type="string" value="wi-fi network connection “2021turnerland-5g 1” active: 2021turnerland-5g (68%)"/>
-        <value type="string" value="wi-fi network connection “2021turnerland-5g 1” active: 2021turnerland-5g (65%)"/>
-        <value type="string" value="wi-fi network connection “2021turnerland-5g 1” active: 2021turnerland-5g (63%)"/>
-        <value type="string" value="wi-fi network connection “2021turnerland-5g 1” active: 2021turnerland-5g (57%)"/>
-        <value type="string" value="wi-fi network connection “2021turnerland-5g 1” active: 2021turnerland-5g (54%)"/>
-        <value type="string" value="wi-fi network connection “2021turnerland-5g 1” active: 2021turnerland-5g (59%)"/>
-        <value type="string" value="wi-fi network connection “5g tower alpha 2.1 1” active: 5g tower alpha 2.1 (69%)"/>
-        <value type="string" value="wi-fi network connection “5g tower alpha 2.1 1” active: 5g tower alpha 2.1 (82%)"/>
-        <value type="string" value="wi-fi network connection “5g tower alpha 2.1 1” active: 5g tower alpha 2.1 (83%)"/>
-        <value type="string" value="wi-fi network connection “5g tower alpha 2.1 1” active: 5g tower alpha 2.1 (84%)"/>
-        <value type="string" value="wi-fi network connection “5g tower alpha 2.1 1” active: 5g tower alpha 2.1 (65%)"/>
-        <value type="string" value="user authentication required for wi-fi network “m6-austinnw”…"/>
-        <value type="string" value="networkmanager applet"/>
-        <value type="string" value="blueman-tray"/>
-        <value type="string" value="thunar"/>
-        <value type="string" value="nextcloud"/>
-        <value type="string" value="blueman"/>
-        <value type="string" value="no network connection"/>
-        <value type="string" value="megasync"/>
-        <value type="string" value="nxclient.bin"/>
-        <value type="string" value="ethernet network connection “default profile” active"/>
-      </property>
-      <property name="known-items" type="array">
-        <value type="string" value="Fightcade1"/>
-        <value type="string" value="vlc"/>
-        <value type="string" value="obs"/>
-        <value type="string" value="MEGAsync"/>
-        <value type="string" value="Microsoft Teams - Insiders1"/>
-        <value type="string" value="zoom"/>
-        <value type="string" value="discord1"/>
-        <value type="string" value="Nextcloud"/>
-        <value type="string" value="steam"/>
-        <value type="string" value="blueman"/>
-      </property>
     </property>
     <property name="plugin-8" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="show-notifications" type="bool" value="true"/>
-      <property name="mpris-players" type="string" value="chromium.instance10187;chromium.instance10885;chromium.instance26368;chromium.instance34514;chromium.instance4158;chromium.instance5369;chromium.instance7016;firefox.instance10046;firefox.instance11448;firefox.instance1264657;firefox.instance137703;firefox.instance16329;firefox.instance16799;firefox.instance19221;firefox.instance24449;firefox.instance25229;firefox.instance256774;firefox.instance27838;firefox.instance3250;firefox.instance3356;firefox.instance3420;firefox.instance34824;firefox.instance3530;firefox.instance3598;firefox.instance3632;firefox.instance3778;firefox.instance3806;firefox.instance3821;firefox.instance385064;firefox.instance3949;firefox.instance3982;firefox.instance42417;firefox.instance437631;firefox.instance4539;firefox.instance4746;firefox.instance4768;firefox.instance4794;firefox.instance4921;firefox.instance49613;firefox.instance5158;firefox.instance5179;firefox.instance5333;firefox.instance5382;firefox.instance54369;firefox.instance5519;firefox.instance5844;firefox.instance5857;firefox.instance6052;firefox.instance6056;firefox.instance6062;firefox.instance6112;firefox.instance6335;firefox.instance6638;firefox.instance7072;firefox.instance7078;firefox.instance7133;firefox.instance7537;firefox.instance82706;firefox.instance8729;firefox.instance88531;firefox.instance8884;firefox.instance9284;firefox.instance97311;spotify;vlc"/>
     </property>
     <property name="plugin-11" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
@@ -144,11 +89,6 @@
     <property name="plugin-18" type="string" value="launcher">
       <property name="items" type="array">
         <value type="string" value="16812273013.desktop"/>
-      </property>
-    </property>
-    <property name="plugin-19" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="16812273264.desktop"/>
       </property>
     </property>
     <property name="plugin-20" type="string" value="launcher">
