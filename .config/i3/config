@@ -132,6 +132,7 @@ exec brightnessctl set 100%
 exec_always --no-startup-id $HOME/Applications/i3-alternating-layout/alternating_layouts.py
 exec --no-startup-id spotifyd
 exec_always --no-startup-id /usr/libexec/kf5/polkit-kde-authentication-agent-1
+exec_always --no-startup-id xclip
 
 # Turn on numlock
 exec_always --no-startup-id numlockx on
