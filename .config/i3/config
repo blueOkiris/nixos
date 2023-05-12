@@ -5,6 +5,7 @@ set $mod Mod4
 # Core functionality
 font pango:monospace 8
 exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id picom
 floating_modifier $mod
 bindsym $mod+x kill
 bindsym $mod+Shift+c reload
