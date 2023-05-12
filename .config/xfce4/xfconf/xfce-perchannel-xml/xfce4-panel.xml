@@ -15,6 +15,7 @@
         <value type="int" value="1"/>
         <value type="int" value="20"/>
         <value type="int" value="17"/>
+        <value type="int" value="22"/>
         <value type="int" value="21"/>
         <value type="int" value="18"/>
         <value type="int" value="2"/>
@@ -63,6 +64,7 @@
     <property name="plugin-8" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="show-notifications" type="bool" value="true"/>
+      <property name="mpris-players" type="string" value="firefox.instance16989;spotify"/>
     </property>
     <property name="plugin-11" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
@@ -99,6 +101,11 @@
     <property name="plugin-21" type="string" value="launcher">
       <property name="items" type="array">
         <value type="string" value="16812273385.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-22" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="16838472742.desktop"/>
       </property>
     </property>
   </property>
