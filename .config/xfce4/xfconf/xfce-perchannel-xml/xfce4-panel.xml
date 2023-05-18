@@ -64,7 +64,6 @@
     <property name="plugin-8" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="show-notifications" type="bool" value="true"/>
-      <property name="mpris-players" type="string" value="firefox.instance16989;spotify"/>
     </property>
     <property name="plugin-11" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
@@ -85,7 +84,7 @@
     </property>
     <property name="plugin-17" type="string" value="launcher">
       <property name="items" type="array">
-        <value type="string" value="16828725322.desktop"/>
+        <value type="string" value="16842207371.desktop"/>
       </property>
     </property>
     <property name="plugin-18" type="string" value="launcher">
@@ -105,7 +104,7 @@
     </property>
     <property name="plugin-22" type="string" value="launcher">
       <property name="items" type="array">
-        <value type="string" value="16838472742.desktop"/>
+        <value type="string" value="16842758471.desktop"/>
       </property>
     </property>
   </property>
