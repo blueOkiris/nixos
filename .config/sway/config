@@ -119,7 +119,7 @@ gaps outer 0
 smart_gaps on
 
 # Handle displays and launch bar
-output eDP-1-1 pos 2961 1440 res 1920x1080 bg $HOME/Pictures/Wallpapers/botw1.jpg fill
+output eDP-1-1 pos 2222 1440 res 1920x1080 bg $HOME/Pictures/Wallpapers/botw1.jpg fill
 output DP-0 pos 0 0 res 3440x1440 bg $HOME/Pictures/Wallpapers/botw-widexcf.png fill
 
 exec brightnessctl set 100%
