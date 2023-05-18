@@ -71,6 +71,7 @@ SAVEHIST=1000
 setopt appendhistory
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey "^[[3~" delete-char
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
