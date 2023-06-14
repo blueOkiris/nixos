@@ -46,6 +46,7 @@ call plug#begin("~/.vim/plugged")
     Plug 'neovim/nvim-lspconfig'
     Plug 'simrat39/rust-tools.nvim'
 
+    Plug 'Clinery1/nasm-lsp'                            " Nasm
     Plug 'itchyny/lightline.vim'                        " Status bar
 
     " Better file finding:
@@ -143,5 +144,7 @@ lua require('rust-tools').setup({})
 " Code folding
 set foldmethod=indent
 
-
+" Set nasm as default for .asm
+let g:LanguageClient_serverCommands = {'nasm': ['/path/to/nasm-lsp']}
+autocmd BufNewFile,BufRead *.asm  set ft=nasm
 
