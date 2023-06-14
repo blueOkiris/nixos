@@ -1,22 +1,30 @@
 #!/bin/sh
 
-xrandr --auto
-xrandr --output eDP-1-1 --primary --mode 1920x1080 --pos 0x0
-feh --bg-fill $HOME/Pictures/Wallpapers/botw1.jpg
+BIG_WALL="$HOME/Pictures/Wallpapers/spider-man.png"
+SMALL_WALL="$HOME/Pictures/Wallpapers/fedora-xorg.png"
 
-MONITOR_FOUND=`xrandr --listmonitors | grep -i DP-0`
-if [ "$MONITOR_FOUND" != "" ]; then
+BIG_MONITOR="DP-0"
+BIG_MONITOR_RES="3440x1440"
+SMALL_MONITOR="eDP-1-1"
+SMALL_MONITOR_RES="1920x1080"
+SMALL_MONITOR_OFFSET="2222x1440"
+
+xrandr --auto
+xrandr --output ${SMALL_MONITOR} --primary --mode ${SMALL_MONITOR_RES} --pos 0x0
+feh --bg-fill ${SMALL_WALL}
+
+MONITOR_FOUND=`xrandr --listmonitors | grep -i ${BIG_MONITOR}`
+if [ "${MONITOR_FOUND}" != "" ]; then
     xrandr \
-        --output DP-0 --primary --mode 3440x1440 --pos 0x0 \
-        --output eDP-1-1 --mode 1920x1080 --pos 3440x0
+        --output ${BIG_MONITOR} --primary --mode ${BIG_MONITOR_RES} --pos 0x0 \
+        --output ${SMALL_MONITOR} --mode ${SMALL_MONITOR_RES} --pos 3440x0
     sleep 1
     xrandr \
-        --output DP-0 --primary --mode 3440x1440 --pos 0x0 --rotate normal \
-        --output eDP-1-1 --mode 1920x1080 --pos 2222x1440 --rotate normal
+        --output ${BIG_MONITOR} --primary --mode ${BIG_MONITOR_RES} --pos 0x0 --rotate normal \
+        --output ${SMALL_MONITOR} --mode ${SMALL_MONITOR_RES} \
+            --pos ${SMALL_MONITOR_OFFSET} --rotate normal
     sleep 1
-    feh --bg-fill \
-        $HOME/Pictures/Wallpapers/botw-widexcf.png \
-        $HOME/Pictures/Wallpapers/botw1.jpg
+    feh --bg-fill ${BIG_WALL} ${SMALL_WALL}
 fi
 
 #source $HOME/.config/polybar/launch.sh
