@@ -124,12 +124,6 @@ output DP-0 pos 0 0 res 3440x1440 bg $HOME/Pictures/Wallpapers/botw-widexcf.png 
 
 exec brightnessctl set 100%
 
-# Tray applets
-#exec --no-startup-id nm-applet
-#exec --no-startup-id blueman-applet
-#exec --no-startup-id steam
-#exec --no-startup-id megasync-instances
-
 # Background stuff
 exec_always --no-startup-id $HOME/Apps/i3-alternating-layout/alternating_layouts.py
 exec --no-startup-id spotifyd
