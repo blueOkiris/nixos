@@ -5,7 +5,7 @@ set $mod Mod4
 # Core functionality
 font pango:monospace 8
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id picom
+exec --no-startup-id picom -b
 floating_modifier $mod
 bindsym $mod+x kill
 bindsym $mod+Shift+c reload
@@ -31,7 +31,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 # Useful applications
 bindsym $mod+Shift+s exec --no-startup-id gnome-screenshot -i
 bindsym $mod+Return exec --no-startup-id alacritty
-bindsym $mod+s exec "rofi -modi drun,run -show drun"
+bindsym $mod+s exec "rofi -modi drun,run -show drun -show-icons -icon-theme 'Papirus-Dark'"
 
 # Enable the compose key
 exec --no-startup-id setxkbmap -option compose:ralt
@@ -132,6 +132,7 @@ exec brightnessctl set 100%
 # Background stuff
 exec_always --no-startup-id $HOME/Applications/i3-alternating-layout/alternating_layouts.py
 exec --no-startup-id spotifyd
+exec_always --no-startup-id dunst
 exec_always --no-startup-id /usr/libexec/kf5/polkit-kde-authentication-agent-1
 exec_always --no-startup-id xclip
 
