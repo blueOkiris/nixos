@@ -6,3 +6,5 @@ Xft.hintstyle:  hintslight
 Xft.dpi:        96
 ! }}}
 
+Xcursor.size: 24
+Xcursor.theme: Breeze_Default
