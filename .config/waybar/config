@@ -2,20 +2,20 @@
     "layer": "top",
     "height": 34, // Waybar height (to be removed for auto height)
     "spacing": 0, // Gaps between modules (4px)
+    "fixed-center": true,
+    "output": "DP-3",
 
     // Choose the order of the modules
     "modules-left": [ "wlr/workspaces", "wlr/taskbar" ],
-    "modules-center": [ "gamemode" ],
-    "modules-right": [ "tray", "pulseaudio", "battery", "disk",  "disk#games", "clock" ],
+    "modules-center": [ "gamemode", "clock" ],
+    "modules-right": [ "tray", "pulseaudio", "battery", "disk",  "disk#games" ],
     
     // Modules configuration
     "wlr/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
         "format": "{name}",
-    },
-    "hyprland/window": {
-        "format": "{}"
+        "sort-by-number": true,
     },
     "wlr/taskbar": {
         "format": "{icon} {name}",
@@ -58,23 +58,21 @@
         "path": "/home/dylan/Games"
     },
     "battery": {
+        "interval": 60,
         "states": {
             "full": 95,
             "warning": 30,
             "critical": 15
         },
-        "format": "🔋 {capacity}%",
-        "format-charging": "+🔋 {capacity}%",
-        "format-plugged": "🔌🔋 {capacity}%",
-        "format-warning": "🪫 {capacity}%",
-        "format-critical": "🪫 {capacity}%",
-        "format-full": "🔋 Full"
+        "format": "{capacity}% {icon}",
+        "format-charging": "^{capacity}% {icon}",
+        "format-icons": [ "", "", "", "", "" ]
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
+        "format": "{volume}% {icon} {format_source} ",
+        "format-bluetooth": "{volume}% {icon}  {format_source}",
+        "format-bluetooth-muted": "  {format_source}",
         "format-muted": " {format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
