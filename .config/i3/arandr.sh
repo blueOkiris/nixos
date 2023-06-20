@@ -1,11 +1,11 @@
 #!/bin/sh
 
-BIG_WALL="$HOME/Pictures/Wallpapers/spider-man.png"
-SMALL_WALL="$HOME/Pictures/Wallpapers/fedora-xorg.png"
+BIG_WALL="$HOME/Pictures/Wallpapers/heros.png"
+SMALL_WALL="$HOME/Pictures/Wallpapers/ww-wave.jpg"
 
-BIG_MONITOR="DP-0"
+BIG_MONITOR="DP-1-0"
 BIG_MONITOR_RES="3440x1440"
-SMALL_MONITOR="eDP-1-1"
+SMALL_MONITOR="eDP-1"
 SMALL_MONITOR_RES="1920x1080"
 SMALL_MONITOR_OFFSET="2222x1440"
 
