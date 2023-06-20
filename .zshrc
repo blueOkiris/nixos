@@ -92,3 +92,24 @@ export TERM=xterm-256color
 # Draw some system compatibility
 paleofetch --recache
 
+# Start a graphical session
+if ! xset q &>/dev/null; then
+    dialog \
+        --title "Choose a Session" \
+        --menu "Select One:" 9 40 20 \
+        1 i3 2 Hyprland \
+        --output-fd 1 > /tmp/dialog
+    SELECTION=$(cat /tmp/dialog)
+    case $SELECTION in
+        1)
+            startx
+            ;;
+        2)
+            Hyprland
+            ;;
+        *)
+            echo "No valid session selected."
+            ;;
+    esac
+fi
+
