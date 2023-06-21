@@ -8,5 +8,5 @@
 nm-applet &
 blueman-applet &
 steam &
-$HOME/Applications/nextcloud*.AppImage &
+nextcloud &
 
