@@ -1,0 +1,9 @@
+[Desktop Entry]
+Comment=Tutanota official desktop client
+Exec=tutanota-desktop
+GenericName=Email Reader
+Icon=tutanota-desktop
+Name=Tutanota Desktop
+Type=Application
+Version=1.4
+X-XFCE-Source=file:///run/current-system/sw/share/applications/tutanota-desktop.desktop

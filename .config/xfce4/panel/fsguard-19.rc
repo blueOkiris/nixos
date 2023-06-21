@@ -3,7 +3,7 @@ red=2
 lab_size_visible=true
 progress_bar_visible=false
 hide_button=true
-label=Games
+label=
 label_visible=false
-mnt=/home
+mnt=/games
 

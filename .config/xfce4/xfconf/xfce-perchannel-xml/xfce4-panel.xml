@@ -29,6 +29,8 @@
         <value type="int" value="13"/>
         <value type="int" value="14"/>
         <value type="int" value="11"/>
+        <value type="int" value="19"/>
+        <value type="int" value="23"/>
         <value type="int" value="7"/>
         <value type="int" value="15"/>
         <value type="int" value="9"/>
@@ -37,9 +39,6 @@
     </property>
   </property>
   <property name="plugins" type="empty">
-    <property name="plugin-1" type="string" value="applicationsmenu">
-      <property name="button-icon" type="string" value="distributor-logo-fedora"/>
-    </property>
     <property name="plugin-2" type="string" value="tasklist">
       <property name="grouping" type="uint" value="1"/>
       <property name="flat-buttons" type="bool" value="false"/>
@@ -60,10 +59,26 @@
     </property>
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
+      <property name="known-legacy-items" type="array">
+        <value type="string" value=".blueman-tray-wrapped"/>
+        <value type="string" value="nextcloud"/>
+        <value type="string" value="requesting an ethernet network address for “wired connection 1”…"/>
+        <value type="string" value="ethernet network connection “wired connection 1” active"/>
+        <value type="string" value="steam"/>
+      </property>
+      <property name="known-items" type="array">
+        <value type="string" value="KDE Connect Indicator"/>
+        <value type="string" value="Whalebird1"/>
+        <value type="string" value="blueman"/>
+        <value type="string" value="chrome_status_icon_1"/>
+        <value type="string" value="Nextcloud"/>
+        <value type="string" value="steam"/>
+      </property>
     </property>
     <property name="plugin-8" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="show-notifications" type="bool" value="true"/>
+      <property name="mpris-players" type="string" value="chromium.instance10580;chromium.instance30284;firefox.instance3686"/>
     </property>
     <property name="plugin-11" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
@@ -84,7 +99,7 @@
     </property>
     <property name="plugin-17" type="string" value="launcher">
       <property name="items" type="array">
-        <value type="string" value="16842207371.desktop"/>
+        <value type="string" value="16872964452.desktop"/>
       </property>
     </property>
     <property name="plugin-18" type="string" value="launcher">
@@ -104,8 +119,13 @@
     </property>
     <property name="plugin-22" type="string" value="launcher">
       <property name="items" type="array">
-        <value type="string" value="16842758471.desktop"/>
+        <value type="string" value="16872969311.desktop"/>
       </property>
+    </property>
+    <property name="plugin-1" type="string" value="whiskermenu"/>
+    <property name="plugin-19" type="string" value="fsguard"/>
+    <property name="plugin-23" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
     </property>
   </property>
 </channel>
