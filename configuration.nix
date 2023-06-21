@@ -18,6 +18,8 @@
     environment.shells = with pkgs; [ zsh ];
     environment.variables = {
         QT_STYLE_OVERRIDE = "kvantum";
+        GTK_THEME = "Arc-Dark";
+        GTK_ICON_THEME = "Papirus-Dark";
     };
 
     imports =
@@ -35,7 +37,7 @@
     # Bluetooth enable
     hardware.bluetooth.enable = true;
 
-    # Time zone.
+    # Time zons.
     time.timeZone = "America/Chicago";
 
     i18n.defaultLocale = "en_US.UTF-8";
@@ -147,9 +149,24 @@
     };
 
     # List services that you want to enable:
-    networking.networkmanager.enable = true;
+    networking.networkmanager = {
+        enable = true;
+        enableStrongSwan = true;
+    };
     services.blueman.enable = true;
     services.gnome.gnome-keyring.enable = true;
+    services.snapper = {
+        configs = {
+            root = {
+                SUBVOLUME = "/";
+                ALLOW_USERS = [ "dylan" ];
+                TIMELINE_CREATE = true;
+                TIMELINE_CLEANUP = true;
+            };
+        };
+        snapshotInterval = "hourly";
+        cleanupInterval = "1d";
+    };
 
     # Open ports in the firewall.
     # networking.firewall.allowedTCPPorts = [ ... ];
@@ -166,10 +183,28 @@
         ];
     };
 
-    # Program-specific configs
+    # Programs that have modules
+    virtualisation.anbox.enable = true;
+    programs.dconf.enable = true;
+    programs.firefox.enable = true;
     programs.git = {
         enable = true;
         lfs.enable = true;
+    };
+    programs.gnome-disks.enable = true;
+    programs.java.enable = true;
+    programs.kdeconnect.enable = true;
+    programs.neovim = {
+        enable = true;
+        viAlias = true;
+        # TODO: configure here instead of using init.nvim for root and user
+        defaultEditor = true;
+    };
+    programs.steam.enable = true;
+    programs.waybar.enable = true;
+    programs.thunar = {
+        enable = true;
+        plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman thunar-media-tags-plugin ];
     };
 
     # Allow unfree packages
@@ -187,7 +222,6 @@
         arduino-cli
         baobab
         blender
-        blueman
         breeze-gtk
         brightnessctl
         cargo
@@ -196,7 +230,6 @@
         dunst
         elmPackages.nodejs
         feh
-        firefox
         fontforge
         freecad
         freetube
@@ -204,14 +237,11 @@
         gimp
         glaxnimate
         gnome.cheese
-        gnome.gnome-disk-utility
         gnome.gnome-screenshot
         gnome3.gnome-system-monitor
         gnumake
         inkscape
-        jdk
         jstest-gtk
-        kdeconnect
         kdenlive
         kicad
         kid3
@@ -224,16 +254,15 @@
         mupdf
         musescore
         neofetch
-        neovim
-        networkmanager_strongswan
         networkmanagerapplet
         nextcloud-client
         numlockx
         openssl
         papirus-icon-theme
+        pass
         pavucontrol
         pciutils
-        picom
+        picom # Potentially enable at system level; Only used for i3 rn though, so maybe not
         pinentry
         pkg-config
         (python3.withPackages(ps: with ps; [ neovim i3ipc ]))
@@ -241,10 +270,7 @@
         qjackctl
         rofi
         rustc
-        snapper
         spotify
-        spotifyd
-        steam
         teams-for-linux
         texlive.combined.scheme-full
         tigervnc
@@ -253,15 +279,10 @@
         ubuntu_font_family
         unzip
         vlc
-        waybar
         wget
         whalebird
         wine
         xclip
-        xfce.thunar
-        xfce.thunar-archive-plugin
-        xfce.thunar-media-tags-plugin
-        xfce.thunar-volman
         xfce.xfce4-panel
         xfce.xfce4-battery-plugin
         xfce.xfce4-clipman-plugin
