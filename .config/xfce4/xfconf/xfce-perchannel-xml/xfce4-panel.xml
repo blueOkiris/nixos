@@ -60,6 +60,7 @@
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="networkmanager applet"/>
         <value type="string" value=".blueman-tray-wrapped"/>
         <value type="string" value="nextcloud"/>
         <value type="string" value="requesting an ethernet network address for “wired connection 1”…"/>
@@ -78,7 +79,7 @@
     <property name="plugin-8" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="show-notifications" type="bool" value="true"/>
-      <property name="mpris-players" type="string" value="chromium.instance10580;chromium.instance30284;firefox.instance3686"/>
+      <property name="mpris-players" type="string" value="chromium.instance10580;chromium.instance30284;chromium.instance48755;chromium.instance79029;firefox.instance3686;spotify;spotifyd.instance188193"/>
     </property>
     <property name="plugin-11" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
