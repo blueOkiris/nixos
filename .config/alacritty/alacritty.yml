@@ -6,10 +6,10 @@ env:
 # Font configuration
 font:
   normal:
-    family: "Ubuntu Mono"
+    #family: "Ubuntu Mono"
     style: Regular
 
-  size: 11
+  size: 9
 
 # Dracula with blue
 colors:
