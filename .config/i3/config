@@ -131,7 +131,6 @@ exec brightnessctl set 100%
 
 # Background stuff
 exec_always --no-startup-id $HOME/i3-alternating-layout/alternating_layouts.py
-exec --no-startup-id spotifyd
 exec_always --no-startup-id dunst
 exec_always --no-startup-id gnome-keyring-daemon --daemonize --components=ssh,secrets
 exec_always --no-startup-id xclip
