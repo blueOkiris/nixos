@@ -1,9 +1,9 @@
 # Plugins
 
 autoload -U compinit && compinit
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /nix/store/*substring-s*/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+#source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Theme - Based on "gentoo" theme in oh-my-zsh
 
@@ -43,25 +43,11 @@ PROMPT='%(!.%B%F{red}.%B%F{green}%n@)%m %F{blue}%(!.%1~.%~) ${vcs_info_msg_0_}%F
 # User configuration
 
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="/var/lib/snapd/snap/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/Applications/arduino-cli:$PATH"
-export EDITOR="aipman run neovim"
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude .vim'
+export EDITOR=nvim
 
 alias rm="trash"
-alias rbpf="make -C Applications/paleofetch-fedora/ clean && make -C Applications/paleofetch-fedora && make -C Applications/paleofetch-fedora install"
 alias $(date +%Y)='echo "YEAR OF THE LINUX DESKTOP"'
-alias nvim="aipman run neovim"
-
-# Allow neovim AppImage to run w/ sudo
-function sudo() {
-    if [[ "$@" == "nvim"* ]]; then
-        command sudo aipman run neovim ${@#*nvim}
-    else
-        command sudo "$@"
-    fi
-}
 
 setopt autocd
 setopt extendedglob
@@ -69,47 +55,11 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt appendhistory
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey "^[[3~" delete-char
 zstyle ':completion:*' menu select
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-fi
-
-# Source /etc/profile
-source /etc/profile
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # For compatibility
 export TERM=xterm-256color
-
-# Draw some system compatibility
-paleofetch --recache
-
-# Start a graphical session
-if ! xset q &>/dev/null; then
-    dialog \
-        --title "Choose a Session" \
-        --menu "Select One:" 9 40 20 \
-        1 i3 2 Hyprland \
-        --output-fd 1 > /tmp/dialog
-    SELECTION=$(cat /tmp/dialog)
-    case $SELECTION in
-        1)
-            startx
-            ;;
-        2)
-            Hyprland
-            ;;
-        *)
-            echo "No valid session selected."
-            ;;
-    esac
-fi
 
