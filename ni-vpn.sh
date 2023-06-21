@@ -11,16 +11,16 @@ fi
 while [[ $# -gt 0 ]]; do
     case $1 in
         -s|--stop)
-            strongswan stop
+            ipsec stop
             exit
             ;;
     esac
 done
 
-strongswan start || true
+ipsec start || true
 sleep 1
 
-strongswan start
-strongswan stroke user-creds ni-vpn dturner
-strongswan up ni-vpn
+ipsec start
+ipsec stroke user-creds ni-vpn dturner
+ipsec up ni-vpn
 
