@@ -8,6 +8,92 @@
     home-manager.users.dylan = { pkgs, ... }: {
         home.stateVersion = "23.05";
         home.packages = [ ];
+        programs.alacritty = {
+            enable = true;
+            settings = {
+                env = {
+                    TERM = "alacritty";
+                    LANG = "en_US.UTF-8";
+                    LC_CTYPE = "en_US.UTF-8";
+                };
+                font = {
+                    normal = {
+                        family = "Ubuntu Mono";
+                        style = "Regular";
+                    };
+                    size = 12;
+                };
+                colors = { # Based on Dracula, but with a better blue
+                    primary = {
+                        background = "#282a37";
+                        foreground = "#f8f8f2";
+                        bright_foreground = "#ffffff";
+                    };
+                    cursor = {
+                        text = "CellBackground";
+                        cursor = "CellForeground";
+                    };
+                    vi_mode_cursor = {
+                        text = "CellBackground";
+                        cursor = "CellForeground";
+                    };
+                    search = {
+                        matches = {
+                            foreground = "#44475a";
+                            background = "#50fa7b";
+                        };
+                        focused_match = {
+                            foreground = "#44475a";
+                            background = "#ffb86c";
+                        };
+                        footer_bar = {
+                            foreground = "#f8f8f2";
+                            background = "#282a36";
+                        };
+                    };
+                    hints = {
+                        start = {
+                            foreground = "#282a36";
+                            background = "#f1fa8c";
+                        };
+                        end = {
+                            foreground = "#f1fa8c";
+                            background = "#282a36";
+                        };
+                    };
+                    selection = {
+                        text = "CellForeground";
+                        background = "#44475a";
+                    };
+                    normal = {
+                        black = "#21222c";
+                        red = "#ff5555";
+                        green = "#50fa7b";
+                        yellow = "#f1fa8c";
+                        blue = "#0066cf";
+                        magenta = "#ff79c6";
+                        cyan = "#8be9fd";
+                        white = "#f8f8f2";
+                    };
+                    bright = {
+                        black = "#6272a4";
+                        red = "#ff6e6e";
+                        green = "#69ff94";
+                        yellow = "#ffffa4";
+                        blue = "#1177ff";
+                        magenta = "#ff92df";
+                        cyan = "#a4ffff";
+                        white = "#ffffff";
+                    };
+                };
+            };
+        };
+        gtk = {
+            enable = true;
+            theme.name = "Arc-Dark";
+            iconTheme.name = "Papirus-Dark";
+            cursorTheme.name = "breeze_cursors";
+        };
         xresources.properties = {
             "Xft.antialias" = true;
             "Xft.hinting" = true;
@@ -17,24 +103,11 @@
             "Xcursor.size" = 24;
             "Xcursor.theme" = "breeze_cursors";
         };
-        gtk = {
-            enable = true;
-            theme.name = "Arc-Dark";
-            iconTheme.name = "Papirus-Dark";
-            cursorTheme.name = "breeze_cursors";
-        };
         programs.zsh = {
             enable = true;
             enableAutosuggestions = true;
             enableCompletion = true;
-            enableSyntaxHighlighting = true;
             autocd = true;
-            historySubstringSearch = {
-                enable = true;
-                # Can't use because it uses ' instead of ", so it doesn't eval
-                #searchUpKey = "\$terminfo[kcuu1]";
-                #searchDownKey = "\$terminfo[kcud1]";
-            };
             shellAliases = {
                 rm = "trash";
                 "\$(date +%Y)" = "echo \"YEAR OF THE LINUX DESKTOP!\"";
@@ -72,6 +145,12 @@
                 setopt extendedglob
                 bindkey \"^[[3~\" delete-char
                 zstyle ':completion:*' menu select
+
+                # Hot fix as the history substring search causes issues with \" vs '
+                source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+                source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+                bindkey \"\$terminfo[kcuu1]\" history-substring-search-up
+                bindkey \"\$terminfo[kcud1]\" history-substring-search-down
             ";
             localVariables = {
                 TERM = "xterm-256color";
