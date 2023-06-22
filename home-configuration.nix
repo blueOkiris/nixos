@@ -116,7 +116,7 @@
             config = {
                 floating.modifier = "Mod4";
                 fonts = {
-                    names = [ "Ubuntu Regular" ];
+                    names = [ "Ubuntu Mono" ];
                     style = "Regular";
                     size = 11.0;
                 };
@@ -187,7 +187,6 @@
                     "Mod4+7" = "workspace number \"7\"";
                     "Mod4+8" = "workspace number \"8\"";
                     "Mod4+9" = "workspace number \"9\"";
-                    "Mod4+0" = "workspace number \"0\"";
 
                     "Mod4+Shift+1" = "move container to workspace number \"1\"";
                     "Mod4+Shift+2" = "move container to workspace number \"2\"";
@@ -198,7 +197,6 @@
                     "Mod4+Shift+7" = "move container to workspace number \"7\"";
                     "Mod4+Shift+8" = "move container to workspace number \"8\"";
                     "Mod4+Shift+9" = "move container to workspace number \"9\"";
-                    "Mod4+Shift+0" = "move container to workspace number \"0\"";
                 };
                 modes = {
                     resize = {
@@ -206,6 +204,10 @@
                         "Down" = "resize grow height 5 px or 5 ppt";
                         "Left" = "resize shrink width 5 px or 5 ppt";
                         "Right" = "resize grow width 5 px or 5 ppt";
+
+                        "Return" = "mode \"default\"";
+                        "Escape" = "mode \"default\"";
+                        "Mod4+r" = "mode \"default\"";
                     };
                 };
                 window.commands = [
@@ -344,6 +346,32 @@
                 log-level = "warn";
             };
         };
+        home.file.".config/xfce4/panel/launcher-2/16812272972.desktop".source =
+            .config/xfce4/panel/launcher-2/16812272972.desktop;
+        home.file.".config/xfce4/panel/launcher-3/16872964452.desktop".source =
+            .config/xfce4/panel/launcher-3/16872964452.desktop;
+        home.file.".config/xfce4/panel/launcher-4/16872969311.desktop".source =
+            .config/xfce4/panel/launcher-4/16872969311.desktop;
+        home.file.".config/xfce4/panel/launcher-5/16812273385.desktop".source =
+            .config/xfce4/panel/launcher-5/16812273385.desktop;
+        home.file.".config/xfce4/panel/launcher-6/16812273013.desktop".source =
+            .config/xfce4/panel/launcher-6/16812273013.desktop;
+        home.file.".config/xfce4/panel/battery-13.rc".source =
+            .config/xfce4/panel/battery-13.rc;
+        home.file.".config/xfce4/panel/datetime-20.rc".source =
+            .config/xfce4/panel/datetime-20.rc;
+        home.file.".config/xfce4/panel/datetime-22.rc".source =
+            .config/xfce4/panel/datetime-22.rc;
+        home.file.".config/xfce4/panel/fsguard-14.rc".source =
+            .config/xfce4/panel/fsguard-14.rc;
+        home.file.".config/xfce4/panel/fsguard-16.rc".source =
+            .config/xfce4/panel/fsguard-16.rc;
+        home.file.".config/xfce4/panel/fsguard-18.rc".source =
+            .config/xfce4/panel/fsguard-18.rc;
+        home.file.".config/xfce4/panel/whiskermenu-1.rc".source =
+            .config/xfce4/panel/whiskermenu-1.rc;
+        home.file.".config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml".source =
+            .config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml;
         xresources.properties = {
             "Xft.antialias" = true;
             "Xft.hinting" = true;
@@ -413,7 +441,9 @@
             };
         };
     };
-    programs.neovim = { # Technically "system-wide", but similar to home stuff in essence
+
+    # Technically "system-wide", but similar to home stuff in essence
+    programs.neovim = {
         enable = true;
         viAlias = true;
         vimAlias = true;
