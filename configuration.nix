@@ -105,7 +105,8 @@
                 ${pkgs.xorg.xrandr}/bin/xrandr --output \${SMALL_MONITOR} --primary --mode \\
                     \${SMALL_MONITOR_RES} --pos 0x0
 
-                MONITOR_FOUND=`${pkgs.xorg.xrandr}/bin/xrandr --listmonitors | grep -i \${BIG_MONITOR}`
+                MONITOR_FOUND=`${pkgs.xorg.xrandr}/bin/xrandr --listmonitors | "
+                    + "grep -i \${BIG_MONITOR}`
                 if [ \"\${MONITOR_FOUND}\" != \"\" ]; then
                     ${pkgs.xorg.xrandr}/bin/xrandr \\
                         --output \${BIG_MONITOR} --primary --mode \${BIG_MONITOR_RES} --pos 0x0 \\
@@ -125,6 +126,7 @@
             enable = true;
             extraPackages = with pkgs; [
                 i3lock-fancy
+                dex
             ];
             package = pkgs.i3-gaps;
         };
@@ -309,7 +311,6 @@
         pass
         pavucontrol
         pciutils
-        picom # Potentially enable at system level; Only used for i3 rn though, so maybe not
         pinentry
         pkg-config
         (python3.withPackages(ps: with ps; [ i3ipc ]))
