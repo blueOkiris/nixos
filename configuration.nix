@@ -22,10 +22,11 @@
         GTK_ICON_THEME = "Papirus-Dark";
     };
 
-    imports =
-        [ # Include the results of the hardware scan.
-            ./hardware-configuration.nix
-        ];
+    imports = [
+        ./hardware-configuration.nix
+        <home-manager/nixos>
+        ./home-configuration.nix
+    ];
 
     # Bootloader
     boot.loader.systemd-boot.enable = true;
@@ -99,6 +100,67 @@
         autosuggestions.enable = true;
         syntaxHighlighting.enable = true;
     };
+    home-manager.users.dylan = { pkgs, ... }: {
+        programs.zsh = {
+            enable = true;
+            enableAutosuggestions = true;
+            enableCompletion = true;
+            enableSyntaxHighlighting = true;
+            autocd = true;
+            historySubstringSearch = {
+                enable = true;
+                # Can't use because it uses ' instead of ", so it doesn't eval
+                #searchUpKey = "\$terminfo[kcuu1]";
+                #searchDownKey = "\$terminfo[kcud1]";
+            };
+            shellAliases = {
+                rm = "trash";
+                "\$(date +%Y)" = "echo \"YEAR OF THE LINUX DESKTOP!\"";
+            };
+            initExtra = "
+# Theme - Based on oh-my-zsh 'gentoo' theme
+autoload -Uz colors && colors
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr '%F{red}*'   # display this when there are unstaged changes
+zstyle ':vcs_info:*' stagedstr '%F{yellow}+'  # display this when there are staged changes
+zstyle ':vcs_info:*' actionformats '%F{5}(%F{2}%b%F{3}|%F{1}%a%c%u%m%F{5})%f '
+zstyle ':vcs_info:*' formats '%F{5}(%F{2}%b%c%u%m%F{5})%f '
+zstyle ':vcs_info:svn:*' branchformat '%b'
+zstyle ':vcs_info:svn:*' actionformats '%F{5}(%F{2}%b%F{1}:%{3}%i%F{3}|%F{1}%a%c%u%m%F{5})%f '
+zstyle ':vcs_info:svn:*' formats '%F{5}(%F{2}%b%F{1}:%F{3}%i%c%u%m%F{5})%f '
+zstyle ':vcs_info:*' enable git cvs svn
+zstyle ':vcs_info:git*+set-message:*' hooks untracked-git
++vi-untracked-git() {
+  if command git status --porcelain 2>/dev/null | command grep -q '??'; then
+    hook_com[misc]='%F{red}?'
+  else
+    hook_com[misc]=''
+  fi
+}
+gentoo_precmd() {
+  vcs_info
+}
+setopt prompt_subst
+autoload -U add-zsh-hook
+add-zsh-hook precmd gentoo_precmd
+PROMPT='%(!.%B%F{red}.%B%F{green}%n@)%m %F{blue}%(!.%1~.%~) \${vcs_info_msg_0_}%F{blue}%(!.#.$)%k%b%f '
+
+# Extra config options
+setopt extendedglob
+bindkey \"^[[3~\" delete-char
+zstyle ':completion:*' menu select
+            ";
+            localVariables = {
+                TERM = "xterm-256color";
+                PATH = "$HOME/.local/bin;$HOME/.cargo/bin:$PATH";
+                EDITOR = "nvim";
+            };
+        };
+        home.stateVersion = "23.05";
+        home.packages = [ ];
+    };
+    home-manager.useGlobalPkgs = true;
 
     # Sound
     security.rtkit.enable = true;
@@ -187,6 +249,7 @@
     virtualisation.anbox.enable = true;
     programs.dconf.enable = true;
     programs.firefox.enable = true;
+    programs.gamemode.enable = true;
     programs.git = {
         enable = true;
         lfs.enable = true;
@@ -200,12 +263,40 @@
         # TODO: configure here instead of using init.nvim for root and user
         defaultEditor = true;
     };
-    programs.steam.enable = true;
+    programs.steam = {
+        enable = true;
+        remotePlay.openFirewall = true;
+        dedicatedServer.openFirewall = true;
+    };
     programs.waybar.enable = true;
     programs.thunar = {
         enable = true;
         plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman thunar-media-tags-plugin ];
     };
+
+    # Tweak some programs
+    nixpkgs.overlays = [
+        (self: super: {
+            waybar = super.waybar.overrideAttrs (oldAttrs: {
+                mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+            });
+        })
+    ];
+
+    # Fonts. Font packages in systemPackages won't be accessible
+    fonts.fonts = with pkgs; [
+        dina-font
+        fira-code
+        fira-code-symbols
+        font-awesome
+        liberation_ttf
+        mplus-outline-fonts.githubRelease
+        noto-fonts
+        noto-fonts-cjk
+        noto-fonts-emoji
+        proggyfonts
+        ubuntu_font_family
+    ];
 
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
@@ -240,6 +331,7 @@
         gnome.gnome-screenshot
         gnome3.gnome-system-monitor
         gnumake
+        hyprpaper
         inkscape
         jstest-gtk
         kdenlive
@@ -276,7 +368,6 @@
         tigervnc
         trash-cli
         tutanota-desktop
-        ubuntu_font_family
         unzip
         vlc
         wget
