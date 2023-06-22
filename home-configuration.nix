@@ -15,7 +15,13 @@
             "Xft.hintstyle" = "hintslight";
             "Xft.dpi" = 96;
             "Xcursor.size" = 24;
-            "Xcursor.theme" = "Breeze_Default";
+            "Xcursor.theme" = "breeze_cursors";
+        };
+        gtk = {
+            enable = true;
+            theme.name = "Arc-Dark";
+            iconTheme.name = "Papirus-Dark";
+            cursorTheme.name = "breeze_cursors";
         };
         programs.zsh = {
             enable = true;
