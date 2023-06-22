@@ -54,6 +54,22 @@
             intelBusId = "PCI:1:0:0";
         };
     };
+    environment.etc."X11/xorg.conf.d/nvidia.conf".text = ''
+        Section "OutputClass"
+            Identifier "nvidia"
+            MatchDriver "nvidia-drm"
+            Driver "nvidia"
+            Option "AllowEmptyInitialConfiguration"
+            Option "SLI" "Auto"
+            Option "BaseMosaic" "on"
+            Option "PrimaryGPU" "yes"
+        EndSection
+
+        Section "ServerLayout"
+            Identifier "layout"
+            Option "AllowNVIDIAGPUScreens"
+        EndSection
+    '';
 
     # Time zons.
     time.timeZone = "America/Chicago";
