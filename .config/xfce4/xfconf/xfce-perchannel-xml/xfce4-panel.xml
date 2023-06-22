@@ -79,7 +79,7 @@
     <property name="plugin-8" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="show-notifications" type="bool" value="true"/>
-      <property name="mpris-players" type="string" value="chromium.instance10492;chromium.instance10580;chromium.instance30284;chromium.instance48755;chromium.instance79029;firefox.instance3686;firefox.instance47885;spotify;spotifyd.instance188193"/>
+      <property name="mpris-players" type="string" value="chromium.instance10492;chromium.instance10580;chromium.instance30284;chromium.instance48755;chromium.instance6223;chromium.instance79029;firefox.instance3686;firefox.instance47885;spotify;spotifyd.instance188193"/>
     </property>
     <property name="plugin-11" type="string" value="separator">
       <property name="style" type="uint" value="0"/>

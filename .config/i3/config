@@ -114,11 +114,6 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-bindsym $mod+Control+Right exec --no-startup-id $HOME/.config/i3/ws-next.sh
-bindsym $mod+Control+Left workspace prev
-bindsym $mod+Control+Shift+Right move container to workspace next
-bindsym $mod+Control+Shift+Left move container to workspace prev
-
 # Gaps
 for_window [class=".*"] border pixel 5
 gaps inner 20
@@ -126,16 +121,25 @@ gaps outer 0
 smart_gaps on
 
 # Handle displays and launch bar (along with tray stuff after)
-exec $HOME/.config/i3/arandr.sh
-exec brightnessctl set 100%
+exec_always --no-startup-id bash -c 'if [ "$(xrandr --listmonitors | grep -i DP-0)" != "" ]; then feh --bg-fill $HOME/Pictures/Wallpapers/heros.png $HOME/Pictures/Wallpapers/ww-wave.jpg; else feh --bg-fill $HOME/Pictures/Wallpapers/ww-wave.jpg; fi'
+exec xfce4-panel --disable-wm-check
+exec --no-startup-id brightnessctl set 100%
 
 # Background stuff
 exec_always --no-startup-id $HOME/i3-alternating-layout/alternating_layouts.py
-exec_always --no-startup-id gnome-keyring-daemon --daemonize --components=ssh,secrets
+exec_always --no-startup-id dbus-update-activation-environment --all
+exec_always --no-startup-id gnome-keyring-daemon --start --components=ssh,secrets
 exec_always --no-startup-id xclip
 
 # Turn on numlock
 exec_always --no-startup-id numlockx on
 
-exec msi-perkeyrgb --model GE75 -p chakra
+# Tray apps
+exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+exec --no-startup-id steam -silent
+exec --no-startup-id nextcloud
+
+# Pretty lights
+exec --no-startup-id msi-perkeyrgb --model GE75 -p chakra
 

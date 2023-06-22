@@ -37,6 +37,24 @@
     # Bluetooth enable
     hardware.bluetooth.enable = true;
 
+    # Nvidia
+    hardware.opengl = {
+        enable = true;
+        driSupport = true;
+        driSupport32Bit = true;
+    };
+    services.xserver.videoDrivers = [ "nvidia" ];
+    hardware.nvidia = {
+        modesetting.enable = true;
+        open = true;
+        nvidiaSettings = true;
+        prime = {
+            sync.enable = true;
+            nvidiaBusId = "PCI:1:0:0";
+            intelBusId = "PCI:1:0:0";
+        };
+    };
+
     # Time zons.
     time.timeZone = "America/Chicago";
 
@@ -65,12 +83,42 @@
         };
 
         displayManager = {
-            gdm = {
+            lightdm = {
                 enable = true;
-                wayland = true;
-                autoSuspend = false;
+                greeter.name = "lightdm-gtk-greeter";
+                greeters.gtk = {
+                    enable = true;
+                    theme.name = "Arc-Dark";
+                    cursorTheme.name = "breeze_cursors";
+                    iconTheme.name = "Papirus-Dark";
+                };
             };
-            defaultSession = "none+i3";
+            setupCommands = "
+                BIG_MONITOR=\"DP-0\"
+                BIG_MONITOR_RES=\"3440x1440\"
+                SMALL_MONITOR=\"eDP-1-1\"
+                SMALL_MONITOR_RES=\"1920x1080\"
+                SMALL_MONITOR_OFFSET=\"2222x1440\"
+
+                ${pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource \"modesetting\" NVIDIA-0
+                ${pkgs.xorg.xrandr}/bin/xrandr --auto
+                ${pkgs.xorg.xrandr}/bin/xrandr --output \${SMALL_MONITOR} --primary --mode \\
+                    \${SMALL_MONITOR_RES} --pos 0x0
+
+                MONITOR_FOUND=`${pkgs.xorg.xrandr}/bin/xrandr --listmonitors | grep -i \${BIG_MONITOR}`
+                if [ \"\${MONITOR_FOUND}\" != \"\" ]; then
+                    ${pkgs.xorg.xrandr}/bin/xrandr \\
+                        --output \${BIG_MONITOR} --primary --mode \${BIG_MONITOR_RES} --pos 0x0 \\
+                        --output \${SMALL_MONITOR} --mode \${SMALL_MONITOR_RES} --pos 3440x0
+                    sleep 0.25
+                    ${pkgs.xorg.xrandr}/bin/xrandr \\
+                        --output \${BIG_MONITOR} --primary --mode \${BIG_MONITOR_RES} \\
+                            --pos 0x0 --rotate normal \\
+                        --output \${SMALL_MONITOR} --mode \${SMALL_MONITOR_RES} \\
+                            --pos \${SMALL_MONITOR_OFFSET} --rotate normal
+                fi
+                exit # Skip generated prime lines
+            ";
         };
 
         windowManager.i3 = {
@@ -80,11 +128,6 @@
             ];
             package = pkgs.i3-gaps;
         };
-    };
-    programs.hyprland = {
-        enable = true;
-        xwayland.enable = true;
-        nvidiaPatches = true;
     };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -118,24 +161,6 @@
                 ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
             }
         '';
-    };
-
-    # Nvidia
-    hardware.opengl = {
-        enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
-    };
-    services.xserver.videoDrivers = [ "nvidia" ];
-    hardware.nvidia = {
-        modesetting.enable = true;
-        open = true;
-        nvidiaSettings = true;
-        prime = {
-            sync.enable = true;
-            nvidiaBusId = "PCI:1:0:0";
-            intelBusId = "PCI:1:0:0";
-        };
     };
 
     # Some programs need SUID wrappers, can be configured further or are
