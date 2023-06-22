@@ -1,6 +1,6 @@
 favorites=
 recent=
-button-icon=tux
+button-icon=/home/dylan/dot-files/nixos.svg
 button-single-row=false
 show-button-title=true
 show-button-icon=true
