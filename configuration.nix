@@ -30,12 +30,29 @@
     # Bootloader
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
+    boot.initrd.verbose = false;
+    boot.consoleLogLevel = 0;
+    boot.initrd.systemd.enable = true;
+    boot.kernelParams = [ "quiet" "udev.log_level=3" ];
+    boot.plymouth.enable = true;
+    boot.plymouth.theme = "breeze";
 
     # Define your hostname.
     networking.hostName = "msi-raider";
 
     # Bluetooth enable
     hardware.bluetooth.enable = true;
+
+    # Make mouse work the way any human would want it to
+    services.xserver.libinput = {
+        touchpad = {
+            naturalScrolling = true;
+            tapping = true;
+            scrollMethod = "twofinger";
+            middleEmulation = true;
+        };
+        mouse.naturalScrolling = false;
+    };
 
     # Nvidia
     hardware.opengl = {
@@ -108,6 +125,7 @@
                     cursorTheme.name = "breeze_cursors";
                     iconTheme.name = "Papirus-Dark";
                 };
+                background = ./gnu-linux-wide-wallpaper.png;
             };
             setupCommands = "
                 BIG_MONITOR=\"DP-0\"
@@ -288,6 +306,7 @@
         baobab
         blender
         breeze-gtk
+        breeze-plymouth
         brightnessctl
         cargo
         cura
@@ -329,8 +348,8 @@
         pciutils
         pinentry
         pkg-config
-        (python3.withPackages(ps: with ps; [ i3ipc ]))
         pulseaudio
+        (python3.withPackages(ps: with ps; [ i3ipc ]))
         qjackctl
         rofi
         rustc
