@@ -342,6 +342,7 @@
         nextcloud-client
         numlockx
         openssl
+        pandoc
         papirus-icon-theme
         pass
         pavucontrol
