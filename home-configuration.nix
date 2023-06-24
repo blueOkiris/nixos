@@ -560,6 +560,8 @@
                     auto-pairs
                     ale
                     coc-git
+                    coc-nvim
+                    coc-rust-analyzer
                     deoplete-clang
                     deoplete-nvim
                     dracula-vim

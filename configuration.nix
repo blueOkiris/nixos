@@ -20,6 +20,7 @@
         QT_STYLE_OVERRIDE = "kvantum";
         GTK_THEME = "Arc-Dark";
         GTK_ICON_THEME = "Papirus-Dark";
+        RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
     };
 
     imports = [
@@ -353,6 +354,7 @@
         (python3.withPackages(ps: with ps; [ i3ipc ]))
         qjackctl
         rofi
+        rust-analyzer
         rustc
         spotify
         teams-for-linux
