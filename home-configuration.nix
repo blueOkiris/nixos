@@ -425,6 +425,7 @@
                 setopt extendedglob
                 bindkey \"^[[3~\" delete-char
                 zstyle ':completion:*' menu select
+                export PATH=\"$HOME/.cargo/bin:$PATH\"
 
                 # Hot fix as the history substring search causes issues with \" vs '
                 source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/"
@@ -433,10 +434,11 @@
                     + "zsh-history-substring-search.zsh
                 bindkey \"\$terminfo[kcuu1]\" history-substring-search-up
                 bindkey \"\$terminfo[kcud1]\" history-substring-search-down
+
+                disfetch
             ";
             localVariables = {
                 TERM = "xterm-256color";
-                PATH = "$HOME/.local/bin;$HOME/.cargo/bin:$PATH";
                 EDITOR = "nvim";
             };
         };

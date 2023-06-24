@@ -321,6 +321,7 @@
         cargo
         cura
         discord
+        disfetch
         dolphin-emu
         dunst
         elmPackages.nodejs
