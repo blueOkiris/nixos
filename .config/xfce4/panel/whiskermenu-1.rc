@@ -1,6 +1,6 @@
 favorites=
 recent=
-button-icon=/home/dylan/dot-files/distro-logos/nixos.svg
+button-icon=/etc/nixos/distro-logos/nixos.svg
 button-single-row=false
 show-button-title=true
 show-button-icon=true
