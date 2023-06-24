@@ -44,6 +44,11 @@
     # Bluetooth enable
     hardware.bluetooth.enable = true;
 
+    # Enable GameCube adapter
+    services.udev.extraRules = 
+        "\nSUBSYSTEM==\"usb\", ENV{DEVTYPE}==\"usb_device\", ATTRS{idVendor}==\"057e\", "
+            + "ATTRS{idProduct}==\"0337\", MODE=\"0666\"";
+
     # Make mouse work the way any human would want it to
     services.xserver.libinput = {
         touchpad = {
@@ -239,15 +244,33 @@
         enable = true;
         allowedTCPPortRanges = [
             { from = 1714; to = 1764; } # KDE Connect
+            { from = 2626; to = 2626; } # Dolphin
         ];
         allowedUDPPortRanges = [
             { from = 1714; to = 1764; } # KDE Connect
+            { from = 2626; to = 2626; } # Dolphin
         ];
     };
+
+    # Fonts. Font packages in systemPackages won't be accessible
+    fonts.fonts = with pkgs; [
+        dina-font
+        fira-code
+        fira-code-symbols
+        font-awesome
+        liberation_ttf
+        mplus-outline-fonts.githubRelease
+        noto-fonts
+        noto-fonts-cjk
+        noto-fonts-emoji
+        proggyfonts
+        ubuntu_font_family
+    ];
 
     # Programs that have modules
     virtualisation.anbox.enable = true;
     programs.dconf.enable = true;
+    programs.file-roller.enable = true;
     programs.firefox.enable = true;
     programs.gamemode.enable = true;
     programs.git = {
@@ -276,21 +299,6 @@
         })
     ];
 
-    # Fonts. Font packages in systemPackages won't be accessible
-    fonts.fonts = with pkgs; [
-        dina-font
-        fira-code
-        fira-code-symbols
-        font-awesome
-        liberation_ttf
-        mplus-outline-fonts.githubRelease
-        noto-fonts
-        noto-fonts-cjk
-        noto-fonts-emoji
-        proggyfonts
-        ubuntu_font_family
-    ];
-
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
 
@@ -312,6 +320,7 @@
         cargo
         cura
         discord
+        dolphin-emu
         dunst
         elmPackages.nodejs
         feh
@@ -350,12 +359,59 @@
         pciutils
         pinentry
         pkg-config
+
+        # Project Plus
+        (let
+            app_name = "Faster_Project_Plus-x86-64.AppImage";
+            gh_proj = "FPM-AppImage";
+            gh_user = "Ishiiruka";
+            version = "2.4.1";
+            hash = "07gcpwf84kn9jl4zmgkzipk5fl9a10pv9rg59pgzhxqrx2nlmpif";
+        in pkgs.appimageTools.wrapType2 {
+            name = "project+";
+            extraPkgs = pkgs: [
+                pkgs.gmp
+                pkgs.mpg123
+                pkgs.libmpg123
+            ];
+            src = builtins.fetchurl {
+                url =
+                    "https://github.com/${gh_user}/${gh_proj}/releases/download/"
+                        + "v${version}/${app_name}";
+                sha256 = "${hash}";
+            };
+        })
+
         pulseaudio
         (python3.withPackages(ps: with ps; [ i3ipc ]))
         qjackctl
         rofi
         rust-analyzer
         rustc
+
+        # Slippi
+        (let
+            app_name = "Slippi_Online-x86_64.AppImage";
+            gh_proj = "Ishiiruka";
+            gh_user = "slippi";
+            version = "3.1.0";
+            hash = "039qm941xbl97zvvv0q6480fps4w1a0n71sk1wiacs6n4gm2bs6f";
+        in pkgs.appimageTools.wrapType2 {
+            name = "slippi";
+            extraPkgs = pkgs: [
+                pkgs.gmp
+                pkgs.mpg123
+                pkgs.libmpg123
+                pkgs.curl
+            ];
+            src = builtins.fetchurl {
+                url =
+                    "https://github.com/${gh_user}/${gh_proj}/releases/download/"
+                        + "v${version}/${app_name}";
+                sha256 = "${hash}";
+            };
+        })
+
         spotify
         teams-for-linux
         texlive.combined.scheme-full
@@ -388,3 +444,4 @@
         "electron-19.0.7"
     ];
 }
+
