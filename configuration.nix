@@ -180,7 +180,7 @@
     users.users.dylan = {
         isNormalUser = true;
         description = "Dylan Turner";
-        extraGroups = [ "networkmanager" "wheel" ];
+        extraGroups = [ "networkmanager" "wheel" "docker" ];
         shell = pkgs.zsh;
     };
     programs.zsh = {
@@ -275,6 +275,10 @@
     # Programs that have modules
     virtualisation.anbox.enable = true;
     programs.dconf.enable = true;
+    virtualisation.docker = {
+        enable = true;
+        storageDriver = "btrfs";
+    };
     programs.file-roller.enable = true;
     programs.firefox.enable = true;
     programs.gamemode.enable = true;
@@ -323,6 +327,7 @@
         breeze-plymouth
         brightnessctl
         cargo
+        cmake
         cura
         discord
         disfetch
