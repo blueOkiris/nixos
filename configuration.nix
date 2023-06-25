@@ -124,12 +124,13 @@
         displayManager = {
             lightdm = {
                 enable = true;
-                greeter.name = "lightdm-gtk-greeter";
-                greeters.gtk = {
+                greeters.slick = {
                     enable = true;
                     theme.name = "Arc-Dark";
                     cursorTheme.name = "breeze_cursors";
                     iconTheme.name = "Papirus-Dark";
+                    font.name = "Ubuntu Regular";
+                    draw-user-backgrounds = true;
                 };
                 background = ./gnu-linux-wide-wallpaper.png;
             };
