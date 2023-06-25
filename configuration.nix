@@ -44,6 +44,9 @@
     # Bluetooth enable
     hardware.bluetooth.enable = true;
 
+    # Patch network mangager
+    systemd.services.NetworkManager-wait-online.enable = false;
+
     # Enable GameCube adapter
     services.udev.extraRules = 
         "\nSUBSYSTEM==\"usb\", ENV{DEVTYPE}==\"usb_device\", ATTRS{idVendor}==\"057e\", "
@@ -325,7 +328,7 @@
         disfetch
         dolphin-emu
         dunst
-        elmPackages.nodejs
+        nodejs
         feh
         fontforge
         freecad
@@ -444,7 +447,7 @@
 
     # Hack
     nixpkgs.config.permittedInsecurePackages = [
-        "electron-19.0.7"
+        "electron-21.4.0"
     ];
 }
 
