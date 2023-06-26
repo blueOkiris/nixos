@@ -180,7 +180,7 @@
     users.users.dylan = {
         isNormalUser = true;
         description = "Dylan Turner";
-        extraGroups = [ "networkmanager" "wheel" "docker" ];
+        extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
         shell = pkgs.zsh;
     };
     programs.zsh = {
@@ -239,6 +239,49 @@
         cleanupInterval = "1d";
     };
 
+    # VPN
+    #environment.etc."ipsec.d/cacerts/DigiCertGlobalRootG2.crt".source = ./DigiCertGlobalRootG2.crt;
+    #environment.etc."ipsec.d/cacerts/DigiCertGlobalG2TLSRSASHA2562020CA1.crt ".source =
+    #    ./DigiCertGlobalG2TLSRSASHA2562020CA1.crt;
+
+    services.strongswan = {
+        enable = true;
+        connections = {
+            "%default" = {
+                ikelifetime = "8h";
+                reauth = "no";
+                keylife = "20m";
+                rekeymargin = "3m";
+                #keyringtries = "1";
+                keyexchange = "ikev2";
+                mobike = "yes";
+            };
+            "ni-vpn" = {
+                left = "%any";
+                leftsourceip = "%config";
+                leftfirewall = "yes";
+                leftauth = "eap-mschapv2";
+
+                right = "vpn-us1.natinst.com";
+                rightid = "%vpn.natinst.com";
+                rightsubnet = "0.0.0.0/0";
+                rightdns = "172.18.18.80,172.18.20.80";
+
+                auto = "add";
+            };
+        };
+        ca = {
+            ni-vpn-rsa = {
+                auto = "add";
+                cacert = "/etc/nixos/DigiCertGlobalG2TLSRSASHA2562020CA1.crt";
+            };
+            ni-vpn-cert = {
+                auto = "add";
+                cacert = "/etc/nixos/DigiCertGlobalRootG2.crt";
+            };
+        };
+    };
+
     # Open ports in the firewall.
     # networking.firewall.allowedTCPPorts = [ ... ];
     # networking.firewall.allowedUDPPorts = [ ... ];
@@ -289,6 +332,7 @@
     programs.gnome-disks.enable = true;
     programs.java.enable = true;
     programs.kdeconnect.enable = true;
+    virtualisation.libvirtd.enable = true;
     programs.steam = {
         enable = true;
         remotePlay.openFirewall = true;
@@ -424,12 +468,14 @@
         })
 
         spotify
+        strongswan
         teams-for-linux
         texlive.combined.scheme-full
         tigervnc
         trash-cli
         tutanota-desktop
         unzip
+        virt-manager
         vlc
         wget
         whalebird
