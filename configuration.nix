@@ -441,6 +441,7 @@
         rofi
         rust-analyzer
         rustc
+        ryujinx
 
         # Slippi
         (let
