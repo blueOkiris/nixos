@@ -41,61 +41,8 @@
     # Define your hostname.
     networking.hostName = "msi-raider";
 
-    # Bluetooth enable
-    hardware.bluetooth.enable = true;
-
-    # Patch network mangager
+    # Patch network manager for NixOS unstable
     systemd.services.NetworkManager-wait-online.enable = false;
-
-    # Enable GameCube adapter
-    services.udev.extraRules = 
-        "\nSUBSYSTEM==\"usb\", ENV{DEVTYPE}==\"usb_device\", ATTRS{idVendor}==\"057e\", "
-            + "ATTRS{idProduct}==\"0337\", MODE=\"0666\"";
-
-    # Make mouse work the way any human would want it to
-    services.xserver.libinput = {
-        touchpad = {
-            naturalScrolling = true;
-            tapping = true;
-            scrollMethod = "twofinger";
-            middleEmulation = true;
-        };
-        mouse.naturalScrolling = false;
-    };
-
-    # Nvidia
-    hardware.opengl = {
-        enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
-    };
-    services.xserver.videoDrivers = [ "nvidia" ];
-    hardware.nvidia = {
-        modesetting.enable = true;
-        open = true;
-        nvidiaSettings = true;
-        prime = {
-            sync.enable = true;
-            nvidiaBusId = "PCI:1:0:0";
-            intelBusId = "PCI:1:0:0";
-        };
-    };
-    environment.etc."X11/xorg.conf.d/nvidia.conf".text = ''
-        Section "OutputClass"
-            Identifier "nvidia"
-            MatchDriver "nvidia-drm"
-            Driver "nvidia"
-            Option "AllowEmptyInitialConfiguration"
-            Option "SLI" "Auto"
-            Option "BaseMosaic" "on"
-            Option "PrimaryGPU" "yes"
-        EndSection
-
-        Section "ServerLayout"
-            Identifier "layout"
-            Option "AllowNVIDIAGPUScreens"
-        EndSection
-    '';
 
     # Time zons.
     time.timeZone = "America/Chicago";
@@ -113,7 +60,7 @@
         LC_TIME = "en_US.UTF-8";
     };
 
-    # Configure graphics
+    # Configure display server
     services.xserver = {
         layout = "us";
         xkbVariant = "";

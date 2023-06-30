@@ -51,5 +51,62 @@
     powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
     hardware.cpu.intel.updateMicrocode =
         lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+    # Enable GameCube adapter
+    services.udev.extraRules = 
+        "\nSUBSYSTEM==\"usb\", ENV{DEVTYPE}==\"usb_device\", ATTRS{idVendor}==\"057e\", "
+            + "ATTRS{idProduct}==\"0337\", MODE=\"0666\"";
+
+    # Bluetooth enable
+    hardware.bluetooth.enable = true;
+
+    # Make mouse work the way any human would want it to
+    services.xserver.libinput = {
+        touchpad = {
+            naturalScrolling = true;
+            tapping = true;
+            scrollMethod = "twofinger";
+            middleEmulation = false;
+            tappingButtonMap = "lrm";
+            additionalOptions = ''
+            Option "MiddleButtonArea" "1"
+            '';
+        };
+        mouse.naturalScrolling = false;
+    };
+
+    # Nvidia
+    hardware.opengl = {
+        enable = true;
+        driSupport = true;
+        driSupport32Bit = true;
+    };
+    services.xserver.videoDrivers = [ "nvidia" ];
+    hardware.nvidia = {
+        modesetting.enable = true;
+        open = true;
+        nvidiaSettings = true;
+        prime = {
+            sync.enable = true;
+            nvidiaBusId = "PCI:1:0:0";
+            intelBusId = "PCI:1:0:0";
+        };
+    };
+    environment.etc."X11/xorg.conf.d/nvidia.conf".text = ''
+        Section "OutputClass"
+            Identifier "nvidia"
+            MatchDriver "nvidia-drm"
+            Driver "nvidia"
+            Option "AllowEmptyInitialConfiguration"
+            Option "SLI" "Auto"
+            Option "BaseMosaic" "on"
+            Option "PrimaryGPU" "yes"
+        EndSection
+
+        Section "ServerLayout"
+            Identifier "layout"
+            Option "AllowNVIDIAGPUScreens"
+        EndSection
+    '';
 }
 
