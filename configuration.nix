@@ -334,6 +334,7 @@
         gnome.gnome-screenshot
         gnome3.gnome-system-monitor
         gnumake
+        htop
         hyprpaper
         inkscape
         jstest-gtk
