@@ -435,7 +435,7 @@
                 bindkey \"\$terminfo[kcuu1]\" history-substring-search-up
                 bindkey \"\$terminfo[kcud1]\" history-substring-search-down
 
-                paleofetch
+                paleofetch --recache
             ";
             localVariables = {
                 TERM = "xterm-256color";
