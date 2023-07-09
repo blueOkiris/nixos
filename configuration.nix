@@ -4,7 +4,29 @@
 
 { config, pkgs, ... }:
 
-{
+let
+    paleofetch = pkgs.stdenv.mkDerivation rec {
+        name = "paleofetch";
+        src = pkgs.fetchFromGitHub {
+            owner = "blueOkiris";
+            repo = "paleofetch-nixos";
+            rev = "a1e1a2f1f9d778d836c8d9bfaa8d44ddf8d2da4e";
+            sha256 = "1a00n2kq5d9i2sw2fblac1n7ml48xj4zilrsqabayjnjf67vh5zn";
+        };
+        buildInputs = [ pkgs.gcc pkgs.gnumake pkgs.pciutils pkgs.xorg.libX11 ];
+        buildPhase = ''
+            mkdir -p $out
+            cp -ra $src/* $out
+            cd $out
+            make
+            rm -rf obj/
+        '';
+        installPhase = ''
+            mkdir -p $out/bin
+            cp $out/paleofetch $out/bin
+        '';
+    };
+in {
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
     # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -235,12 +257,16 @@
     networking.firewall = {
         enable = true;
         allowedTCPPortRanges = [
-            { from = 1714; to = 1764; } # KDE Connect
-            { from = 2626; to = 2626; } # Dolphin
+            { from = 1714; to = 1764; }     # KDE Connect
+            { from = 2626; to = 2626; }     # Dolphin
+            { from = 50072; to = 50072; }   # Minecraft LAN
+            { from = 25565; to = 25565; }   # Minecraft
         ];
         allowedUDPPortRanges = [
-            { from = 1714; to = 1764; } # KDE Connect
-            { from = 2626; to = 2626; } # Dolphin
+            { from = 1714; to = 1764; }     # KDE Connect
+            { from = 2626; to = 2626; }     # Dolphin
+            { from = 50072; to = 50072; }   # Minecraft LAN
+            { from = 25565; to = 25565; }   # Minecraft
         ];
     };
 
@@ -319,7 +345,6 @@
         cmake
         cura
         discord
-        disfetch
         dolphin-emu
         dunst
         nodejs
@@ -345,6 +370,7 @@
         libsForQt5.qtstyleplugin-kvantum
         lutris
         mediainfo
+        minecraft-server
         mpv
         mupdf
         musescore
@@ -354,12 +380,14 @@
         numlockx
         openssl
         pandoc
+        paleofetch
         papirus-icon-theme
         pass
         pavucontrol
         pciutils
         pinentry
         pkg-config
+        prismlauncher
 
         # Project Plus
         (let
