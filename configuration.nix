@@ -5,6 +5,7 @@
 { config, pkgs, ... }:
 
 let
+    # Custom packages before config
     paleofetch = pkgs.stdenv.mkDerivation rec {
         name = "paleofetch";
         src = pkgs.fetchFromGitHub {
@@ -26,6 +27,51 @@ let
             cp $out/paleofetch $out/bin
         '';
     };
+    projectplus = (
+        let
+            app_name = "Faster_Project_Plus-x86-64.AppImage";
+            gh_proj = "FPM-AppImage";
+            gh_user = "Ishiiruka";
+            version = "2.4.1";
+            hash = "07gcpwf84kn9jl4zmgkzipk5fl9a10pv9rg59pgzhxqrx2nlmpif";
+        in pkgs.appimageTools.wrapType2 {
+            name = "project+";
+            extraPkgs = pkgs: [
+                pkgs.gmp
+                pkgs.mpg123
+                pkgs.libmpg123
+            ];
+            src = builtins.fetchurl {
+                url =
+                    "https://github.com/${gh_user}/${gh_proj}/releases/download/"
+                        + "v${version}/${app_name}";
+                sha256 = "${hash}";
+            };
+        }
+    );
+    slippi = (
+        let
+            app_name = "Slippi_Online-x86_64.AppImage";
+            gh_proj = "Ishiiruka";
+            gh_user = "slippi";
+            version = "3.1.0";
+            hash = "039qm941xbl97zvvv0q6480fps4w1a0n71sk1wiacs6n4gm2bs6f";
+        in pkgs.appimageTools.wrapType2 {
+            name = "slippi";
+            extraPkgs = pkgs: [
+                pkgs.gmp
+                pkgs.mpg123
+                pkgs.libmpg123
+                pkgs.curl
+            ];
+            src = builtins.fetchurl {
+                url =
+                    "https://github.com/${gh_user}/${gh_proj}/releases/download/"
+                        + "v${version}/${app_name}";
+                sha256 = "${hash}";
+            };
+        }
+    );
 in {
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
@@ -388,29 +434,7 @@ in {
         pinentry
         pkg-config
         prismlauncher
-
-        # Project Plus
-        (let
-            app_name = "Faster_Project_Plus-x86-64.AppImage";
-            gh_proj = "FPM-AppImage";
-            gh_user = "Ishiiruka";
-            version = "2.4.1";
-            hash = "07gcpwf84kn9jl4zmgkzipk5fl9a10pv9rg59pgzhxqrx2nlmpif";
-        in pkgs.appimageTools.wrapType2 {
-            name = "project+";
-            extraPkgs = pkgs: [
-                pkgs.gmp
-                pkgs.mpg123
-                pkgs.libmpg123
-            ];
-            src = builtins.fetchurl {
-                url =
-                    "https://github.com/${gh_user}/${gh_proj}/releases/download/"
-                        + "v${version}/${app_name}";
-                sha256 = "${hash}";
-            };
-        })
-
+        projectplus
         pulseaudio
         (python3.withPackages(ps: with ps; [ i3ipc ]))
         qjackctl
@@ -418,30 +442,7 @@ in {
         rust-analyzer
         rustc
         ryujinx
-
-        # Slippi
-        (let
-            app_name = "Slippi_Online-x86_64.AppImage";
-            gh_proj = "Ishiiruka";
-            gh_user = "slippi";
-            version = "3.1.0";
-            hash = "039qm941xbl97zvvv0q6480fps4w1a0n71sk1wiacs6n4gm2bs6f";
-        in pkgs.appimageTools.wrapType2 {
-            name = "slippi";
-            extraPkgs = pkgs: [
-                pkgs.gmp
-                pkgs.mpg123
-                pkgs.libmpg123
-                pkgs.curl
-            ];
-            src = builtins.fetchurl {
-                url =
-                    "https://github.com/${gh_user}/${gh_proj}/releases/download/"
-                        + "v${version}/${app_name}";
-                sha256 = "${hash}";
-            };
-        })
-
+        slippi
         spotify
         strongswan
         teams-for-linux
