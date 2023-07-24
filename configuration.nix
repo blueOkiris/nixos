@@ -190,6 +190,14 @@ in {
             package = pkgs.i3-gaps;
         };
     };
+    programs.hyprland = {
+        enable = true;
+        xwayland = {
+            enable = true;
+            hidpi = true;
+        };
+        nvidiaPatches = true;
+    };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.dylan = {

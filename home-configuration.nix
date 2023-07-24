@@ -111,6 +111,8 @@
             iconTheme.name = "Papirus-Dark";
             cursorTheme.name = "breeze_cursors";
         };
+        home.file.".config/hypr/hyprland.conf".source = .config/hypr/hyprland.conf;
+        home.file.".config/hypr/hyprpaper.conf".source = .config/hypr/hyprpaper.conf;
         xsession.windowManager.i3 = {
             enable = true;
             config = {
