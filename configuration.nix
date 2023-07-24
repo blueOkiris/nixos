@@ -253,6 +253,15 @@ in {
         snapshotInterval = "hourly";
         cleanupInterval = "1d";
     };
+    services.printing = {
+        enable = true;
+        drivers = [ pkgs.hplip ];
+    };
+    services.avahi = {
+        enable = true;
+        nssmdns = true;
+        openFirewall = true;
+    };
 
     # VPN
     environment.etc."ssl/certs/DigiCertGlobalRootG2.crt".source = ./DigiCertGlobalRootG2.crt;
@@ -424,6 +433,7 @@ in {
         networkmanagerapplet
         nextcloud-client
         numlockx
+        obs-studio
         openssl
         pandoc
         paleofetch
@@ -444,6 +454,7 @@ in {
         ryujinx
         slippi
         spotify
+        system-config-printer
         strongswan
         teams-for-linux
         texlive.combined.scheme-full
