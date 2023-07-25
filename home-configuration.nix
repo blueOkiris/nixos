@@ -411,23 +411,19 @@
                         spacing = 12;
                     };
                     pulseaudio = {
-                        format = "{volume}% {icon} {format_source} ";
-                        format-bluetooth = "{volume}% {icon}  {format_source}";
-                        format-bluetooth-muted = "  {format_source}";
-                        format-muted = " {format_source}";
-                        format-source = "{volume}% ";
-                        format-source-muted = "";
+                        format = "{volume}% {icon}";
+                        format-bluetooth = "{volume}% {icon} ";
+                        format-bluetooth-muted = "🔇 ";
+                        format-muted = "🔇";
                         format-icons = {
-                            headphone = "";
+                            headphone = "🎧";
                             hands-free = "";
                             headset = "";
                             phone = "";
                             portable = "";
                             car = "";
                             default = [
-                                ""
-                                ""
-                                ""
+                                "🔊"
                             ];
                         };
                         on-click = "pavucontrol";
@@ -469,7 +465,7 @@
             style = ''
                 * {
                     /* `otf-font-awesome` is required to be installed for icons */
-                    font-family: FontAwesome, Ubuntu, Roboto, Helvetica, Arial, sans-serif;
+                    font-family: Bitstream Vera Sans, FontAwesome, Ubuntu, Roboto, Helvetica, Arial, sans-serif;
                     font-size: 16px;
                 }
 

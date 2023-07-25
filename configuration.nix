@@ -345,8 +345,11 @@ in {
         noto-fonts
         noto-fonts-cjk
         noto-fonts-emoji
+        noto-fonts-extra
         proggyfonts
         ubuntu_font_family
+        unifont
+        unifont_upper
     ];
 
     # Programs that have modules
@@ -476,6 +479,7 @@ in {
         wget
         whalebird
         wine
+        wl-clipboard
         xclip
         xfce.xfce4-panel
         xfce.xfce4-battery-plugin
