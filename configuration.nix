@@ -376,6 +376,7 @@ in {
         enable = true;
         plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman thunar-media-tags-plugin ];
     };
+    programs.waybar.enable = true;
 
     # Tweak some programs
     nixpkgs.overlays = [
