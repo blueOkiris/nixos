@@ -451,17 +451,17 @@
                     };
                     disk = {
                         interval = 60;
-                        format = "Root: {percentage_used}%";
+                        format = "Root: {free}";
                         path = "/";
                     };
                     "disk#home" = {
                         interval = 60;
-                        format = "Home: {percentage_used}%";
+                        format = "Home: {free}";
                         path = "/home";
                     };
                     "disk#games" = {
                         interval = 60;
-                        format = "Games: {percentage_used}%";
+                        format = "Games: {free}";
                         path = "/games";
                     };
                 };
