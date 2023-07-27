@@ -103,8 +103,20 @@ in {
     boot.consoleLogLevel = 0;
     boot.initrd.systemd.enable = true;
     boot.kernelParams = [ "quiet" "udev.log_level=3" ];
-    boot.plymouth.enable = true;
-    boot.plymouth.theme = "breeze";
+    boot.plymouth = {
+        enable = true;
+        #theme = "breeze"; # Do just this for Nix-themed
+        themePackages = with pkgs; [ pkgs.adi1090x-plymouth-themes ];
+        #theme = "double"; # Fast spinning white wisps making 2 circles
+        theme = "dragon"; # A colorful dragon eating itself
+        #theme = "green_loader"; # Green partial rings spinning and growing bigger & smlr
+        #theme = "loader_2"; # White balls that fall in on themselves
+        #theme = "loader_alt"; # Blue balls (more than loader_2) that fall into center
+        #theme = "pixels"; # Red, green, and blue airbrush ball things orbitting eachother
+        #theme = "rings_2"; # Colorful 3D saturns-rings things
+        #theme = "spin"; # Colorful spinning rings
+        #theme = "spinner_alt"; # Ubuntu-like loading symbol. Dot's become 3 parts of circ
+    };
 
     # Define your hostname.
     networking.hostName = "msi-raider";
