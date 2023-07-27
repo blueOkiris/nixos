@@ -198,6 +198,14 @@ in {
         };
         nvidiaPatches = true;
     };
+    services.dbus.enable = true;
+    xdg.portal = {
+        enable = true;
+        extraPortals = [
+            pkgs.xdg-desktop-portal-gtk
+            #pkgs.xdg-desktop-portal-hyprland
+        ];
+    };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.dylan = {
@@ -420,12 +428,14 @@ in {
         freecad
         freetube
         gcc
+        gdb
         gimp
         glaxnimate
         gnome.cheese
         gnome.gnome-screenshot
         gnome3.gnome-system-monitor
         gnumake
+        sway-contrib.grimshot
         htop
         hyprpaper
         inkscape
@@ -441,6 +451,7 @@ in {
         mpv
         mupdf
         musescore
+        ncurses
         neofetch
         networkmanagerapplet
         nextcloud-client
@@ -460,6 +471,8 @@ in {
         pulseaudio
         (python3.withPackages(ps: with ps; [ i3ipc ]))
         qjackctl
+        libsForQt5.qt5.qtwayland
+        qt6.qtwayland
         rofi
         rust-analyzer
         rustc
@@ -476,6 +489,7 @@ in {
         unzip
         virt-manager
         vlc
+        wdisplays
         wget
         whalebird
         wine
@@ -489,6 +503,7 @@ in {
         xfce.xfce4-i3-workspaces-plugin
         xfce.xfce4-pulseaudio-plugin
         xfce.xfce4-whiskermenu-plugin
+        xwayland
         yabridge
         yarn
         zoom
