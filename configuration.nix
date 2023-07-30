@@ -354,7 +354,7 @@ in {
     };
 
     # Fonts. Font packages in systemPackages won't be accessible
-    fonts.fonts = with pkgs; [
+    fonts.packages = with pkgs; [
         corefonts
         dina-font
         fira-code
