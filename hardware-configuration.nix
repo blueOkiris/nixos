@@ -75,7 +75,10 @@
             Option "MiddleButtonArea" "1"
             '';
         };
-        mouse.naturalScrolling = false;
+        mouse = {
+            naturalScrolling = false;
+            accelSpeed = "1.0";
+        };
     };
 
     # Nvidia
