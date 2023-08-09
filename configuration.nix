@@ -32,8 +32,8 @@ let
             app_name = "Faster_Project_Plus-x86-64.AppImage";
             gh_proj = "FPM-AppImage";
             gh_user = "Ishiiruka";
-            version = "2.4.1";
-            hash = "07gcpwf84kn9jl4zmgkzipk5fl9a10pv9rg59pgzhxqrx2nlmpif";
+            version = "2.4.2";
+            hash = "0vgg9xvlk94mp0ip5473py381l2bpd2anqibpyp0jkp4xq6wdkm3";
         in pkgs.appimageTools.wrapType2 {
             name = "project+";
             extraPkgs = pkgs: [
@@ -53,9 +53,9 @@ let
         let
             app_name = "Slippi_Online-x86_64.AppImage";
             gh_proj = "Ishiiruka";
-            gh_user = "slippi";
-            version = "3.1.0";
-            hash = "039qm941xbl97zvvv0q6480fps4w1a0n71sk1wiacs6n4gm2bs6f";
+            gh_user = "project-slippi";
+            version = "3.2.0";
+            hash = "1y0xkih9kq4id0lzs666pjvdqrbkx72smqkrnz3j0pwxm239aj9b";
         in pkgs.appimageTools.wrapType2 {
             name = "slippi";
             extraPkgs = pkgs: [
@@ -219,6 +219,8 @@ in {
             #pkgs.xdg-desktop-portal-hyprland
         ];
     };
+    services.xrdp.enable = true;
+    services.xrdp.defaultWindowManager = "i3";
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.dylan = {
@@ -345,12 +347,14 @@ in {
             { from = 2626; to = 2626; }     # Dolphin
             { from = 50072; to = 50072; }   # Minecraft LAN
             { from = 25565; to = 25565; }   # Minecraft
+            { from = 3389; to = 3389; }     # xrdp
         ];
         allowedUDPPortRanges = [
             { from = 1714; to = 1764; }     # KDE Connect
             { from = 2626; to = 2626; }     # Dolphin
             { from = 50072; to = 50072; }   # Minecraft LAN
             { from = 25565; to = 25565; }   # Minecraft
+            { from = 3389; to = 3389; }     # xrdp
         ];
     };
 
