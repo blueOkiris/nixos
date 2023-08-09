@@ -117,6 +117,7 @@ in {
         #theme = "spin"; # Colorful spinning rings
         #theme = "spinner_alt"; # Ubuntu-like loading symbol. Dot's become 3 parts of circ
     };
+    boot.loader.systemd-boot.configurationLimit = 6;
 
     # Define your hostname.
     networking.hostName = "msi-raider";
@@ -515,6 +516,7 @@ in {
         xfce.xfce4-i3-workspaces-plugin
         xfce.xfce4-pulseaudio-plugin
         xfce.xfce4-whiskermenu-plugin
+        xorg.xinit
         xwayland
         yabridge
         yarn
