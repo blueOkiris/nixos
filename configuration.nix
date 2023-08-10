@@ -486,7 +486,7 @@ in {
         prismlauncher
         projectplus
         pulseaudio
-        (python3.withPackages(ps: with ps; [ i3ipc pip influxdb ]))
+        (python3.withPackages(ps: with ps; [ i3ipc pip ]))
         qjackctl
         libsForQt5.qt5.qtwayland
         qt6.qtwayland
