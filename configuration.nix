@@ -509,7 +509,7 @@ in {
         wdisplays
         wget
         whalebird
-        wine
+        wineWowPackages.stable
         wl-clipboard
         xclip
         xfce.xfce4-panel
