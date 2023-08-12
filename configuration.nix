@@ -293,6 +293,7 @@ in {
         nssmdns = true;
         openFirewall = true;
     };
+    services.sshd.enable = true;
 
     # VPN
     environment.etc."ssl/certs/DigiCertGlobalRootG2.crt".source = ./DigiCertGlobalRootG2.crt;

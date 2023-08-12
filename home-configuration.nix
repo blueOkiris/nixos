@@ -282,7 +282,7 @@
                     # Tray apps
                     { command = "nm-applet"; always = false; notification = false; }
                     { command = "blueman-applet"; always = false; notification = false; }
-                    { command = "steam -silent"; always = false; notification = false; }
+                    #{ command = "steam -silent"; always = false; notification = false; }
                     { command = "nextcloud"; always = false; notification = false; }
                 ];
                 bars = [];
@@ -354,6 +354,7 @@
                 mainBar = {
                     layer = "top";
                     position = "top";
+                    output = [ "DP-3" ];
                     height = 34;
                     spacing = 0;
                     fixed-center = true;
