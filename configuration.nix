@@ -524,6 +524,7 @@ in {
         kicad
         kid3
         lemonade
+        libpng
         libreoffice
         libsForQt5.qtstyleplugin-kvantum
         lutris
