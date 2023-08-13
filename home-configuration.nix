@@ -23,6 +23,9 @@
                     };
                     size = 12;
                 };
+                window = {
+                    decorations = "none";
+                };
                 colors = { # Based on Dracula, but with a better blue
                     primary = {
                         background = "#282a37";
@@ -960,6 +963,9 @@
 
                 \" Code folding
                 set foldmethod=indent
+
+                \" Media file viewing
+                lua require('telescope').load_extension('media_files')
             ";
             packages.myVimPackage = with pkgs.vimPlugins; {
                 start = [
@@ -976,7 +982,11 @@
                     nerdcommenter
                     nerdtree
                     nvim-lspconfig
+                    plenary-nvim
+                    popup-nvim
                     rust-tools-nvim
+                    telescope-nvim
+                    telescope-media-files-nvim
                     ultisnips
                     vim-devicons
                     vim-snippets

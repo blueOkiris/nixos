@@ -2,7 +2,7 @@
 # your system.    Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
     # Custom packages before config
@@ -85,7 +85,7 @@ in {
     environment.pathsToLink = [ "/libexec" "/share/zsh" ];
     environment.shells = with pkgs; [ zsh ];
     environment.variables = {
-        QT_STYLE_OVERRIDE = "kvantum";
+        QT_STYLE_OVERRIDE = lib.mkForce "kvantum";
         GTK_THEME = "Arc-Dark";
         GTK_ICON_THEME = "Papirus-Dark";
         RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
@@ -149,7 +149,8 @@ in {
 
         desktopManager = {
             xterm.enable = false;
-            xfce.enable = true; # Install full xfce as panel will break without it
+            #xfce.enable = true; # Install full xfce as panel will break without it
+            gnome.enable = true;
         };
 
         displayManager = {
@@ -161,7 +162,7 @@ in {
                     cursorTheme.name = "breeze_cursors";
                     iconTheme.name = "Papirus-Dark";
                     font.name = "Ubuntu Regular";
-                    draw-user-backgrounds = true;
+                    draw-user-backgrounds = false;
                 };
                 background = ./gnu-linux-wide-wallpaper.png;
             };
@@ -215,7 +216,7 @@ in {
     xdg.portal = {
         enable = true;
         extraPortals = [
-            pkgs.xdg-desktop-portal-gtk
+            #pkgs.xdg-desktop-portal-gtk
             #pkgs.xdg-desktop-portal-hyprland
         ];
     };
@@ -244,6 +245,7 @@ in {
         pulse.enable = true;
         jack.enable = true;
     };
+    hardware.pulseaudio.enable = false;
     environment.etc = {
         "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
             bluez_monitor.properties = {
@@ -293,7 +295,16 @@ in {
         nssmdns = true;
         openFirewall = true;
     };
-    services.sshd.enable = true;
+    services.openssh = {
+        enable = true;
+        ports = [ 5267 ];
+        settings = {
+            PasswordAuthentication = false;
+            PubkeyAuthentication = true;
+            X11Forwarding = true;
+        };
+    };
+    services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
     # VPN
     environment.etc."ssl/certs/DigiCertGlobalRootG2.crt".source = ./DigiCertGlobalRootG2.crt;
@@ -349,6 +360,8 @@ in {
             { from = 50072; to = 50072; }   # Minecraft LAN
             { from = 25565; to = 25565; }   # Minecraft
             { from = 3389; to = 3389; }     # xrdp
+            { from = 5267; to = 5267; }     # Ssh
+            { from = 2489; to = 2489; }     # Ssh copy
         ];
         allowedUDPPortRanges = [
             { from = 1714; to = 1764; }     # KDE Connect
@@ -356,6 +369,8 @@ in {
             { from = 50072; to = 50072; }   # Minecraft LAN
             { from = 25565; to = 25565; }   # Minecraft
             { from = 3389; to = 3389; }     # xrdp
+            { from = 5267; to = 5267; }     # Ssh
+            { from = 2489; to = 2489; }     # Ssh copy
         ];
     };
 
@@ -394,7 +409,7 @@ in {
     };
     programs.gnome-disks.enable = true;
     programs.java.enable = true;
-    programs.kdeconnect.enable = true;
+    #programs.kdeconnect.enable = true;
     virtualisation.libvirtd.enable = true;
     programs.steam = {
         enable = true;
@@ -419,6 +434,42 @@ in {
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
 
+    # We don't want everything that comes with gnome and xfce
+    environment.gnome.excludePackages =
+        (with pkgs; [
+            gnome-connections
+            gnome-console
+            gnome-doc-utils
+            gnome-photos
+            gnome-text-editor
+            gnome-tour
+        ]) ++ (with pkgs.gnome; [
+            atomix
+            eog
+            epiphany
+            evince
+            gdm
+            geary
+            gedit
+            ghex
+            gnome-calculator
+            gnome-calendar
+            gnome-characters
+            gnome-contacts
+            gnome-maps
+            gnome-music
+            gnome-terminal
+            gnome-weather
+            hitori
+            iagno
+            nautilus
+            simple-scan
+            tali
+            totem
+            yelp
+        ]);
+    environment.xfce.excludePackages = with pkgs.xfce; [ mousepad xfce4-terminal ];
+
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs; [
@@ -435,6 +486,7 @@ in {
         breeze-plymouth
         brightnessctl
         cargo
+        chafa
         cmake
         cura
         discord
@@ -442,6 +494,7 @@ in {
         dunst
         nodejs
         feh
+        fd
         fontforge
         freecad
         freetube
@@ -450,8 +503,17 @@ in {
         gimp
         glaxnimate
         gnome.cheese
+        gnome.dconf-editor
         gnome.gnome-screenshot
+        gnome.gnome-tweaks
         gnome3.gnome-system-monitor
+        gnomeExtensions.dash-to-dock
+        gnomeExtensions.gsconnect
+        gnomeExtensions.pop-shell
+        gnomeExtensions.rounded-window-corners
+        gnomeExtensions.sound-output-device-chooser
+        gnomeExtensions.tray-icons-reloaded
+        gnomeExtensions.user-themes
         gnumake
         sway-contrib.grimshot
         htop
@@ -461,6 +523,7 @@ in {
         kdenlive
         kicad
         kid3
+        lemonade
         libreoffice
         libsForQt5.qtstyleplugin-kvantum
         lutris
@@ -484,6 +547,7 @@ in {
         pciutils
         pinentry
         pkg-config
+        poppler_utils
         prismlauncher
         projectplus
         pulseaudio
