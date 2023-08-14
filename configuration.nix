@@ -72,6 +72,12 @@ let
             };
         }
     );
+    gnome-shell-extension-pop-shell =
+        lib.overrideDerivation pkgs.gnomeExtensions.pop-shell (oldAttrs: {
+            patches = [
+                ./pop-shell-custom-shortcuts.patch
+            ] ++ oldAttrs.patches;
+        });
 in {
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
@@ -165,6 +171,9 @@ in {
                     draw-user-backgrounds = false;
                 };
                 background = ./gnu-linux-wide-wallpaper.png;
+                extraSeatDefaults = ''
+                    user-session=gnome-wayland
+                '';
             };
             setupCommands = "
                 BIG_MONITOR=\"DP-0\"
@@ -509,11 +518,11 @@ in {
         gnome3.gnome-system-monitor
         gnomeExtensions.dash-to-dock
         gnomeExtensions.gsconnect
-        gnomeExtensions.pop-shell
         gnomeExtensions.rounded-window-corners
         gnomeExtensions.sound-output-device-chooser
         gnomeExtensions.tray-icons-reloaded
         gnomeExtensions.user-themes
+        gnome-shell-extension-pop-shell
         gnumake
         sway-contrib.grimshot
         htop

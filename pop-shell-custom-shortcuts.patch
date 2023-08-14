@@ -1,0 +1,11 @@
+--- a/schemas/org.gnome.shell.extensions.pop-shell.gschema.xml	2023-08-13 19:38:57.243885095 -0500
++++ b/schemas/org.gnome.shell.extensions.pop-shell.gschema.xml	2023-08-13 19:44:14.694427462 -0500
+@@ -123,7 +123,7 @@
+         </key>
+ 
+         <key type="as" name="tile-enter">
+-            <default><![CDATA[['<Super>Return','<Super>KP_Enter']]]></default>
++            <default><![CDATA[['<Super>r']]]></default>
+             <summary>Enter tiling mode</summary>
+         </key>
+ 

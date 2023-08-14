@@ -351,6 +351,7 @@
                 log-level = "warn";
             };
         };
+        home.file.".profile".source = ./.profile;
         programs.waybar = {
             enable = true;
             settings = {
