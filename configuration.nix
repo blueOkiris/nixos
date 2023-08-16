@@ -569,6 +569,7 @@ in {
         rust-analyzer
         rustc
         ryujinx
+        SDL2
         slippi
         spotify
         system-config-printer

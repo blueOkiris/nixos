@@ -114,5 +114,8 @@
             Option "AllowNVIDIAGPUScreens"
         EndSection
     '';
+
+    # Firmware updates
+    services.fwupd.enable = true;
 }
 
