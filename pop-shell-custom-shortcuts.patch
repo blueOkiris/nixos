@@ -1,5 +1,50 @@
---- a/schemas/org.gnome.shell.extensions.pop-shell.gschema.xml	2023-08-13 19:38:57.243885095 -0500
-+++ b/schemas/org.gnome.shell.extensions.pop-shell.gschema.xml	2023-08-13 19:44:14.694427462 -0500
+--- a/schemas/org.gnome.shell.extensions.pop-shell.gschema.xml	2023-08-22 12:08:54.796607274 -0500
++++ b/schemas/org.gnome.shell.extensions.pop-shell.gschema.xml	2023-08-22 12:16:29.294325239 -0500
+@@ -3,7 +3,7 @@
+     <schema id="org.gnome.shell.extensions.pop-shell" path="/org/gnome/shell/extensions/pop-shell/">
+         <!-- Appearance Options -->
+         <key type="b" name="active-hint">
+-            <default>false</default>
++            <default>true</default>
+             <summary>Show a hint around the active window</summary>
+         </key>
+ 
+@@ -19,12 +19,12 @@
+         </key>
+ 
+         <key type="u" name="gap-inner">
+-            <default>2</default>
++            <default>8</default>
+             <summary>Gap between tiled windows</summary>
+         </key>
+ 
+         <key type="u" name="gap-outer">
+-            <default>2</default>
++            <default>5</default>
+             <summary>Gap surrounding tiled windows</summary>
+         </key>
+ 
+@@ -60,17 +60,17 @@
+         </key>
+ 
+         <key type="b" name="smart-gaps">
+-            <default>false</default>
++            <default>true</default>
+             <summary>Hide the outer gap when a tree contains only one window</summary>
+         </key>
+ 
+         <key type="b" name="snap-to-grid">
+-            <default>false</default>
++            <default>true</default>
+             <summary>Snaps windows to the tiling grid on drop</summary>
+         </key>
+ 
+         <key type="b" name="tile-by-default">
+-            <default>false</default>
++            <default>true</default>
+             <summary>Tile launched windows by default</summary>
+         </key>
+ 
 @@ -123,7 +123,7 @@
          </key>
  
@@ -9,3 +54,83 @@
              <summary>Enter tiling mode</summary>
          </key>
  
+@@ -138,7 +138,7 @@
+         </key>
+ 
+         <key type="as" name="toggle-floating">
+-            <default><![CDATA[['<Super>g']]]></default>
++            <default><![CDATA[['<Super>Space']]]></default>
+             <summary>Toggles a window between floating and tiling</summary>
+         </key>
+ 
+@@ -217,59 +217,59 @@
+ 
+         <!-- Swap windows -->
+         <key type="as" name="tile-swap-left">
+-            <default><![CDATA[['<Primary>Left','<Primary>KP_Left','<Primary>h']]]></default>
++            <default><![CDATA[[]]]></default>
+             <summary>Swap window left</summary>
+         </key>
+ 
+         <key type="as" name="tile-swap-down">
+-            <default><![CDATA[['<Primary>Down','<Primary>KP_Down','<Primary>j']]]></default>
++            <default><![CDATA[[]]]></default>
+             <summary>Swap window down</summary>
+         </key>
+ 
+         <key type="as" name="tile-swap-up">
+-            <default><![CDATA[['<Primary>Up','<Primary>KP_Up','<Primary>k']]]></default>
++            <default><![CDATA[[]]]></default>
+             <summary>Swap window up</summary>
+         </key>
+ 
+         <key type="as" name="tile-swap-right">
+-            <default><![CDATA[['<Primary>Right','<Primary>KP_Right','<Primary>l']]]></default>
++            <default><![CDATA[[]]]></default>
+             <summary>Swap window right</summary>
+         </key>
+ 
+         <!-- Workspace Management -->
+ 
+         <key type="as" name="pop-workspace-down">
+-            <default><![CDATA[['<Super><Shift>Down','<Super><Shift>KP_Down','<Super><Shift>j']]]></default>
++            <default><![CDATA[[]]]></default>
+             <summary>Move window to the lower workspace</summary>
+         </key>
+ 
+         <key type="as" name="pop-workspace-up">
+-            <default><![CDATA[['<Super><Shift>Up','<Super><Shift>KP_Up','<Super><Shift>k']]]></default>
++            <default><![CDATA[[]]]></default>
+             <summary>Move window to the upper workspace</summary>
+         </key>
+ 
+         <key type="as" name="pop-monitor-down">
+-            <default><![CDATA[['<Super><Shift><Primary>Down','<Super><Shift><Primary>KP_Down','<Super><Shift><Primary>j']]]></default>
++            <default><![CDATA[['<Super><Shift>Down']]]></default>
+             <summary>Move window to the lower monitor</summary>
+         </key>
+ 
+         <key type="as" name="pop-monitor-up">
+-            <default><![CDATA[['<Super><Shift><Primary>Up','<Super><Shift><Primary>KP_Up','<Super><Shift><Primary>k']]]></default>
++            <default><![CDATA[['<Super><Shift>Up']]]></default>
+             <summary>Move window to the upper monitor</summary>
+         </key>
+ 
+         <key type="as" name="pop-monitor-left">
+-            <default><![CDATA[['<Super><Shift>Left','<Super><Shift>KP_Left','<Super><Shift>h']]]></default>
++            <default><![CDATA[[]]]></default>
+             <summary>Move window to the leftward monitor</summary>
+         </key>
+ 
+         <key type="as" name="pop-monitor-right">
+-            <default><![CDATA[['<Super><Shift>Right','<Super><Shift>KP_Right','<Super><Shift>l']]]></default>
++            <default><![CDATA[[]]]></default>
+             <summary>Move window to the rightward monitor</summary>
+         </key>
+ 
+         <key type="s" name="hint-color-rgba">
+-            <default>'rgba(251, 184, 108, 1)'</default>
++            <default>'rgba(3, 187, 117, 1)'</default>
+             <summary>The current active-hint-color in RGBA</summary>
+         </key>
+         <key type="u" name="log-level">
