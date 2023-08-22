@@ -403,7 +403,6 @@ in {
     ];
 
     # Programs that have modules
-    virtualisation.anbox.enable = true;
     programs.dconf.enable = true;
     virtualisation.docker = {
         enable = true;
@@ -430,6 +429,7 @@ in {
         plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman thunar-media-tags-plugin ];
     };
     programs.waybar.enable = true;
+    virtualisation.waydroid.enable = true;
 
     # Tweak some programs
     nixpkgs.overlays = [
