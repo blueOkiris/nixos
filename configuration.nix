@@ -215,10 +215,8 @@ in {
     };
     programs.hyprland = {
         enable = true;
-        xwayland = {
-            enable = true;
-        };
-        nvidiaPatches = true;
+        xwayland.enable = true;
+        enableNvidiaPatches = true;
     };
     services.dbus.enable = true;
     xdg.portal = {
