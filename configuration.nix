@@ -607,7 +607,7 @@ in {
 
     # Hack
     nixpkgs.config.permittedInsecurePackages = [
-        "electron-21.4.0"
+        "electron-21.4.4"
     ];
 }
 
