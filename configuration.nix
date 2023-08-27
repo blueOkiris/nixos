@@ -512,7 +512,6 @@ in {
         gnome.dconf-editor
         gnome.gnome-screenshot
         gnome.gnome-tweaks
-        gnome3.gnome-system-monitor
         gnomeExtensions.dash-to-dock
         gnomeExtensions.gsconnect
         gnomeExtensions.rounded-window-corners
@@ -533,9 +532,11 @@ in {
         libpng
         libreoffice
         libsForQt5.qtstyleplugin-kvantum
+        libusb1
         lutris
         mediainfo
         minecraft-server
+        mission-center
         mpv
         mupdf
         musescore
@@ -576,6 +577,7 @@ in {
         tigervnc
         trash-cli
         tutanota-desktop
+        udev
         unzip
         virt-manager
         vlc
@@ -594,6 +596,7 @@ in {
         xfce.xfce4-pulseaudio-plugin
         xfce.xfce4-whiskermenu-plugin
         xorg.xinit
+        xorg.xrandr
         xwayland
         yabridge
         yarn
