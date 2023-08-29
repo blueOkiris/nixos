@@ -78,6 +78,7 @@ let
                 ./pop-shell-custom-shortcuts.patch
             ] ++ oldAttrs.patches;
         });
+    unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in {
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
@@ -216,7 +217,7 @@ in {
     programs.hyprland = {
         enable = true;
         xwayland.enable = true;
-        enableNvidiaPatches = true;
+        nvidiaPatches = true;
     };
     services.dbus.enable = true;
     xdg.portal = {
@@ -381,7 +382,7 @@ in {
     };
 
     # Fonts. Font packages in systemPackages won't be accessible
-    fonts.packages = with pkgs; [
+    fonts.fonts = with pkgs; [
         corefonts
         dina-font
         fira-code
@@ -474,7 +475,7 @@ in {
             totem
             yelp
         ]);
-    environment.xfce.excludePackages = with pkgs.xfce; [ mousepad xfce4-terminal ];
+    #environment.xfce.excludePackages = with pkgs.xfce; [ mousepad xfce4-terminal ];
 
     # List packages installed in system profile. To search, run:
     # $ nix search wget
@@ -536,7 +537,7 @@ in {
         lutris
         mediainfo
         minecraft-server
-        mission-center
+        unstable.mission-center
         mpv
         mupdf
         musescore
@@ -607,7 +608,7 @@ in {
 
     # Hack
     nixpkgs.config.permittedInsecurePackages = [
-        "electron-21.4.4"
+        "electron-19.1.9"
     ];
 }
 
