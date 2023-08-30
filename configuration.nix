@@ -507,6 +507,7 @@ in {
         freetube
         gcc
         gdb
+        ghc
         gimp
         glaxnimate
         gnome.cheese
@@ -571,6 +572,7 @@ in {
         SDL2
         slippi
         spotify
+        stack
         system-config-printer
         strongswan
         teams-for-linux
