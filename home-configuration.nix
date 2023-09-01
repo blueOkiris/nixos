@@ -891,7 +891,8 @@
                     \\ 'python': [ 'pylint' ],
                     \\ 'vim': [ 'vint' ],
                     \\ 'cpp': [ 'clang' ],
-                    \\ 'c': [ 'clang' ]
+                    \\ 'c': [ 'clang' ],
+                    \\ 'haskell': [ 'hlint' ],
                 \\}
 
                 set splitright
@@ -979,6 +980,7 @@
                     deoplete-nvim
                     dracula-vim
                     lightline-vim
+                    haskell-vim
                     markdown-preview-nvim
                     nerdcommenter
                     nerdtree

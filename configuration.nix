@@ -504,6 +504,7 @@ in {
         fd
         fontforge
         freecad
+        freeglut
         freetube
         gcc
         gdb
@@ -531,6 +532,8 @@ in {
         kicad
         kid3
         lemonade
+        libGL
+        libGLU
         libpng
         libreoffice
         libsForQt5.qtstyleplugin-kvantum
@@ -565,6 +568,7 @@ in {
         qjackctl
         libsForQt5.qt5.qtwayland
         qt6.qtwayland
+        remmina
         rofi
         rust-analyzer
         rustc
