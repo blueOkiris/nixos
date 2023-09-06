@@ -226,7 +226,7 @@ in {
                 };
                 background = ./gnu-linux-wide-wallpaper.png;
                 extraSeatDefaults = ''
-                    user-session=gnome-wayland
+                    user-session=none+i3
                 '';
             };
             setupCommands = "
@@ -457,6 +457,7 @@ in {
     };
     programs.file-roller.enable = true;
     programs.firefox.enable = true;
+    services.flatpak.enable = true;
     programs.gamemode.enable = true;
     programs.git = {
         enable = true;
