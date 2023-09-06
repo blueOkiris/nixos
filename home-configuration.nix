@@ -108,6 +108,8 @@
                 };
             };
         };
+        home.file.".local/share/applications/freetube.desktop".source =
+            appimage-desktops/freetube.desktop;
         gtk = {
             enable = true;
             theme.name = "Arc-Dark";
@@ -754,6 +756,16 @@
                 }
             '';
         };
+        home.file.".local/share/icons/project-plus.png".source =
+            appimage-desktops/project+_logo.png;
+        home.file.".local/share/applications/project+.desktop".source =
+            appimage-desktops/project+.desktop;
+        home.file.".local/share/icons/slippi.png".source =
+            appimage-desktops/slippi_logo.png;
+        home.file.".local/share/applications/slippi.desktop".source =
+            appimage-desktops/slippi.desktop;
+        home.file.".local/share/applications/teams.desktop".source =
+            appimage-desktops/teams-for-linux.desktop;
         home.file.".config/xfce4/panel/launcher-2/16812272972.desktop".source =
             .config/xfce4/panel/launcher-2/16812272972.desktop;
         home.file.".config/xfce4/panel/launcher-3/16872964452.desktop".source =
@@ -789,6 +801,8 @@
             "Xcursor.size" = 24;
             "Xcursor.theme" = "breeze_cursors";
         };
+        home.file.".local/share/applications/tutanota.desktop".source =
+            appimage-desktops/tutanota.desktop;
         programs.zsh = {
             enable = true;
             enableAutosuggestions = true;

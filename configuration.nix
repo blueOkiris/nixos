@@ -6,6 +6,23 @@
 
 let
     # Custom packages before config
+    freetube-appimage = (
+        let
+            app_name = "freetube";
+            gh_user = "FreeTubeApp";
+            gh_proj = "FreeTube";
+            version = "0.19.0";
+            hash = "0yr5k9s3r4yvcx85bzwn6y4m03964ljnmhz7nf068zj87m9q8rcc";
+        in pkgs.appimageTools.wrapType2 {
+            name = "freetube";
+            extraPkgs = pkgs: [];
+            src = builtins.fetchurl {
+                url = "https://github.com/${gh_user}/${gh_proj}/releases/download/v${version}-beta"
+                    + "/${app_name}_${version}_amd64.AppImage";
+                sha256 = "${hash}";
+            };
+        }
+    );
     paleofetch = pkgs.stdenv.mkDerivation rec {
         name = "paleofetch";
         src = pkgs.fetchFromGitHub {
@@ -27,6 +44,12 @@ let
             cp $out/paleofetch $out/bin
         '';
     };
+    gnome-shell-extension-pop-shell =
+        lib.overrideDerivation pkgs.gnomeExtensions.pop-shell (oldAttrs: {
+            patches = [
+                ./pop-shell-custom-shortcuts.patch
+            ] ++ oldAttrs.patches;
+        });
     projectplus = (
         let
             app_name = "Faster_Project_Plus-x86-64.AppImage";
@@ -72,12 +95,42 @@ let
             };
         }
     );
-    gnome-shell-extension-pop-shell =
-        lib.overrideDerivation pkgs.gnomeExtensions.pop-shell (oldAttrs: {
-            patches = [
-                ./pop-shell-custom-shortcuts.patch
-            ] ++ oldAttrs.patches;
-        });
+    teams-for-linux-appimage = (
+        let
+            app_name = "teams-for-linux";
+            gh_user = "IsmaelMartinez";
+            gh_proj = "teams-for-linux";
+            version = "1.3.8";
+            hash = "053qv3chj2yx928b4ww39hnskv6a01q16mnh3pig7iihkznmqkp8";
+        in pkgs.appimageTools.wrapType2 {
+            name = "teams-for-linux";
+            extraPkgs = pkgs: [];
+            src = builtins.fetchurl {
+                url = "https://github.com/${gh_user}/${gh_proj}/releases/download/v${version}/"
+                    + "${app_name}-${version}.AppImage";
+                sha256 = "${hash}";
+            };
+        }
+    );
+    tutanota-appimage = (
+        let
+            app_name = "tutanota-desktop-linux";
+            gh_user = "tutao";
+            gh_proj = "tutanota";
+            version = "3.118.4";
+            hash = "0rvcsyichrvfc3qp8c0vxmpmsxcrvm2hz34mr1w41r4agxgip7zq";
+        in pkgs.appimageTools.wrapType2 {
+            name = "tutanota";
+            extraPkgs = pkgs: [
+                pkgs.libsecret
+            ];
+            src = builtins.fetchurl {
+                url = "https://github.com/${gh_user}/${gh_proj}/releases/download/"
+                    + "tutanota-desktop-release-${version}/${app_name}.AppImage";
+                sha256 = "${hash}";
+            };
+        }
+    );
     unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in {
     # This value determines the NixOS release from which the default
@@ -227,8 +280,6 @@ in {
             #pkgs.xdg-desktop-portal-hyprland
         ];
     };
-    services.xrdp.enable = true;
-    services.xrdp.defaultWindowManager = "i3";
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.dylan = {
@@ -366,7 +417,6 @@ in {
             { from = 2626; to = 2626; }     # Dolphin
             { from = 50072; to = 50072; }   # Minecraft LAN
             { from = 25565; to = 25565; }   # Minecraft
-            { from = 3389; to = 3389; }     # xrdp
             { from = 5267; to = 5267; }     # Ssh
             { from = 2489; to = 2489; }     # Ssh copy
         ];
@@ -375,7 +425,6 @@ in {
             { from = 2626; to = 2626; }     # Dolphin
             { from = 50072; to = 50072; }   # Minecraft LAN
             { from = 25565; to = 25565; }   # Minecraft
-            { from = 3389; to = 3389; }     # xrdp
             { from = 5267; to = 5267; }     # Ssh
             { from = 2489; to = 2489; }     # Ssh copy
         ];
@@ -427,7 +476,7 @@ in {
         plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman thunar-media-tags-plugin ];
     };
     programs.waybar.enable = true;
-    virtualisation.waydroid.enable = true;
+    #virtualisation.waydroid.enable = true;
 
     # Tweak some programs
     nixpkgs.overlays = [
@@ -466,6 +515,7 @@ in {
             gnome-maps
             gnome-music
             gnome-terminal
+            gnome-system-monitor
             gnome-weather
             hitori
             iagno
@@ -484,6 +534,7 @@ in {
         android-studio
         arandr
         arc-theme
+        appimage-run
         ardour
         arduino
         arduino-cli
@@ -505,7 +556,7 @@ in {
         fontforge
         freecad
         freeglut
-        freetube
+        freetube-appimage
         gcc
         gdb
         ghc
@@ -568,7 +619,6 @@ in {
         qjackctl
         libsForQt5.qt5.qtwayland
         qt6.qtwayland
-        remmina
         rofi
         rust-analyzer
         rustc
@@ -579,18 +629,17 @@ in {
         stack
         system-config-printer
         strongswan
-        teams-for-linux
+        teams-for-linux-appimage
         texlive.combined.scheme-full
         tigervnc
         trash-cli
-        tutanota-desktop
+        tutanota-appimage
         udev
         unzip
         virt-manager
         vlc
         wdisplays
         wget
-        whalebird
         wineWowPackages.stable
         wl-clipboard
         xclip
@@ -610,11 +659,6 @@ in {
         zoom
         zsh-autocomplete
         zsh-history-substring-search
-    ];
-
-    # Hack
-    nixpkgs.config.permittedInsecurePackages = [
-        "electron-19.1.9"
     ];
 }
 
