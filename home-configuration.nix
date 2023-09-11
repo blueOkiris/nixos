@@ -262,7 +262,7 @@
                     }
                     { command = "brightnessctl set 100%"; always = false; notification = false; }
                     {
-                        command = "\$HOME/i3-alternating-layout/alternating_layouts.py";
+                        command = ".alternating_layouts.py";
                         always = true; notification = false;
                     }
 
@@ -300,6 +300,7 @@
                 modifier = "Mod4";
             };
         };
+        home.file.".alternating_layouts.py".source = i3-alternating-layout/alternating_layouts.py;
         services.picom = {
             enable = true;
             shadow = true;

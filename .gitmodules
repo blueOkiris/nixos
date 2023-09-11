@@ -1,0 +1,3 @@
+[submodule "i3-alternating-layout"]
+	path = i3-alternating-layout
+	url = https://github.com/olemartinorg/i3-alternating-layout
