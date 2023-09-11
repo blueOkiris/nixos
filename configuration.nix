@@ -234,7 +234,7 @@ in {
                 BIG_MONITOR_RES=\"3440x1440\"
                 SMALL_MONITOR=\"eDP-1-1\"
                 SMALL_MONITOR_RES=\"1920x1080\"
-                SMALL_MONITOR_OFFSET=\"2222x1440\"
+                SMALL_MONITOR_OFFSET=\"1969x1440\"
 
                 ${pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource \"modesetting\" NVIDIA-0
                 ${pkgs.xorg.xrandr}/bin/xrandr --auto
@@ -419,6 +419,7 @@ in {
             { from = 25565; to = 25565; }   # Minecraft
             { from = 5267; to = 5267; }     # Ssh
             { from = 2489; to = 2489; }     # Ssh copy
+            { from = 6000; to = 6009; }     # Fightcade
         ];
         allowedUDPPortRanges = [
             { from = 1714; to = 1764; }     # KDE Connect
@@ -427,6 +428,7 @@ in {
             { from = 25565; to = 25565; }   # Minecraft
             { from = 5267; to = 5267; }     # Ssh
             { from = 2489; to = 2489; }     # Ssh copy
+            { from = 6000; to = 6009; }     # Fightcade
         ];
     };
 
@@ -643,6 +645,7 @@ in {
         wget
         wineWowPackages.stable
         wl-clipboard
+        xcape
         xclip
         xfce.xfce4-panel
         xfce.xfce4-battery-plugin

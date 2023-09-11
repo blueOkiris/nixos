@@ -289,6 +289,12 @@
                     { command = "blueman-applet"; always = false; notification = false; }
                     #{ command = "steam -silent"; always = false; notification = false; }
                     { command = "nextcloud"; always = false; notification = false; }
+
+                    # Super key as Win+S
+                    {
+                        command = "xcape -t 150 -e 'Super_L=Super_L|s'";
+                        always = true; notification = false;
+                    }
                 ];
                 bars = [];
                 modifier = "Mod4";
