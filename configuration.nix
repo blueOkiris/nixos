@@ -582,6 +582,7 @@ in {
         hyprpaper
         inkscape
         jstest-gtk
+        kdeconnect
         kdenlive
         kicad
         kid3
@@ -637,6 +638,7 @@ in {
         tigervnc
         trash-cli
         tutanota-appimage
+        typst
         udev
         unzip
         virt-manager
