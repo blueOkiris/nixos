@@ -163,6 +163,7 @@ in {
     boot.consoleLogLevel = 0;
     boot.initrd.systemd.enable = true;
     boot.kernelParams = [ "quiet" "udev.log_level=3" ];
+    boot.kernelModules = [ "loop" ];
     boot.plymouth = {
         enable = true;
         #theme = "breeze"; # Do just this for Nix-themed
