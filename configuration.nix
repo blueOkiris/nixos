@@ -433,6 +433,13 @@ in {
         ];
     };
 
+    # Fix QT themes
+    qt = {
+        enable = true;
+        style.name = "kvantum";
+        platformTheme = "qt5ct";
+    };
+
     # Fonts. Font packages in systemPackages won't be accessible
     fonts.fonts = with pkgs; [
         corefonts
@@ -592,7 +599,10 @@ in {
         libGLU
         libpng
         libreoffice
+        libsForQt5.qt5.qtwayland
+        libsForQt5.qt5ct
         libsForQt5.qtstyleplugin-kvantum
+        libsForQt5.qtstyleplugins
         libusb1
         lutris
         mediainfo
@@ -622,7 +632,6 @@ in {
         pulseaudio
         (python3.withPackages(ps: with ps; [ i3ipc pip ]))
         qjackctl
-        libsForQt5.qt5.qtwayland
         qt6.qtwayland
         rofi
         rust-analyzer
@@ -636,6 +645,7 @@ in {
         strongswan
         teams-for-linux-appimage
         texlive.combined.scheme-full
+        texstudio
         tigervnc
         trash-cli
         tutanota-appimage
