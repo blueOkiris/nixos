@@ -262,7 +262,7 @@
                     }
                     { command = "brightnessctl set 100%"; always = false; notification = false; }
                     {
-                        command = ".alternating_layouts.py";
+                        command = "python ~/.alternating_layouts.py";
                         always = true; notification = false;
                     }
 

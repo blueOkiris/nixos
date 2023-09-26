@@ -5,132 +5,6 @@
 { config, pkgs, lib, ... }:
 
 let
-    # Custom packages before config
-    freetube-appimage = (
-        let
-            app_name = "freetube";
-            gh_user = "FreeTubeApp";
-            gh_proj = "FreeTube";
-            version = "0.19.0";
-            hash = "0yr5k9s3r4yvcx85bzwn6y4m03964ljnmhz7nf068zj87m9q8rcc";
-        in pkgs.appimageTools.wrapType2 {
-            name = "freetube";
-            extraPkgs = pkgs: [];
-            src = builtins.fetchurl {
-                url = "https://github.com/${gh_user}/${gh_proj}/releases/download/v${version}-beta"
-                    + "/${app_name}_${version}_amd64.AppImage";
-                sha256 = "${hash}";
-            };
-        }
-    );
-    paleofetch = pkgs.stdenv.mkDerivation rec {
-        name = "paleofetch";
-        src = pkgs.fetchFromGitHub {
-            owner = "blueOkiris";
-            repo = "paleofetch-nixos";
-            rev = "a1e1a2f1f9d778d836c8d9bfaa8d44ddf8d2da4e";
-            sha256 = "1a00n2kq5d9i2sw2fblac1n7ml48xj4zilrsqabayjnjf67vh5zn";
-        };
-        buildInputs = [ pkgs.gcc pkgs.gnumake pkgs.pciutils pkgs.xorg.libX11 ];
-        buildPhase = ''
-            mkdir -p $out
-            cp -ra $src/* $out
-            cd $out
-            make
-            rm -rf obj/
-        '';
-        installPhase = ''
-            mkdir -p $out/bin
-            cp $out/paleofetch $out/bin
-        '';
-    };
-    gnome-shell-extension-pop-shell =
-        lib.overrideDerivation pkgs.gnomeExtensions.pop-shell (oldAttrs: {
-            patches = [
-                ./pop-shell-custom-shortcuts.patch
-            ] ++ oldAttrs.patches;
-        });
-    projectplus = (
-        let
-            app_name = "Faster_Project_Plus-x86-64.AppImage";
-            gh_proj = "FPM-AppImage";
-            gh_user = "Ishiiruka";
-            version = "2.4.2";
-            hash = "0vgg9xvlk94mp0ip5473py381l2bpd2anqibpyp0jkp4xq6wdkm3";
-        in pkgs.appimageTools.wrapType2 {
-            name = "project+";
-            extraPkgs = pkgs: [
-                pkgs.gmp
-                pkgs.mpg123
-                pkgs.libmpg123
-            ];
-            src = builtins.fetchurl {
-                url =
-                    "https://github.com/${gh_user}/${gh_proj}/releases/download/"
-                        + "v${version}/${app_name}";
-                sha256 = "${hash}";
-            };
-        }
-    );
-    slippi = (
-        let
-            app_name = "Slippi_Online-x86_64.AppImage";
-            gh_proj = "Ishiiruka";
-            gh_user = "project-slippi";
-            version = "3.2.2";
-            hash = "12k344ky4kp4i9sr847sh9hzq1h8w42msd25gkf5zpmx0s7v8y4r";
-        in pkgs.appimageTools.wrapType2 {
-            name = "slippi";
-            extraPkgs = pkgs: [
-                pkgs.gmp
-                pkgs.mpg123
-                pkgs.libmpg123
-                pkgs.curl
-            ];
-            src = builtins.fetchurl {
-                url =
-                    "https://github.com/${gh_user}/${gh_proj}/releases/download/"
-                        + "v${version}/${app_name}";
-                sha256 = "${hash}";
-            };
-        }
-    );
-    teams-for-linux-appimage = (
-        let
-            app_name = "teams-for-linux";
-            gh_user = "IsmaelMartinez";
-            gh_proj = "teams-for-linux";
-            version = "1.3.8";
-            hash = "053qv3chj2yx928b4ww39hnskv6a01q16mnh3pig7iihkznmqkp8";
-        in pkgs.appimageTools.wrapType2 {
-            name = "teams-for-linux";
-            extraPkgs = pkgs: [];
-            src = builtins.fetchurl {
-                url = "https://github.com/${gh_user}/${gh_proj}/releases/download/v${version}/"
-                    + "${app_name}-${version}.AppImage";
-                sha256 = "${hash}";
-            };
-        }
-    );
-    tutanota-appimage = (
-        let
-            app_name = "tutanota-desktop-linux";
-            gh_user = "tutao";
-            gh_proj = "tutanota";
-            version = "3.118.4";
-            hash = "0rvcsyichrvfc3qp8c0vxmpmsxcrvm2hz34mr1w41r4agxgip7zq";
-        in pkgs.appimageTools.wrapType2 {
-            name = "tutanota";
-            extraPkgs = pkgs: [
-                pkgs.libsecret
-            ];
-            src = builtins.fetchurl {
-                url = "https://github.com/${gh_user}/${gh_proj}/releases/download/"
-                    + "tutanota-desktop-release-${version}/${app_name}.AppImage";
-                sha256 = "${hash}";
-            };
-        }
-    );
     unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in {
     # This value determines the NixOS release from which the default
@@ -154,6 +28,16 @@ in {
     imports = [
         ./hardware-configuration.nix
         ./home-configuration.nix
+
+        ./ni-vpn/ni-vpn.nix
+
+        ./custom/freetube-appimage.nix
+        ./custom/paleofetch.nix
+        ./custom/gnome-shell-extension-pop-shell.nix
+        ./custom/project+.nix
+        ./custom/slippi.nix
+        ./custom/teams-for-linux.nix
+        ./custom/tutanota-appimage.nix
     ];
 
     # Bootloader
@@ -365,47 +249,6 @@ in {
     };
     services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
-    # VPN
-    environment.etc."ssl/certs/DigiCertGlobalRootG2.crt".source = ./DigiCertGlobalRootG2.crt;
-    environment.etc."ssl/certs/DigiCertGlobalG2TLSRSASHA2562020CA1.crt ".source =
-        ./DigiCertGlobalG2TLSRSASHA2562020CA1.crt;
-    # Backup Manual method
-    #services.strongswan = {
-    #    enable = true;
-    #    connections = {
-    #        "%default" = {
-    #            ikelifetime = "8h";
-    #            reauth = "no";
-    #            keylife = "20m";
-    #            rekeymargin = "3m";
-    #            #keyringtries = "1";
-    #            keyexchange = "ikev2";
-    #            mobike = "yes";
-    #        };
-    #        "ni-vpn" = {
-    #            left = "%any";
-    #            leftsourceip = "%config";
-    #            leftfirewall = "yes";
-    #            leftauth = "eap-mschapv2";
-    #            right = "vpn-us1.natinst.com";
-    #            rightid = "%vpn.natinst.com";
-    #            rightsubnet = "0.0.0.0/0";
-    #            rightdns = "172.18.18.80,172.18.20.80";
-    #            auto = "add";
-    #        };
-    #    };
-    #    ca = {
-    #        ni-vpn-rsa = {
-    #            auto = "add";
-    #            cacert = "/etc/nixos/DigiCertGlobalG2TLSRSASHA2562020CA1.crt";
-    #        };
-    #        ni-vpn-cert = {
-    #            auto = "add";
-    #            cacert = "/etc/nixos/DigiCertGlobalRootG2.crt";
-    #        };
-    #    };
-    #};
-
     # Open ports in the firewall.
     # networking.firewall.allowedTCPPorts = [ ... ];
     # networking.firewall.allowedUDPPorts = [ ... ];
@@ -539,7 +382,6 @@ in {
     #environment.xfce.excludePackages = with pkgs.xfce; [ mousepad xfce4-terminal ];
 
     # List packages installed in system profile. To search, run:
-    # $ nix search wget
     environment.systemPackages = with pkgs; [
         alacritty
         android-studio
@@ -554,9 +396,7 @@ in {
         breeze-gtk
         breeze-plymouth
         brightnessctl
-        cargo
         chafa
-        cmake
         cura
         discord
         dolphin-emu
@@ -566,11 +406,6 @@ in {
         fd
         fontforge
         freecad
-        freeglut
-        freetube-appimage
-        gcc
-        gdb
-        ghc
         gimp
         glaxnimate
         gnome.cheese
@@ -583,8 +418,6 @@ in {
         gnomeExtensions.sound-output-device-chooser
         gnomeExtensions.tray-icons-reloaded
         gnomeExtensions.user-themes
-        gnome-shell-extension-pop-shell
-        gnumake
         sway-contrib.grimshot
         htop
         hyprpaper
@@ -595,15 +428,11 @@ in {
         kicad
         kid3
         lemonade
-        libGL
-        libGLU
-        libpng
         libreoffice
         libsForQt5.qt5.qtwayland
         libsForQt5.qt5ct
         libsForQt5.qtstyleplugin-kvantum
         libsForQt5.qtstyleplugins
-        libusb1
         lutris
         mediainfo
         minecraft-server
@@ -619,38 +448,28 @@ in {
         obs-studio
         openssl
         pandoc
-        paleofetch
         papirus-icon-theme
         pass
         pavucontrol
         pciutils
         pinentry
-        pkg-config
         poppler_utils
         prismlauncher
-        projectplus
         pulseaudio
         (python3.withPackages(ps: with ps; [ i3ipc pip ]))
         qjackctl
         qt6.qtwayland
         rofi
         rust-analyzer
-        rustc
         ryujinx
-        SDL2
-        slippi
         spotify
-        stack
         system-config-printer
         strongswan
-        teams-for-linux-appimage
         texlive.combined.scheme-full
         texstudio
         tigervnc
         trash-cli
-        tutanota-appimage
         typst
-        udev
         unzip
         virt-manager
         vlc
@@ -672,7 +491,6 @@ in {
         xorg.xrandr
         xwayland
         yabridge
-        yarn
         zoom
         zsh-autocomplete
         zsh-history-substring-search
