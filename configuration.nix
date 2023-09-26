@@ -152,6 +152,42 @@ in {
             package = pkgs.i3-gaps;
         };
     };
+    # We don't want everything that comes with gnome and xfce
+    environment.gnome.excludePackages =
+        (with pkgs; [
+            gnome-connections
+            gnome-console
+            gnome-doc-utils
+            gnome-photos
+            gnome-text-editor
+            gnome-tour
+        ]) ++ (with pkgs.gnome; [
+            atomix
+            eog
+            epiphany
+            evince
+            gdm
+            geary
+            gedit
+            ghex
+            gnome-calculator
+            gnome-calendar
+            gnome-characters
+            gnome-contacts
+            gnome-maps
+            gnome-music
+            gnome-terminal
+            gnome-system-monitor
+            gnome-weather
+            hitori
+            iagno
+            nautilus
+            simple-scan
+            tali
+            totem
+            yelp
+        ]);
+    #environment.xfce.excludePackages = with pkgs.xfce; [ mousepad xfce4-terminal ];
     programs.hyprland = {
         enable = true;
         xwayland.enable = true;
@@ -343,43 +379,6 @@ in {
 
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
-
-    # We don't want everything that comes with gnome and xfce
-    environment.gnome.excludePackages =
-        (with pkgs; [
-            gnome-connections
-            gnome-console
-            gnome-doc-utils
-            gnome-photos
-            gnome-text-editor
-            gnome-tour
-        ]) ++ (with pkgs.gnome; [
-            atomix
-            eog
-            epiphany
-            evince
-            gdm
-            geary
-            gedit
-            ghex
-            gnome-calculator
-            gnome-calendar
-            gnome-characters
-            gnome-contacts
-            gnome-maps
-            gnome-music
-            gnome-terminal
-            gnome-system-monitor
-            gnome-weather
-            hitori
-            iagno
-            nautilus
-            simple-scan
-            tali
-            totem
-            yelp
-        ]);
-    #environment.xfce.excludePackages = with pkgs.xfce; [ mousepad xfce4-terminal ];
 
     # List packages installed in system profile. To search, run:
     environment.systemPackages = with pkgs; [
