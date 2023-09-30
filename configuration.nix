@@ -283,6 +283,7 @@ in {
             X11Forwarding = true;
         };
     };
+    services.tlp.enable = true;
     services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
     # Open ports in the firewall.
@@ -391,6 +392,7 @@ in {
         arduino
         arduino-cli
         baobab
+        bc
         blender
         breeze-gtk
         breeze-plymouth

@@ -117,5 +117,8 @@
 
     # Firmware updates
     services.fwupd.enable = true;
+
+    # Disable default power-profile mode to use tlp
+    services.power-profiles-daemon.enable = false;
 }
 
