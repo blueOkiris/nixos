@@ -3,6 +3,8 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
+    home-manager.users.dylan.home.file.".config/nvim/coc-settings.json".source =
+        .config/nvim/coc-settings.json;
     # Technically "system-wide", but similar to home stuff in essence
     programs.neovim = {
         enable = true;
