@@ -8,8 +8,8 @@ let
             app_name = "Slippi_Online-x86_64.AppImage";
             gh_proj = "Ishiiruka";
             gh_user = "project-slippi";
-            version = "3.2.2";
-            hash = "12k344ky4kp4i9sr847sh9hzq1h8w42msd25gkf5zpmx0s7v8y4r";
+            version = "3.3.0";
+            hash = "0ldkfi69gg5i7zxg58n33hwi12an3prb2bmwm6bmxjmafhi553dc";
         in pkgs.appimageTools.wrapType2 {
             name = "slippi";
             extraPkgs = pkgs: [
