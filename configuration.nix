@@ -152,7 +152,7 @@ in {
             package = pkgs.i3-gaps;
         };
     };
-    # We don't want everything that comes with gnome and xfce
+    # We don't want everything that comes with the bigger DEs
     environment.gnome.excludePackages =
         (with pkgs; [
             gnome-connections
@@ -177,6 +177,7 @@ in {
             gnome-maps
             gnome-music
             gnome-terminal
+            gnome-software
             gnome-system-monitor
             gnome-weather
             hitori
@@ -198,6 +199,7 @@ in {
         enable = true;
         extraPortals = [
             #pkgs.xdg-desktop-portal-gtk
+            pkgs.xdg-desktop-portal-gnome
             #pkgs.xdg-desktop-portal-hyprland
         ];
     };
@@ -206,7 +208,7 @@ in {
     users.users.dylan = {
         isNormalUser = true;
         description = "Dylan Turner";
-        extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
+        extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "video" ];
         shell = pkgs.zsh;
     };
     programs.zsh = {
@@ -245,6 +247,8 @@ in {
             pinentryFlavor = "gnome3";
         };
     };
+
+    services.picom.enable = false;
 
     # List services that you want to enable:
     networking.networkmanager = {
@@ -355,7 +359,7 @@ in {
     };
     programs.gnome-disks.enable = true;
     programs.java.enable = true;
-    #programs.kdeconnect.enable = true;
+    programs.kdeconnect.enable = true;
     virtualisation.libvirtd.enable = true;
     programs.steam = {
         enable = true;
@@ -385,9 +389,9 @@ in {
     environment.systemPackages = with pkgs; [
         alacritty
         android-studio
+        appimage-run
         arandr
         arc-theme
-        appimage-run
         ardour
         arduino
         arduino-cli
@@ -419,12 +423,12 @@ in {
         gnomeExtensions.sound-output-device-chooser
         gnomeExtensions.tray-icons-reloaded
         gnomeExtensions.user-themes
+        unstable.godot_4
         sway-contrib.grimshot
         htop
         hyprpaper
         inkscape
         jstest-gtk
-        kdeconnect
         kdenlive
         kicad
         kid3
@@ -453,6 +457,7 @@ in {
         pass
         pavucontrol
         pciutils
+        picom
         pinentry
         poppler_utils
         prismlauncher

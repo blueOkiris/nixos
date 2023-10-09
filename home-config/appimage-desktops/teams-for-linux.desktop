@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Terminal=false
-Exec=teams-for-linux
+Exec=teams-for-linux --disable-gpu-sandbox
 Name=Teams for Linux
 Icon=teams
 

@@ -117,6 +117,11 @@
                     always = false; notification = false;
                 }
 
+                {
+                    command = "picom -b";
+                    always = true; notification = false;
+                }
+
                 # Lock screen
                 {
                     command = "xss-lock --transfer-sleep-lock -- i3lock-fancy --nofork";
@@ -135,7 +140,7 @@
                         "bash -c '"
                             + "if [ \"\$(xrandr --listmonitors | grep -i DP-0)\" ]; then "
                                 + "feh --bg-fill "
-                                    + "\$HOME/Pictures/Wallpapers/heros.png "
+                                    + "\$HOME/Pictures/Wallpapers/linux-supremecy-2.png "
                                     + "\$HOME/Pictures/Wallpapers/ww-wave.jpg; "
                             + "else "
                                 + "feh --bg-fill $HOME/Pictures/Wallpapers/ww-wave.jpg; "

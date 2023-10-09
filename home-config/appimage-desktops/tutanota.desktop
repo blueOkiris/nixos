@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Terminal=false
-Exec=tutanota
+Exec=tutanota --disable-gpu-sandbox
 Name=Tutanota
 Icon=tutanota-desktop
 

@@ -4,7 +4,7 @@
 
 {
     home-manager.users.dylan.services.picom = {
-        enable = true;
+        #enable = true;
         shadow = true;
         shadowExclude = [
             "name = 'Notification'"

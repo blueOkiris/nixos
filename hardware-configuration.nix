@@ -86,11 +86,15 @@
         enable = true;
         driSupport = true;
         driSupport32Bit = true;
+        extraPackages = with pkgs; [
+            nvidia-vaapi-driver
+            vaapiVdpau
+        ];
     };
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {
         modesetting.enable = true;
-        open = true;
+        #open = true;
         nvidiaSettings = true;
         prime = {
             sync.enable = true;

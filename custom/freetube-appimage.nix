@@ -8,8 +8,8 @@ let
             app_name = "freetube";
             gh_user = "FreeTubeApp";
             gh_proj = "FreeTube";
-            version = "0.19.0";
-            hash = "0yr5k9s3r4yvcx85bzwn6y4m03964ljnmhz7nf068zj87m9q8rcc";
+            version = "0.19.1";
+            hash = "03w10mnah9ppi0z1ykhapgb3r5j6s3ghbc2qhrnmqkcxa39nmndd";
         in pkgs.appimageTools.wrapType2 {
             name = "freetube";
             extraPkgs = pkgs: [];
