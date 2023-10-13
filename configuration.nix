@@ -110,8 +110,11 @@ in {
                     draw-user-backgrounds = false;
                 };
                 background = ./gnu-linux-wide-wallpaper.png;
+                #extraSeatDefaults = ''
+                #    user-session=none+i3
+                #'';
                 extraSeatDefaults = ''
-                    user-session=none+i3
+                    user-session=gnome-wayland
                 '';
             };
             setupCommands = "
