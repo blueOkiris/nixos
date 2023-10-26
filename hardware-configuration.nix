@@ -9,10 +9,20 @@
     ];
 
     boot.kernelPackages = pkgs.linuxPackages_latest;
-    boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" ];
+    boot.initrd.availableKernelModules = [
+        "xhci_pci"
+        "thunderbolt"
+        "nvme"
+        "usb_storage"
+        "usbhid"
+        "sd_mod"
+        "rtsx_pci_sdmmc"
+    ];
     boot.initrd.kernelModules = [ ];
     boot.kernelModules = [ "kvm-intel" ];
-    boot.extraModulePackages = [ ];
+    boot.extraModulePackages = with config.boot.kernelPackages; [
+        gcadapter-oc-kmod
+    ];
 
     fileSystems."/" = {
         device = "/dev/disk/by-uuid/c51d0b12-a6f0-4512-a36a-dda38b7d6cb3";
@@ -35,7 +45,8 @@
         fsType = "ext4";
     };
 
-    boot.initrd.luks.devices."home".device = "/dev/disk/by-uuid/489818be-5b8b-4d8c-a4b2-a2e649c7f316";
+    boot.initrd.luks.devices."home".device =
+        "/dev/disk/by-uuid/489818be-5b8b-4d8c-a4b2-a2e649c7f316";
 
     swapDevices = [ ];
 
