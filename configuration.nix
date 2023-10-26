@@ -46,8 +46,15 @@ in {
     boot.initrd.verbose = false;
     boot.consoleLogLevel = 0;
     boot.initrd.systemd.enable = true;
-    boot.kernelParams = [ "quiet" "udev.log_level=3" ];
-    boot.kernelModules = [ "loop" ];
+    boot.kernelParams = [
+        "quiet"
+        "udev.log_level=3"
+        "gcadapter_oc.rate=1"
+    ];
+    boot.kernelModules = [
+        "loop"
+        "gcadapter_oc"
+    ];
     boot.plymouth = {
         enable = true;
         #theme = "breeze"; # Do just this for Nix-themed
@@ -362,7 +369,7 @@ in {
     };
     programs.gnome-disks.enable = true;
     programs.java.enable = true;
-    programs.kdeconnect.enable = true;
+    #programs.kdeconnect.enable = true;
     virtualisation.libvirtd.enable = true;
     programs.steam = {
         enable = true;
@@ -428,6 +435,7 @@ in {
         gnomeExtensions.user-themes
         unstable.godot_4
         sway-contrib.grimshot
+        hplip
         htop
         hyprpaper
         inkscape
@@ -468,6 +476,7 @@ in {
         (python3.withPackages(ps: with ps; [ i3ipc pip ]))
         qjackctl
         qt6.qtwayland
+        remmina
         rofi
         rust-analyzer
         ryujinx
