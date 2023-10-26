@@ -8,8 +8,8 @@ let
             app_name = "teams-for-linux";
             gh_user = "IsmaelMartinez";
             gh_proj = "teams-for-linux";
-            version = "1.3.8";
-            hash = "053qv3chj2yx928b4ww39hnskv6a01q16mnh3pig7iihkznmqkp8";
+            version = "1.3.14";
+            hash = "0sfdf9ybkadvf8p22kv16i6ww5sv0xq0fk1i8ycvink5p0rx6x0j";
         in pkgs.appimageTools.wrapType2 {
             name = "teams-for-linux";
             extraPkgs = pkgs: [];
@@ -24,6 +24,5 @@ in {
     environment.systemPackages = with pkgs; [
         teams-for-linux-appimage
     ];
-
 }
 
