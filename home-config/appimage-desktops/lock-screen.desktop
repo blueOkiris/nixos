@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Terminal=false
+Exec=dm-tool lock
+Name=Lock Screen
+Icon=object-locked
+
