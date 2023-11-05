@@ -138,7 +138,7 @@
                 {
                     command =
                         "bash -c '"
-                            + "if [ \"\$(xrandr --listmonitors | grep -i DP-0)\" ]; then "
+                            + "if [ \"\$(xrandr --listmonitors | grep -i DP-1-0)\" ]; then "
                                 + "feh --bg-fill "
                                     + "\$HOME/Pictures/Wallpapers/linux-supremecy-2.png "
                                     + "\$HOME/Pictures/Wallpapers/ww-wave.jpg; "

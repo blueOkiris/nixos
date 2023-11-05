@@ -8,7 +8,7 @@
         (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-    boot.kernelPackages = pkgs.linuxPackages_latest;
+    boot.kernelPackages = pkgs.linuxPackages;
     boot.initrd.availableKernelModules = [
         "xhci_pci"
         "thunderbolt"
@@ -83,7 +83,7 @@
             middleEmulation = false;
             tappingButtonMap = "lrm";
             additionalOptions = ''
-            Option "MiddleButtonArea" "1"
+                Option "MiddleButtonArea" "1"
             '';
         };
         mouse = {
@@ -108,11 +108,23 @@
         #open = true;
         nvidiaSettings = true;
         prime = {
-            sync.enable = true;
+            #sync.enable = true;
+            offload = {
+                enable = true;
+                enableOffloadCmd = true;
+            };
             nvidiaBusId = "PCI:1:0:0";
-            intelBusId = "PCI:1:0:0";
+            intelBusId = "PCI:0:2:0";
         };
     };
+    /*specialisation.on-the-go.configuration = {
+        system.nixos.tags = [ "on-the-go" ];
+        hardware.nvidia = {
+            prime.offload.enable = lib.mkForce true;
+            prime.offload.enableOffloadCmd = lib.mkForce true;
+            prime.sync.enable = lib.mkForce false;
+        };
+    };*/
     environment.etc."X11/xorg.conf.d/nvidia.conf".text = ''
         Section "OutputClass"
             Identifier "nvidia"

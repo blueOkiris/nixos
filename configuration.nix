@@ -23,6 +23,10 @@ in {
         GTK_THEME = "Arc-Dark";
         GTK_ICON_THEME = "Papirus-Dark";
         RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+        __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+        __NV_PRIME_RENDER_OFFLOAD = "1";
+        __NV_PRIME_RENDER_OFFLOAD_PROVIDER = "NVIDIA-G0";
+        __VK_LAYER_NV_optimus = "NVIDIA_only";
     };
 
     imports = [
@@ -50,6 +54,7 @@ in {
         "quiet"
         "udev.log_level=3"
         "gcadapter_oc.rate=1"
+        #"module_blacklist=i915"
     ];
     boot.kernelModules = [
         "loop"
@@ -117,37 +122,40 @@ in {
                     draw-user-backgrounds = false;
                 };
                 background = ./gnu-linux-wide-wallpaper.png;
-                #extraSeatDefaults = ''
-                #    user-session=none+i3
-                #'';
                 extraSeatDefaults = ''
-                    user-session=gnome-wayland
+                    user-session=none+i3
                 '';
+                #extraSeatDefaults = ''
+                #    user-session=gnome-wayland
+                #'';
             };
             setupCommands = "
-                BIG_MONITOR=\"DP-0\"
+                BIG_MONITOR=\"DP-1-0\"
                 BIG_MONITOR_RES=\"3440x1440\"
-                SMALL_MONITOR=\"eDP-1-1\"
+                SMALL_MONITOR=\"eDP-1\"
                 SMALL_MONITOR_RES=\"1920x1080\"
                 SMALL_MONITOR_OFFSET=\"1969x1440\"
 
                 ${pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource \"modesetting\" NVIDIA-0
                 ${pkgs.xorg.xrandr}/bin/xrandr --auto
                 ${pkgs.xorg.xrandr}/bin/xrandr --output \${SMALL_MONITOR} --primary --mode \\
-                    \${SMALL_MONITOR_RES} --pos 0x0
+                    \${SMALL_MONITOR_RES} --pos 0x0 -r 360
+                ${pkgs.xorg.xrandr}/bin/xrandr --dpi 96
 
                 MONITOR_FOUND=`${pkgs.xorg.xrandr}/bin/xrandr --listmonitors | "
                     + "grep -i \${BIG_MONITOR}`
                 if [ \"\${MONITOR_FOUND}\" != \"\" ]; then
                     ${pkgs.xorg.xrandr}/bin/xrandr \\
                         --output \${BIG_MONITOR} --primary --mode \${BIG_MONITOR_RES} --pos 0x0 \\
-                        --output \${SMALL_MONITOR} --mode \${SMALL_MONITOR_RES} --pos 3440x0
+                        -r 60 \\
+                        --output \${SMALL_MONITOR} --mode \${SMALL_MONITOR_RES} --pos 3440x0 \\
+                        -r 360
                     sleep 0.25
                     ${pkgs.xorg.xrandr}/bin/xrandr \\
                         --output \${BIG_MONITOR} --primary --mode \${BIG_MONITOR_RES} \\
-                            --pos 0x0 --rotate normal \\
+                            --pos 0x0 --rotate normal -r 60 \\
                         --output \${SMALL_MONITOR} --mode \${SMALL_MONITOR_RES} \\
-                            --pos \${SMALL_MONITOR_OFFSET} --rotate normal
+                            --pos \${SMALL_MONITOR_OFFSET} --rotate normal -r 360
                 fi
                 exit # Skip generated prime lines
             ";
