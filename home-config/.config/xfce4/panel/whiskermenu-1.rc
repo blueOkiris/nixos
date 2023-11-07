@@ -1,3 +1,4 @@
+
 favorites=
 recent=
 button-icon=/etc/nixos/distro-logos/nixos.svg
@@ -10,7 +11,7 @@ launcher-show-tooltip=true
 launcher-icon-size=2
 hover-switch-category=false
 category-show-name=true
-category-icon-size=1
+category-icon-size=-1
 sort-categories=true
 view-mode=0
 default-category=2
@@ -18,10 +19,10 @@ recent-items-max=10
 favorites-in-recent=true
 position-search-alternate=false
 position-commands-alternate=false
-position-categories-alternate=false
+position-categories-alternate=true
 position-categories-horizontal=false
 stay-on-focus-out=false
-profile-shape=0
+profile-shape=2
 confirm-session-command=true
 menu-width=717
 menu-height=539
