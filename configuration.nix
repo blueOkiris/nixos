@@ -23,10 +23,10 @@ in {
         GTK_THEME = "Arc-Dark";
         GTK_ICON_THEME = "Papirus-Dark";
         RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
-        __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-        __NV_PRIME_RENDER_OFFLOAD = "1";
-        __NV_PRIME_RENDER_OFFLOAD_PROVIDER = "NVIDIA-G0";
-        __VK_LAYER_NV_optimus = "NVIDIA_only";
+        #__GLX_VENDOR_LIBRARY_NAME = "nvidia";
+        #__NV_PRIME_RENDER_OFFLOAD = "1";
+        #__NV_PRIME_RENDER_OFFLOAD_PROVIDER = "NVIDIA-G0";
+        #__VK_LAYER_NV_optimus = "NVIDIA_only";
     };
 
     imports = [
@@ -42,6 +42,7 @@ in {
         ./custom/slippi.nix
         ./custom/teams-for-linux.nix
         ./custom/tutanota-appimage.nix
+        ./custom/shell-scripts.nix
     ];
 
     # Bootloader
@@ -129,36 +130,45 @@ in {
                 #    user-session=gnome-wayland
                 #'';
             };
-            setupCommands = "
-                BIG_MONITOR=\"DP-1-0\"
-                BIG_MONITOR_RES=\"3440x1440\"
-                SMALL_MONITOR=\"eDP-1\"
-                SMALL_MONITOR_RES=\"1920x1080\"
-                SMALL_MONITOR_OFFSET=\"1969x1440\"
+            setupCommands =
+                let
+                    big_mon = "DP-1-0";
+                    big_mon_res = "3440x1440";
+                    big_mon_rate = "60";
+                    big_mon_pos = "0x0";
+                    small_mon = "eDP-1";
+                    small_mon_res = "1920x1080";
+                    small_mon_rate = "360";
+                    small_mon_pos = "1969x1440";
+                    dpi = "96";
+                in ''
+                    ${pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource "modesetting" NVIDIA-0
+                    ${pkgs.xorg.xrandr}/bin/xrandr --auto
 
-                ${pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource \"modesetting\" NVIDIA-0
-                ${pkgs.xorg.xrandr}/bin/xrandr --auto
-                ${pkgs.xorg.xrandr}/bin/xrandr --output \${SMALL_MONITOR} --primary --mode \\
-                    \${SMALL_MONITOR_RES} --pos 0x0 -r 360
-                ${pkgs.xorg.xrandr}/bin/xrandr --dpi 96
+                    # Default
+                    ${pkgs.xorg.xrandr}/bin/xrandr \
+                        --output ${small_mon} --primary \
+                        --mode ${small_mon_res} --pos 0x0 -r ${small_mon_rate} \
+                        --dpi 96
 
-                MONITOR_FOUND=`${pkgs.xorg.xrandr}/bin/xrandr --listmonitors | "
-                    + "grep -i \${BIG_MONITOR}`
-                if [ \"\${MONITOR_FOUND}\" != \"\" ]; then
-                    ${pkgs.xorg.xrandr}/bin/xrandr \\
-                        --output \${BIG_MONITOR} --primary --mode \${BIG_MONITOR_RES} --pos 0x0 \\
-                        -r 60 \\
-                        --output \${SMALL_MONITOR} --mode \${SMALL_MONITOR_RES} --pos 3440x0 \\
-                        -r 360
-                    sleep 0.25
-                    ${pkgs.xorg.xrandr}/bin/xrandr \\
-                        --output \${BIG_MONITOR} --primary --mode \${BIG_MONITOR_RES} \\
-                            --pos 0x0 --rotate normal -r 60 \\
-                        --output \${SMALL_MONITOR} --mode \${SMALL_MONITOR_RES} \\
-                            --pos \${SMALL_MONITOR_OFFSET} --rotate normal -r 360
-                fi
-                exit # Skip generated prime lines
-            ";
+                    # Check for external DP display
+                    MON_FOUND=`${pkgs.xorg.xrandr}/bin/xrandr --listmonitors | grep -i ${big_mon}`
+                    if [ "$MON_FOUND" != "" ]; then
+                        ${pkgs.xorg.xrandr}/bin/xrandr \
+                            --output ${big_mon} --primary --mode ${big_mon_res} \
+                            --pos 0x0 -r ${big_mon_rate} --dpi ${dpi} \
+                            --output ${small_mon} --mode ${small_mon_res} \
+                            --pos 3440x0 -r ${small_mon_rate} --dpi ${dpi}
+                        # Takes 2 tries for some reason
+                        sleep 0.25
+                        ${pkgs.xorg.xrandr}/bin/xrandr \
+                            --output ${big_mon} --primary --mode ${big_mon_res} \
+                            --pos ${big_mon_pos} -r ${big_mon_rate} --dpi ${dpi} \
+                            --output ${small_mon} --mode ${small_mon_res} \
+                            --pos ${small_mon_pos} -r ${small_mon_rate} --dpi ${dpi}
+                    fi
+                    exit # Skip generated prime lines
+                '';
         };
 
         windowManager.i3 = {
@@ -393,9 +403,27 @@ in {
 
     # Tweak some programs
     nixpkgs.overlays = [
+        # Make waybar work with nvidia/Hyprland
         (self: super: {
             waybar = super.waybar.overrideAttrs (oldAttrs: {
                 mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+            });
+        })
+
+        # Start Firefox with Nvidia GPU
+        (self: super: {
+            firefox = super.firefox.overrideAttrs (oldAttrs: {
+                postInstall = (oldAttrs.postInstall or "") + ''
+                    substituteInPlace $out/share/applications/firefox.desktop \
+                        --replace "firefox --name firefox %U" \
+                            "nvidia-offload firefox --name firefox %U" \
+                        --replace "firefox --private-window %U" \
+                            "nvidia-offload firefox --private-window %U" \
+                        --replace "firefox --new-window %U" \
+                            "nvidia-offload firefox --new-window %U" \
+                        --replace "firefox --ProfileManager %U" \
+                            "nvidia-offload firefox --ProfileManager %U"
+                '';
             });
         })
     ];

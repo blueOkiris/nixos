@@ -104,8 +104,11 @@
     };
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
         modesetting.enable = true;
-        #open = true;
+        open = true;
+        powerManagement.enable = false;
+        powerManagement.finegrained = false;
         nvidiaSettings = true;
         prime = {
             #sync.enable = true;
@@ -125,7 +128,7 @@
             prime.sync.enable = lib.mkForce false;
         };
     };*/
-    environment.etc."X11/xorg.conf.d/nvidia.conf".text = ''
+    /*environment.etc."X11/xorg.conf.d/nvidia.conf".text = ''
         Section "OutputClass"
             Identifier "nvidia"
             MatchDriver "nvidia-drm"
@@ -140,7 +143,7 @@
             Identifier "layout"
             Option "AllowNVIDIAGPUScreens"
         EndSection
-    '';
+    '';*/
 
     # Firmware updates
     services.fwupd.enable = true;
