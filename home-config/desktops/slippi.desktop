@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Terminal=false
-Exec=slippi
+Exec=nvidia-offload slippi
 Name=Slippi
 Icon=slippi
 
