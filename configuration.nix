@@ -292,10 +292,12 @@ in {
                 ALLOW_USERS = [ "dylan" ];
                 TIMELINE_CREATE = true;
                 TIMELINE_CLEANUP = true;
+                SPACE_LIMIT = "0.2";
+                NUMBER_LIMIT_IMPORTANT = "1";
             };
         };
-        snapshotInterval = "hourly";
-        cleanupInterval = "1d";
+        snapshotInterval = "daily";
+        cleanupInterval = "1m";
     };
     services.printing = {
         enable = true;
