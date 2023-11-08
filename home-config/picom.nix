@@ -4,7 +4,7 @@
 
 {
     home-manager.users.dylan.services.picom = {
-        #enable = true;
+        enable = true;
         shadow = true;
         shadowExclude = [
             "name = 'Notification'"
@@ -35,10 +35,10 @@
             dropdown_menu = { opacity = 0.8; };
         };
         settings = {
-            shadow-radius = 12;
-            shadow-offset-x = -15;
-            shadow-offset-y = -15;
-            frame-opacity = 0.7;
+            shadow-radius = 10;
+            shadow-offset-x = -13;
+            shadow-offset-y = -6;
+            frame-opacity = 0.9;
             inactive-opacity-override = false;
             focus-exclude = [ "class_g = 'Cairo-clock'" ];
             corner-radius = 10;
