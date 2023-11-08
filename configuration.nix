@@ -389,7 +389,7 @@ in {
     };
     programs.gnome-disks.enable = true;
     programs.java.enable = true;
-    #programs.kdeconnect.enable = true;
+    programs.kdeconnect.enable = true;
     virtualisation.libvirtd.enable = true;
     programs.steam = {
         enable = true;
