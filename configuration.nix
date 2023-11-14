@@ -236,7 +236,7 @@ in {
     users.users.dylan = {
         isNormalUser = true;
         description = "Dylan Turner";
-        extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "video" ];
+        extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "video" "dialout" ];
         shell = pkgs.zsh;
     };
     programs.zsh = {
@@ -335,6 +335,7 @@ in {
             { from = 5267; to = 5267; }     # Ssh
             { from = 2489; to = 2489; }     # Ssh copy
             { from = 6000; to = 6009; }     # Fightcade
+            { from = 30562; to = 30562; }   # Parsec
         ];
         allowedUDPPortRanges = [
             { from = 1714; to = 1764; }     # KDE Connect
@@ -344,6 +345,7 @@ in {
             { from = 5267; to = 5267; }     # Ssh
             { from = 2489; to = 2489; }     # Ssh copy
             { from = 6000; to = 6009; }     # Fightcade
+            { from = 30562; to = 30562; }   # Parsec
         ];
     };
 
@@ -515,6 +517,11 @@ in {
         qjackctl
         qt6.qtwayland
         remmina
+        (retroarch.override {
+            cores = with libretro; [
+                mupen64plus
+            ];
+        })
         rofi
         rust-analyzer
         ryujinx
