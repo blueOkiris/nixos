@@ -111,39 +111,15 @@
         powerManagement.finegrained = false;
         nvidiaSettings = true;
         prime = {
-            #sync.enable = true;
-            offload = {
-                enable = true;
-                enableOffloadCmd = true;
-            };
+            sync.enable = false;
+            offload.enable = false;
+            reverseSync.enable = true;
+            allowExternalGpu = true;
+
             nvidiaBusId = "PCI:1:0:0";
             intelBusId = "PCI:0:2:0";
         };
     };
-    /*specialisation.on-the-go.configuration = {
-        system.nixos.tags = [ "on-the-go" ];
-        hardware.nvidia = {
-            prime.offload.enable = lib.mkForce true;
-            prime.offload.enableOffloadCmd = lib.mkForce true;
-            prime.sync.enable = lib.mkForce false;
-        };
-    };*/
-    /*environment.etc."X11/xorg.conf.d/nvidia.conf".text = ''
-        Section "OutputClass"
-            Identifier "nvidia"
-            MatchDriver "nvidia-drm"
-            Driver "nvidia"
-            Option "AllowEmptyInitialConfiguration"
-            Option "SLI" "Auto"
-            Option "BaseMosaic" "on"
-            Option "PrimaryGPU" "yes"
-        EndSection
-
-        Section "ServerLayout"
-            Identifier "layout"
-            Option "AllowNVIDIAGPUScreens"
-        EndSection
-    '';*/
 
     # Firmware updates
     services.fwupd.enable = true;
