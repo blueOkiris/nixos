@@ -23,10 +23,6 @@ in {
         GTK_THEME = "Arc-Dark";
         GTK_ICON_THEME = "Papirus-Dark";
         RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
-        #__GLX_VENDOR_LIBRARY_NAME = "nvidia";
-        #__NV_PRIME_RENDER_OFFLOAD = "1";
-        #__NV_PRIME_RENDER_OFFLOAD_PROVIDER = "NVIDIA-G0";
-        #__VK_LAYER_NV_optimus = "NVIDIA_only";
     };
 
     imports = [
@@ -132,11 +128,11 @@ in {
             };
             setupCommands =
                 let
-                    big_mon = "DP-1-0";
+                    big_mon = "DP-0";
                     big_mon_res = "3440x1440";
                     big_mon_rate = "60";
                     big_mon_pos = "0x0";
-                    small_mon = "eDP-1";
+                    small_mon = "eDP-1-1";
                     small_mon_res = "1920x1080";
                     small_mon_rate = "360";
                     small_mon_pos = "1969x1440";
@@ -506,11 +502,13 @@ in {
         pandoc
         papirus-icon-theme
         pass
+        parsec-bin
         pavucontrol
         pciutils
         picom
         pinentry
         poppler_utils
+        unstable.planify
         prismlauncher
         pulseaudio
         (python3.withPackages(ps: with ps; [ i3ipc pip ]))
@@ -530,6 +528,7 @@ in {
         strongswan
         texlive.combined.scheme-full
         texstudio
+        thunderbird
         tigervnc
         trash-cli
         typst
