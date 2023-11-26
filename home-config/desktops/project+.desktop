@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Terminal=false
-Exec=nvidia-offload project+
+Exec=project+
 Name=Project+
 Icon=project-plus
 

@@ -2,7 +2,19 @@
 
 { config, lib, pkgs, modulesPath, ... }:
 
-{
+let
+    # Installs a vim plugin from git with a given tag / branch
+    pluginGit = ref: repo: pkgs.vimUtils.buildVimPluginFrom2Nix {
+        pname = "${lib.strings.sanitizeDerivationName repo}";
+        version = ref;
+        src = builtins.fetchGit {
+            url = "https://github.com/${repo}.git";
+            ref = ref;
+        };
+    };
+    # always installs latest version
+    plugin = pluginGit "HEAD";
+in {
     home-manager.users.dylan.home.file.".config/nvim/coc-settings.json".source =
         .config/nvim/coc-settings.json;
     # Technically "system-wide", but similar to home stuff in essence
@@ -46,6 +58,7 @@
                     \\ 'cpp': [ 'clang' ],
                     \\ 'c': [ 'clang' ],
                     \\ 'haskell': [ 'hlint' ],
+                    \\ 'cs': [ 'OmniSharp' ],
                 \\}
 
                 set splitright
@@ -121,6 +134,10 @@
 
                 \" Media file viewing
                 lua require('telescope').load_extension('media_files')
+
+                \" C#
+                \"lua require('lspconfig').omnisharp.setup { cmd = { '/run/current-system/sw/bin/OmniSharp', '--languageserver', '--hostPID', tostring(vim.fn.getpid()) } }
+                lua require('lspconfig').csharp_ls.setup {}
             ";
             packages.myVimPackage = with pkgs.vimPlugins; {
                 start = [

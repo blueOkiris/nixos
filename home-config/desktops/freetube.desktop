@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Terminal=false
-Exec=nvidia-offload freetube --disable-gpu-sandbox
+Exec=freetube --disable-gpu-sandbox
 Name=FreeTube
 Icon=freetube
 

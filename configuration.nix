@@ -332,6 +332,7 @@ in {
             { from = 2489; to = 2489; }     # Ssh copy
             { from = 6000; to = 6009; }     # Fightcade
             { from = 30562; to = 30562; }   # Parsec
+            { from = 5357; to = 5357; }     # Samba
         ];
         allowedUDPPortRanges = [
             { from = 1714; to = 1764; }     # KDE Connect
@@ -342,7 +343,34 @@ in {
             { from = 2489; to = 2489; }     # Ssh copy
             { from = 6000; to = 6009; }     # Fightcade
             { from = 30562; to = 30562; }   # Parsec
+            { from = 3702; to = 3702; }     # Samba
         ];
+    };
+    networking.firewall.allowPing = true;
+
+    # Mount a samba share
+    services.samba-wsdd.enable = true; # make shares visible for windows 10 clients
+    services.samba = {
+        enable = true;
+        securityType = "user";
+        extraConfig = ''
+            workgroup = WORKGROUP
+            server string = msiraider
+            netbios name = msiraider
+            security = user
+            map to guest = bad user
+            guest acount = nobody
+        '';
+        shares = {
+            public = {
+                path = "/mnt/shares/Public";
+                writeable = "yes";
+                "guest ok" = "yes";
+                "read only" = "no";
+                "force user" = "nobody";
+                "directory mode" = "0555";
+            };
+        };
     };
 
     # Fix QT themes
@@ -354,6 +382,7 @@ in {
 
     # Fonts. Font packages in systemPackages won't be accessible
     fonts.fonts = with pkgs; [
+        cifs-utils
         corefonts
         dina-font
         fira-code
@@ -509,6 +538,7 @@ in {
         pinentry
         poppler_utils
         unstable.planify
+        omnisharp-roslyn
         prismlauncher
         pulseaudio
         (python3.withPackages(ps: with ps; [ i3ipc pip ]))
