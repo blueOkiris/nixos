@@ -438,23 +438,6 @@ in {
                 mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
             });
         })
-
-        # Start Firefox with Nvidia GPU
-        (self: super: {
-            firefox = super.firefox.overrideAttrs (oldAttrs: {
-                postInstall = (oldAttrs.postInstall or "") + ''
-                    substituteInPlace $out/share/applications/firefox.desktop \
-                        --replace "firefox --name firefox %U" \
-                            "nvidia-offload firefox --name firefox %U" \
-                        --replace "firefox --private-window %U" \
-                            "nvidia-offload firefox --private-window %U" \
-                        --replace "firefox --new-window %U" \
-                            "nvidia-offload firefox --new-window %U" \
-                        --replace "firefox --ProfileManager %U" \
-                            "nvidia-offload firefox --ProfileManager %U"
-                '';
-            });
-        })
     ];
 
     # Allow unfree packages
@@ -556,6 +539,7 @@ in {
         spotify
         system-config-printer
         strongswan
+        teensy-udev-rules
         texlive.combined.scheme-full
         texstudio
         thunderbird
