@@ -216,7 +216,7 @@ in {
     programs.hyprland = {
         enable = true;
         xwayland.enable = true;
-        nvidiaPatches = true;
+        enableNvidiaPatches = true;
     };
     services.dbus.enable = true;
     xdg.portal = {
@@ -376,12 +376,12 @@ in {
     # Fix QT themes
     qt = {
         enable = true;
-        style.name = "kvantum";
+        style = "kvantum";
         platformTheme = "qt5ct";
     };
 
     # Fonts. Font packages in systemPackages won't be accessible
-    fonts.fonts = with pkgs; [
+    fonts.packages = with pkgs; [
         cifs-utils
         corefonts
         dina-font
