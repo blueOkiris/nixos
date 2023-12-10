@@ -1,3 +1,6 @@
 [submodule "i3-alternating-layout"]
 	path = i3-alternating-layout
 	url = https://github.com/olemartinorg/i3-alternating-layout
+[submodule "Lightsout"]
+	path = Lightsout
+	url = https://github.com/Humanoidear/Lightsout.git

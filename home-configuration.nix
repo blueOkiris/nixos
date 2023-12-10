@@ -18,6 +18,8 @@
     home-manager.users.dylan = { pkgs, ... }: {
         home.stateVersion = "23.05";
         home.packages = [ ];
+        home.file.".local/share/dolphin-emu/Styles/Lightsout/Lightsout_V.2.0 (dark).gss".source =
+            ./home-config/lightsout.qss;
         home.file.".local/share/applications/freetube.desktop".source =
             home-config/desktops/freetube.desktop;
         gtk = {
