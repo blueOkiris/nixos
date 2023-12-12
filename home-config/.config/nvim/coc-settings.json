@@ -18,7 +18,9 @@
                     "directory": "/tmp/ccls"
                 }, "clang": {
                     "extraArgs": [
-                        "-isystem", "include"
+                        "-isystem", "include",
+                        "-isystem", "inc",
+                        "-std=c++17"
                     ]
                 }
             }

@@ -20,6 +20,12 @@
         home.packages = [ ];
         home.file.".local/share/dolphin-emu/Styles/Lightsout/Lightsout_V.2.0 (dark).gss".source =
             ./home-config/lightsout.qss;
+        home.file.".local/share/fonts/mtextra.ttf".source = ./home-config/fonts/mtextra.ttf;
+        home.file.".local/share/fonts/symbol.ttf".source = ./home-config/fonts/symbol.ttf;
+        home.file.".local/share/fonts/WEBDINGS.TTF".source = ./home-config/fonts/WEBDINGS.TTF;
+        home.file.".local/share/fonts/wingding.ttf".source = ./home-config/fonts/wingding.ttf;
+        home.file.".local/share/fonts/WINGDNG2.ttf".source = ./home-config/fonts/WINGDNG2.ttf;
+        home.file.".local/share/fonts/WINGDNG3.ttf".source = ./home-config/fonts/WINGDNG3.ttf;
         home.file.".local/share/applications/freetube.desktop".source =
             home-config/desktops/freetube.desktop;
         gtk = {
@@ -41,6 +47,8 @@
             home-config/desktops/slippi_logo.png;
         home.file.".local/share/applications/slippi.desktop".source =
             home-config/desktops/slippi.desktop;
+        home.file.".local/share/applications/slippi-launcher.desktop".source =
+            home-config/desktops/slippi-launcher.desktop;
         home.file.".local/share/applications/teams.desktop".source =
             home-config/desktops/teams-for-linux.desktop;
         xresources.properties = {
