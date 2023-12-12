@@ -394,6 +394,7 @@ in {
         noto-fonts-cjk
         noto-fonts-emoji
         noto-fonts-extra
+        powerline-fonts
         proggyfonts
         ubuntu_font_family
         unifont
@@ -492,7 +493,6 @@ in {
         kicad
         kid3
         lemonade
-        libreoffice
         libsForQt5.qt5.qtwayland
         libsForQt5.qt5ct
         libsForQt5.qtstyleplugin-kvantum
@@ -553,6 +553,7 @@ in {
         wget
         wineWowPackages.stable
         wl-clipboard
+        wpsoffice
         xcape
         xclip
         xfce.xfce4-panel
