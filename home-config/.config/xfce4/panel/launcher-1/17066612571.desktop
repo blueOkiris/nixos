@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Terminal=false
+Exec=rofi -modi drun,run -show drun -show-icons -icon-theme 'Papirus-Dark'
+Name=Rofi
+Icon=/etc/nixos/distro-logos/nixos.svg
+X-XFCE-Source=file:///run/current-system/sw/share/applications/rofi.desktop
+Comment=
+Path=
+StartupNotify=false

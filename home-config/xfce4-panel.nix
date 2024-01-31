@@ -4,6 +4,8 @@
 
 {
     home-manager.users.dylan = {
+        home.file.".config/xfce4/panel/launcher-1/17066612571.desktop".source =
+            .config/xfce4/panel/launcher-1/17066612571.desktop;
         home.file.".config/xfce4/panel/launcher-2/16812272972.desktop".source =
             .config/xfce4/panel/launcher-2/16812272972.desktop;
         home.file.".config/xfce4/panel/launcher-3/16872964452.desktop".source =
@@ -26,8 +28,6 @@
             .config/xfce4/panel/fsguard-16.rc;
         home.file.".config/xfce4/panel/fsguard-18.rc".source =
             .config/xfce4/panel/fsguard-18.rc;
-        home.file.".config/xfce4/panel/whiskermenu-1.rc".source =
-            .config/xfce4/panel/whiskermenu-1.rc;
         home.file.".config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml".source =
             .config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml;
     };

@@ -567,6 +567,7 @@ in {
         wpsoffice
         xcape
         xclip
+        xfce.exo
         xfce.xfce4-panel
         xfce.xfce4-battery-plugin
         xfce.xfce4-clipman-plugin

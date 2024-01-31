@@ -12,7 +12,9 @@
       <property name="icon-size" type="uint" value="24"/>
       <property name="size" type="uint" value="36"/>
       <property name="plugin-ids" type="array">
+        <value type="int" value="24"/>
         <value type="int" value="1"/>
+        <value type="int" value="25"/>
         <value type="int" value="2"/>
         <value type="int" value="3"/>
         <value type="int" value="4"/>
@@ -39,7 +41,13 @@
     </property>
   </property>
   <property name="plugins" type="empty">
-    <property name="plugin-1" type="string" value="whiskermenu"/>
+    <property name="plugin-1" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17066612571.desktop"/>
+      </property>
+      <property name="show-label" type="bool" value="false"/>
+      <property name="disable-tooltips" type="bool" value="false"/>
+    </property>
     <property name="plugin-2" type="string" value="launcher">
       <property name="items" type="array">
         <value type="string" value="16812272972.desktop"/>
@@ -90,6 +98,9 @@
         <value type="string" value="ethernet network connection “wired connection 1” active"/>
       </property>
       <property name="known-items" type="array">
+        <value type="string" value="nextcloud"/>
+        <value type="string" value="wi-fi network connection “keep it on the download-5g” active: keep it on the download-5g (88%)"/>
+        <value type="string" value="ethernet network connection “wired connection 1” active"/>
         <value type="string" value="steam"/>
         <value type="string" value="blueman"/>
         <value type="string" value="Nextcloud"/>
@@ -99,6 +110,7 @@
     <property name="plugin-12" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="show-notifications" type="bool" value="true"/>
+      <property name="known-players" type="string" value="firefox"/>
     </property>
     <property name="plugin-13" type="string" value="battery"/>
     <property name="plugin-14" type="string" value="fsguard"/>
@@ -120,6 +132,13 @@
     <property name="plugin-22" type="string" value="datetime"/>
     <property name="plugin-23" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-24" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-25" type="string" value="separator">
+      <property name="expand" type="bool" value="false"/>
+      <property name="style" type="uint" value="2"/>
     </property>
   </property>
 </channel>
