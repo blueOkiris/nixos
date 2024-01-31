@@ -89,7 +89,7 @@
                 clock = {
                     interval = 1;
                     timezone = "US/Central";
-                    format = "{:%A, %B %d %X}";
+                    format = "{:%a, %b %d %X}";
                     tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
                 };
                 "hyprland/workspaces" = {
@@ -139,17 +139,17 @@
                 };
                 disk = {
                     interval = 60;
-                    format = "Root: {free}";
+                    format = "/ {free}";
                     path = "/";
                 };
                 "disk#home" = {
                     interval = 60;
-                    format = "Home: {free}";
+                    format = "/home {free}";
                     path = "/home";
                 };
                 "disk#games" = {
                     interval = 60;
-                    format = "Games: {free}";
+                    format = "/games {free}";
                     path = "/games";
                 };
             };
@@ -269,13 +269,20 @@
             #scratchpad,
             #clock,
             #mpd {
-                padding: 0 10px;
+                padding: 0 5px;
                 color: #ffffff;
             }
 
             #window,
             #workspaces {
-                margin: 0 4px;
+                margin: 0 5px;
+            }
+
+            #battery {
+                padding-right: 10px;
+            }
+            #disk {
+                padding-left: 0px;
             }
 
             /* If workspaces is the leftmost module, omit left margin */
