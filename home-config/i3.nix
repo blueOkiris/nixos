@@ -179,7 +179,7 @@
                 # Tray apps
                 { command = "nm-applet"; always = false; notification = false; }
                 { command = "blueman-applet"; always = false; notification = false; }
-                #{ command = "steam -silent"; always = false; notification = false; }
+                { command = "steam -nochatui -nofriendsui -silent"; always = false; notification = false; }
                 { command = "nextcloud"; always = false; notification = false; }
 
                 # Super key as Win+S

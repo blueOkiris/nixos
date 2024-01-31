@@ -63,10 +63,10 @@ in {
     '';
     boot.plymouth = {
         enable = true;
-        #theme = "breeze"; # Do just this for Nix-themed
+        theme = "bgrt"; # Do just this for Nix-themed
         themePackages = with pkgs; [ pkgs.adi1090x-plymouth-themes ];
         #theme = "double"; # Fast spinning white wisps making 2 circles
-        theme = "dragon"; # A colorful dragon eating itself
+        #theme = "dragon"; # A colorful dragon eating itself
         #theme = "green_loader"; # Green partial rings spinning and growing bigger & smlr
         #theme = "loader_2"; # White balls that fall in on themselves
         #theme = "loader_alt"; # Blue balls (more than loader_2) that fall into center
@@ -112,7 +112,7 @@ in {
         };
 
         displayManager = {
-            lightdm = {
+            /*lightdm = {
                 enable = true;
                 greeters.slick = {
                     enable = true;
@@ -129,6 +129,12 @@ in {
                 #extraSeatDefaults = ''
                 #    user-session=gnome-wayland
                 #'';
+            };*/
+            sddm = {
+                enable = true;
+                wayland.enable = true;
+                autoNumlock = true;
+                theme = "chili";
             };
             setupCommands =
                 let
@@ -170,7 +176,6 @@ in {
                     exit # Skip generated prime lines
                 '';
         };
-
         windowManager.i3 = {
             enable = true;
             extraPackages = with pkgs; [
@@ -253,6 +258,7 @@ in {
         alsa.support32Bit = true;
         pulse.enable = true;
         jack.enable = true;
+        wireplumber.enable = true;
     };
     hardware.pulseaudio.enable = false;
     environment.etc = {
@@ -543,6 +549,7 @@ in {
         rofi
         rust-analyzer
         ryujinx
+        sddm-chili-theme
         spotify
         system-config-printer
         teensy-udev-rules

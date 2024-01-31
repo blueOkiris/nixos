@@ -14,7 +14,7 @@
                 fixed-center = true;
 
                 modules-left = [
-                    "wlr/workspaces"
+                    "hyprland/workspaces"
                     "wlr/taskbar"
                 ];
                 modules-center = [
@@ -30,7 +30,7 @@
                     "disk#games"
                 ];
 
-                "wlr/workspaces" = {
+                "hyprland/workspaces" = {
                     disable-scroll = true;
                     all-outputs = true;
                     format = "{name}";
