@@ -14,7 +14,12 @@
                 fixed-center = true;
 
                 modules-left = [
-                    "hyprland/workspaces"
+                    "image#rofi"
+                    "image#thunar"
+                    "image#firefox"
+                    "image#tutanota"
+                    "image#lutris"
+                    "image#alacritty"
                     "wlr/taskbar"
                 ];
                 modules-center = [
@@ -22,6 +27,7 @@
                     "clock"
                 ];
                 modules-right = [
+                    "hyprland/workspaces"
                     "tray"
                     "pulseaudio"
                     "battery"
@@ -30,15 +36,39 @@
                     "disk#games"
                 ];
 
-                "hyprland/workspaces" = {
-                    disable-scroll = true;
-                    all-outputs = true;
-                    format = "{name}";
-                    sort-by-number = true;
+                "image#rofi" = {
+                    path = "/etc/nixos/distro-logos/nixos.svg";
+                    size = 24;
+                    on-click = "rofi -modi drun,run -show drun -show-icons -icon-theme 'Papirus-Dark'";
+                };
+                "image#thunar" = {
+                    path = "/etc/nixos/home-config/icons/nautilus.svg";
+                    size = 22;
+                    on-click = "thunar";
+                };
+                "image#firefox" = {
+                    path = "/etc/nixos/home-config/icons/firefox.svg";
+                    size = 22;
+                    on-click = "firefox";
+                };
+                "image#tutanota" = {
+                    path = "/etc/nixos/home-config/icons/tutanota-desktop.svg";
+                    size = 22;
+                    on-click = "cd /home/dylan && tutanota";
+                };
+                "image#lutris" = {
+                    path = "/etc/nixos/home-config/icons/lutris.svg";
+                    size = 22;
+                    on-click = "cd /home/dylan && lutris";
+                };
+                "image#alacritty" = {
+                    path = "/etc/nixos/home-config/icons/terminal.svg";
+                    size = 22;
+                    on-click = "alacritty";
                 };
                 "wlr/taskbar" = {
                     format = "{icon} {name}";
-                    icon-size = 14;
+                    icon-size = 20;
                     icon-theme = "Papirus-Dark";
                     tooltip-format = "{title}";
                     on-click = "activate";
@@ -62,7 +92,14 @@
                     format = "{:%A, %B %d %X}";
                     tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
                 };
+                "hyprland/workspaces" = {
+                    disable-scroll = true;
+                    all-outputs = true;
+                    format = "{name}";
+                    sort-by-number = true;
+                };
                 tray = {
+                    icon-size = 20;
                     spacing = 12;
                 };
                 pulseaudio = {
@@ -122,6 +159,26 @@
                 /* `otf-font-awesome` is required to be installed for icons */
                 font-family: Bitstream Vera Sans, FontAwesome, Ubuntu, Roboto, Helvetica, Arial, sans-serif;
                 font-size: 16px;
+            }
+
+            #image.rofi {
+                margin-left: 5px;
+                margin-right: 10px;
+            }
+            #image.thunar {
+                margin-right: 5px;
+            }
+            #image.firefox {
+                margin-right: 5px;
+            }
+            #image.tutanota {
+                margin-right: 5px;
+            }
+            #image.lutris {
+                margin-right: 5px;
+            }
+            #image.alacritty {
+                margin-right: 10px;
             }
 
             window#waybar {
