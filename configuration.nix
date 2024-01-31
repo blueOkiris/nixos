@@ -56,7 +56,14 @@ in {
     boot.kernelModules = [
         "loop"
         "gcadapter_oc"
+        "v4l2loopback"
     ];
+    boot.extraModulePackages = with config.boot.kernelPackages; [
+        v4l2loopback.out
+    ];
+    boot.extraModprobeConfig = ''
+        options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
+    '';
     boot.plymouth = {
         enable = true;
         #theme = "breeze"; # Do just this for Nix-themed
@@ -261,6 +268,9 @@ in {
             }
         '';
     };
+    security.pam.loginLimits = [
+        { domain = "@audio"; type = "-"; item = "memlock"; value = "unlimited"; }
+    ];
 
     # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.
@@ -454,6 +464,7 @@ in {
         ardour
         arduino
         arduino-cli
+        audacity
         baobab
         bc
         blender
@@ -519,8 +530,8 @@ in {
         pciutils
         picom
         pinentry
-        poppler_utils
         unstable.planify
+        poppler_utils
         omnisharp-roslyn
         prismlauncher
         pulseaudio
