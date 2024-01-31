@@ -28,9 +28,6 @@ in {
     imports = [
         ./hardware-configuration.nix
         ./home-configuration.nix
-
-        ./ni-vpn/ni-vpn.nix
-
         ./custom/freetube-appimage.nix
         ./custom/paleofetch.nix
         ./custom/gnome-shell-extension-pop-shell.nix
@@ -287,7 +284,6 @@ in {
     # List services that you want to enable:
     networking.networkmanager = {
         enable = true;
-        enableStrongSwan = true;
     };
     services.blueman.enable = true;
     services.gnome.gnome-keyring.enable = true;
@@ -549,7 +545,6 @@ in {
         ryujinx
         spotify
         system-config-printer
-        strongswan
         teensy-udev-rules
         texlive.combined.scheme-full
         texstudio
