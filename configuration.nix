@@ -6,6 +6,7 @@
 
 let
     unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+    tokyo-night-sddm = pkgs.libsForQt5.callPackage ./custom/tokyo-night-sddm.nix { };
 in {
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
@@ -112,6 +113,7 @@ in {
         };
 
         displayManager = {
+            defaultSession = "hyprland";
             /*lightdm = {
                 enable = true;
                 greeters.slick = {
@@ -134,7 +136,8 @@ in {
                 enable = true;
                 wayland.enable = true;
                 autoNumlock = true;
-                theme = "chili";
+                #theme = "chili";
+                theme = "tokyo-night-sddm";
             };
             setupCommands =
                 let
@@ -549,7 +552,7 @@ in {
         rofi
         rust-analyzer
         ryujinx
-        sddm-chili-theme
+        #sddm-chili-theme
         spotify
         system-config-printer
         teensy-udev-rules
@@ -557,6 +560,7 @@ in {
         texstudio
         thunderbird
         tigervnc
+        tokyo-night-sddm
         trash-cli
         typst
         unzip
