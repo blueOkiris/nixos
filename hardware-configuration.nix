@@ -3,12 +3,14 @@
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
 
-{
+let
+    unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in {
     imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-    boot.kernelPackages = pkgs.linuxPackages;
+    boot.kernelPackages = unstable.linuxPackages_latest;
     boot.initrd.availableKernelModules = [
         "xhci_pci"
         "thunderbolt"
@@ -104,7 +106,7 @@
     };
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        package = config.boot.kernelPackages.nvidiaPackages.beta;
         modesetting.enable = true;
         open = true;
         powerManagement.enable = false;
