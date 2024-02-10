@@ -290,6 +290,11 @@ in {
 
     services.picom.enable = false;
 
+    # Allow CH55x microcontrollers
+    services.udev.extraRules = ''
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="4348", MODE="0666"
+    '';
+
     # List services that you want to enable:
     networking.networkmanager = {
         enable = true;
@@ -481,6 +486,7 @@ in {
         discord
         dolphin-emu
         dunst
+        hidapi
         nodejs
         feh
         fd
@@ -513,6 +519,8 @@ in {
         libsForQt5.qt5ct
         libsForQt5.qtstyleplugin-kvantum
         libsForQt5.qtstyleplugins
+        libusb
+        libusb1
         lutris
         mediainfo
         minecraft-server
@@ -526,6 +534,7 @@ in {
         nextcloud-client
         numlockx
         obs-studio
+        omnisharp-roslyn
         openssl
         pandoc
         papirus-icon-theme
@@ -537,7 +546,6 @@ in {
         pinentry
         unstable.planify
         poppler_utils
-        omnisharp-roslyn
         prismlauncher
         pulseaudio
         (python3.withPackages(ps: with ps; [ i3ipc pip ]))
@@ -552,7 +560,6 @@ in {
         rofi
         rust-analyzer
         ryujinx
-        #sddm-chili-theme
         spotify
         system-config-printer
         teensy-udev-rules
@@ -563,6 +570,7 @@ in {
         tokyo-night-sddm
         trash-cli
         typst
+        usbutils
         unzip
         virt-manager
         vlc
