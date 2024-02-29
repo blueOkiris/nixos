@@ -229,6 +229,7 @@ in {
         enable = true;
         xwayland.enable = true;
         enableNvidiaPatches = true;
+        package = unstable.hyprland;
     };
     services.dbus.enable = true;
     xdg.portal = {
