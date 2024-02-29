@@ -109,7 +109,7 @@ in {
         desktopManager = {
             xterm.enable = false;
             #xfce.enable = true; # Install full xfce as panel will break without it
-            gnome.enable = true;
+            #gnome.enable = true;
         };
 
         displayManager = {
@@ -189,7 +189,7 @@ in {
         };
     };
     # We don't want everything that comes with the bigger DEs
-    environment.gnome.excludePackages =
+    /*environment.gnome.excludePackages =
         (with pkgs; [
             gnome-connections
             gnome-console
@@ -223,7 +223,7 @@ in {
             tali
             totem
             yelp
-        ]);
+        ]);*/
     #environment.xfce.excludePackages = with pkgs.xfce; [ mousepad xfce4-terminal ];
     programs.hyprland = {
         enable = true;
@@ -497,14 +497,14 @@ in {
         glaxnimate
         gnome.cheese
         gnome.dconf-editor
-        gnome.gnome-screenshot
-        gnome.gnome-tweaks
-        gnomeExtensions.dash-to-dock
-        gnomeExtensions.gsconnect
-        gnomeExtensions.rounded-window-corners
-        gnomeExtensions.sound-output-device-chooser
-        gnomeExtensions.tray-icons-reloaded
-        gnomeExtensions.user-themes
+        #gnome.gnome-screenshot
+        #gnome.gnome-tweaks
+        #gnomeExtensions.dash-to-dock
+        #gnomeExtensions.gsconnect
+        #gnomeExtensions.rounded-window-corners
+        #gnomeExtensions.sound-output-device-chooser
+        #gnomeExtensions.tray-icons-reloaded
+        #gnomeExtensions.user-themes
         unstable.godot_4
         sway-contrib.grimshot
         hplip
