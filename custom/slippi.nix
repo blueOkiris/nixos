@@ -32,7 +32,7 @@ let
             gh_user = "project-slippi";
             gh_proj = "project-slippi";
             version = "2.11.1";
-            hash = "16vm445ikiwddy36x9dwjins45wxjdw4vrcv2m3s3g8bwdwivp0j";
+            hash = "1qk648pag2piw4glz9p9zlb0jf2307r49gx5zvnzk390hn51yy2b";
         in pkgs.appimageTools.wrapType2 {
             name = "slippi-launcher";
             extraPkgs = pkgs: [
@@ -40,7 +40,7 @@ let
             src = builtins.fetchurl {
                 url =
                     "https://github.com/${gh_user}/${gh_proj}/releases/download/"
-                        + "v${version}/Slippi-Launcher-2.11.1-x86_64.AppImage";
+                        + "v${version}/Slippi-Launcher-2.11.4-x86_64.AppImage";
                 sha256 = "${hash}";
             };
         }
