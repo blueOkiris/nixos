@@ -517,10 +517,7 @@ in {
         kicad
         kid3
         lemonade
-        libsForQt5.qt5.qtwayland
-        libsForQt5.qt5ct
-        libsForQt5.qtstyleplugin-kvantum
-        libsForQt5.qtstyleplugins
+        libreoffice
         libusb
         libusb1
         lutris
@@ -552,6 +549,10 @@ in {
         pulseaudio
         (python3.withPackages(ps: with ps; [ i3ipc pip ]))
         qjackctl
+        libsForQt5.qt5ct
+        libsForQt5.qtstyleplugin-kvantum
+        libsForQt5.qtstyleplugins
+        libsForQt5.qt5.qtwayland
         qt6.qtwayland
         remmina
         (retroarch.override {
@@ -580,7 +581,6 @@ in {
         wget
         wineWowPackages.stable
         wl-clipboard
-        wpsoffice
         xcape
         xclip
         xfce.exo
