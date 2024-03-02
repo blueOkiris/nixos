@@ -31,14 +31,14 @@ in {
         ./common-hardware.nix
         ./display.nix
         ./home-configuration.nix
-        ./custom/freetube-appimage.nix
+        #./custom/freetube-appimage.nix
         ./custom/paleofetch.nix
-        ./custom/gnome-shell-extension-pop-shell.nix
+        #./custom/gnome-shell-extension-pop-shell.nix
         ./custom/project+.nix
         ./custom/slippi.nix
-        ./custom/teams-for-linux.nix
+        #./custom/teams-for-linux.nix
         ./custom/tutanota-appimage.nix
-        ./custom/shell-scripts.nix
+        #./custom/shell-scripts.nix
     ];
 
     # Bootloader
