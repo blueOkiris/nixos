@@ -28,6 +28,7 @@ in {
 
     imports = [
         ./hardware-configuration.nix
+        ./common-hardware.nix
         ./display.nix
         ./home-configuration.nix
         ./custom/freetube-appimage.nix
@@ -46,6 +47,7 @@ in {
     boot.initrd.verbose = false;
     boot.consoleLogLevel = 0;
     boot.initrd.systemd.enable = true;
+    boot.kernelPackages = unstable.linuxPackages_latest;
     boot.kernelParams = [
         "quiet"
         "udev.log_level=3"
@@ -56,9 +58,20 @@ in {
         "loop"
         "gcadapter_oc"
         "v4l2loopback"
+        "kvm-intel" # NOTE: boot.kernelModules must be unique, so this should be in hardware-config and may change!!!
+    ];
+    boot.initrd.availableKernelModules = [
+        "xhci_pci"
+        "thunderbolt"
+        "nvme"
+        "usb_storage"
+        "usbhid"
+        "sd_mod"
+        "rtsx_pci_sdmmc"
     ];
     boot.extraModulePackages = with config.boot.kernelPackages; [
         v4l2loopback.out
+        gcadapter-oc-kmod
     ];
     boot.extraModprobeConfig = ''
         options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
@@ -150,11 +163,6 @@ in {
     };
 
     services.picom.enable = false;
-
-    # Allow CH55x microcontrollers
-    services.udev.extraRules = ''
-        SUBSYSTEM=="usb", ATTRS{idVendor}=="4348", MODE="0666"
-    '';
 
     # List services that you want to enable:
     services.avahi = {

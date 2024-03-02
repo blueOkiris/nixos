@@ -10,21 +10,7 @@ in {
         (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-    boot.kernelPackages = unstable.linuxPackages_latest;
-    boot.initrd.availableKernelModules = [
-        "xhci_pci"
-        "thunderbolt"
-        "nvme"
-        "usb_storage"
-        "usbhid"
-        "sd_mod"
-        "rtsx_pci_sdmmc"
-    ];
     boot.initrd.kernelModules = [ ];
-    boot.kernelModules = [ "kvm-intel" ];
-    boot.extraModulePackages = with config.boot.kernelPackages; [
-        gcadapter-oc-kmod
-    ];
 
     fileSystems."/" = {
         device = "/dev/disk/by-uuid/c51d0b12-a6f0-4512-a36a-dda38b7d6cb3";
@@ -65,35 +51,6 @@ in {
     hardware.cpu.intel.updateMicrocode =
         lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-    # Enable GameCube adapter
-    services.udev.extraRules = 
-        "\nSUBSYSTEM==\"usb\", ENV{DEVTYPE}==\"usb_device\", ATTRS{idVendor}==\"057e\", "
-            + "ATTRS{idProduct}==\"0337\", MODE=\"0666\"";
-
-    # Enable wireless XBox controller
-    hardware.xpadneo.enable = true;
-
-    # Bluetooth enable
-    hardware.bluetooth.enable = true;
-
-    # Make mouse work the way any human would want it to
-    services.xserver.libinput = {
-        touchpad = {
-            naturalScrolling = true;
-            tapping = true;
-            scrollMethod = "twofinger";
-            middleEmulation = false;
-            tappingButtonMap = "lrm";
-            additionalOptions = ''
-                Option "MiddleButtonArea" "1"
-            '';
-        };
-        mouse = {
-            naturalScrolling = false;
-            accelSpeed = "1.0";
-        };
-    };
-
     # Nvidia
     hardware.opengl = {
         enable = true;
@@ -122,11 +79,5 @@ in {
             intelBusId = "PCI:0:2:0";
         };
     };
-
-    # Firmware updates
-    services.fwupd.enable = true;
-
-    # Disable default power-profile mode to use tlp
-    services.power-profiles-daemon.enable = false;
 }
 
