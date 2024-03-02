@@ -298,11 +298,30 @@ in {
     '';
 
     # List services that you want to enable:
-    networking.networkmanager = {
+    services.avahi = {
         enable = true;
+        nssmdns = true;
+        openFirewall = true;
     };
     services.blueman.enable = true;
     services.gnome.gnome-keyring.enable = true;
+    services.gvfs.enable = true;
+    networking.networkmanager = {
+        enable = true;
+    };
+    services.openssh = {
+        enable = true;
+        ports = [ 5267 ];
+        settings = {
+            PasswordAuthentication = false;
+            PubkeyAuthentication = true;
+            X11Forwarding = true;
+        };
+    };
+    services.printing = {
+        enable = true;
+        drivers = [ pkgs.hplip ];
+    };
     services.snapper = {
         configs = {
             root = {
@@ -316,24 +335,6 @@ in {
         };
         snapshotInterval = "daily";
         cleanupInterval = "1m";
-    };
-    services.printing = {
-        enable = true;
-        drivers = [ pkgs.hplip ];
-    };
-    services.avahi = {
-        enable = true;
-        nssmdns = true;
-        openFirewall = true;
-    };
-    services.openssh = {
-        enable = true;
-        ports = [ 5267 ];
-        settings = {
-            PasswordAuthentication = false;
-            PubkeyAuthentication = true;
-            X11Forwarding = true;
-        };
     };
     services.tlp.enable = true;
     services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
