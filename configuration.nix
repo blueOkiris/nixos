@@ -161,7 +161,6 @@ in {
             pinentryFlavor = "gnome3";
         };
     };
-
     services.picom.enable = false;
 
     # List services that you want to enable:
@@ -309,6 +308,7 @@ in {
     programs.java.enable = true;
     programs.kdeconnect.enable = true;
     virtualisation.libvirtd.enable = true;
+    virtualisation.spiceUSBRedirection.enable = true;
     programs.steam = {
         enable = true;
         remotePlay.openFirewall = true;
@@ -431,6 +431,7 @@ in {
         rofi
         rust-analyzer
         ryujinx
+        spice-gtk
         spotify
         system-config-printer
         teensy-udev-rules
