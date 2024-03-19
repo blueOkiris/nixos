@@ -3,17 +3,14 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 let
-    # Installs a vim plugin from git with a given tag / branch
-    pluginGit = ref: repo: pkgs.vimUtils.buildVimPluginFrom2Nix {
-        pname = "${lib.strings.sanitizeDerivationName repo}";
-        version = ref;
+    godot-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+        pname = "godot.nvim";
+        version = "master";
         src = builtins.fetchGit {
-            url = "https://github.com/${repo}.git";
-            ref = ref;
+            url = "https://github.com/habamax/vim-godot";
+            ref = "master";
         };
     };
-    # always installs latest version
-    plugin = pluginGit "HEAD";
 in {
     home-manager.users.dylan.home.file.".config/nvim/coc-settings.json".source =
         .config/nvim/coc-settings.json;
@@ -59,6 +56,7 @@ in {
                     \\ 'c': [ 'clang' ],
                     \\ 'haskell': [ 'hlint' ],
                     \\ 'cs': [ 'OmniSharp' ],
+                    \\ 'gdscript': [ 'godot' ]
                 \\}
 
                 set splitright
@@ -138,6 +136,19 @@ in {
                 \" C#
                 \"lua require('lspconfig').omnisharp.setup { cmd = { '/run/current-system/sw/bin/OmniSharp', '--languageserver', '--hostPID', tostring(vim.fn.getpid()) } }
                 lua require('lspconfig').csharp_ls.setup {}
+
+                \" Godot
+                let g:godot_executable = '/run/current-system/sw/bin/godot4'
+                func! GodotSettings() abort
+                    setlocal tabstop=4
+                    nnoremap <buffer> <F4> :GodotRunLast<CR>
+                    nnoremap <buffer> <F5> :GodotRun<CR>
+                    nnoremap <buffer> <F6> :GodotRunCurrent<CR>
+                    nnoremap <buffer> <F7> :GodotRunFZF<CR>
+                endfunc
+                augroup godot | au!
+                    au FileType gdscript call GodotSettings()
+                augroup end
             ";
             packages.myVimPackage = with pkgs.vimPlugins; {
                 start = [
@@ -149,8 +160,9 @@ in {
                     deoplete-clang
                     deoplete-nvim
                     dracula-vim
-                    lightline-vim
+                    godot-nvim
                     haskell-vim
+                    lightline-vim
                     markdown-preview-nvim
                     nerdcommenter
                     nerdtree
