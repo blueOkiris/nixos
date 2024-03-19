@@ -150,6 +150,14 @@ in {
                     nnoremap <buffer> <F5> :GodotRun<CR>
                     nnoremap <buffer> <F6> :GodotRunCurrent<CR>
                     nnoremap <buffer> <F7> :GodotRunFZF<CR>
+
+                    \" DAP
+                    lua require'dap'.adapters.gdscript = { type = 'server', host = '127.0.0.1', port = 6006, name = 'godot4' }
+                    lua require'dap'.configurations.gdscript = { { type = 'gdscript', request = 'launch', name = 'Launch File', program = '.' } }
+                    nnoremap <buffer> <F2> :lua require'dap'.toggle_breakpoint()<CR>
+                    nnoremap <buffer> <F8> :lua require'dap'.continue()<CR>
+                    nnoremap <buffer> <F9> :lua require'dap'.step_into()<CR>
+                    nnoremap <buffer> <F10> :lua require'dap'.step_over()<CR>
                 endfunc
                 augroup godot | au!
                     au FileType gdscript call GodotSettings()
@@ -171,6 +179,7 @@ in {
                     markdown-preview-nvim
                     nerdcommenter
                     nerdtree
+                    nvim-dap
                     nvim-lspconfig
                     plenary-nvim
                     popup-nvim
