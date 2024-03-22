@@ -465,7 +465,7 @@ in {
         xorg.xrandr
         xwayland
         yabridge
-        zoom
+        zoom-us
         zsh-autocomplete
         zsh-history-substring-search
     ];

@@ -63,7 +63,7 @@ in {
     };
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
+        package = unstable.linuxPackages_latest.nvidiaPackages.beta;#config.boot.kernelPackages.nvidiaPackages.beta;
         modesetting.enable = true;
         open = true;
         powerManagement.enable = false;

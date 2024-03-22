@@ -115,7 +115,7 @@ in {
                 nnoremap <C-x> :qa<CR>
                 nnoremap <C-s> :w<CR>
 
-                au VimEnter * NERDTree
+                \"au VimEnter * NERDTree
 
                 \" Vim jump to the last position when reopening a file
                 if has(\"autocmd\")
@@ -146,6 +146,9 @@ in {
                 let g:godot_executable = '/run/current-system/sw/bin/godot4'
                 func! GodotSettings() abort
                     setlocal tabstop=4
+                    setlocal shiftwidth=4
+                    setlocal expandtab
+
                     nnoremap <buffer> <F4> :GodotRunLast<CR>
                     nnoremap <buffer> <F5> :GodotRun<CR>
                     nnoremap <buffer> <F6> :GodotRunCurrent<CR>
