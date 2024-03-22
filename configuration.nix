@@ -5,7 +5,7 @@
 { config, pkgs, lib, ... }:
 
 let
-    unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+    #unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
     tokyo-night-sddm = pkgs.libsForQt5.callPackage ./custom/tokyo-night-sddm.nix { };
 in {
     # This value determines the NixOS release from which the default
@@ -47,7 +47,7 @@ in {
     boot.initrd.verbose = false;
     boot.consoleLogLevel = 0;
     boot.initrd.systemd.enable = true;
-    boot.kernelPackages = unstable.linuxPackages_latest;
+    boot.kernelPackages = pkgs.linuxPackages;#unstable.linuxPackages_latest;
     boot.kernelParams = [
         "quiet"
         "udev.log_level=3"
@@ -374,7 +374,7 @@ in {
         #gnomeExtensions.sound-output-device-chooser
         #gnomeExtensions.tray-icons-reloaded
         #gnomeExtensions.user-themes
-        unstable.godot_4
+        godot_4
         sway-contrib.grimshot
         hplip
         htop
@@ -391,7 +391,7 @@ in {
         lutris
         mediainfo
         minecraft-server
-        unstable.mission-center
+        mission-center
         mpv
         mupdf
         musescore
@@ -411,7 +411,6 @@ in {
         pciutils
         picom
         pinentry
-        unstable.planify
         poppler_utils
         prismlauncher
         pulseaudio

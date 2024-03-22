@@ -3,9 +3,7 @@
 
 { config, lib, pkgs, modulesPath, ... }:
 
-let
-    unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-in {
+{
     # Allow:
     # - CH55x microcontrollers
     # - GameCube Adapter

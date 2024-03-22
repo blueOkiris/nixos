@@ -2,9 +2,7 @@
 
 { config, pkgs, lib, ... }:
 
-let
-    unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-in {
+{
     services.xserver = {
         layout = "us";
         xkbVariant = "";
@@ -132,7 +130,7 @@ in {
     programs.hyprland = {
         enable = true;
         xwayland.enable = true;
-        package = unstable.hyprland;
+        enableNvidiaPatches = true;
     };
     services.dbus.enable = true;
     xdg.portal = {

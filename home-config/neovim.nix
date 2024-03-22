@@ -3,7 +3,7 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 let
-    godot-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    godot-nvim = pkgs.vimUtils.buildVimPlugin {
         pname = "godot.nvim";
         version = "master";
         src = builtins.fetchGit {
