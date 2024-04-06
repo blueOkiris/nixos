@@ -308,6 +308,7 @@ in {
     programs.java.enable = true;
     programs.kdeconnect.enable = true;
     virtualisation.libvirtd.enable = true;
+    programs.nix-ld.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;
     programs.steam = {
         enable = true;
