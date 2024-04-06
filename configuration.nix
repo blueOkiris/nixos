@@ -5,7 +5,7 @@
 { config, pkgs, lib, ... }:
 
 let
-    #unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+    unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
     tokyo-night-sddm = pkgs.libsForQt5.callPackage ./custom/tokyo-night-sddm.nix { };
 in {
     # This value determines the NixOS release from which the default
@@ -47,7 +47,7 @@ in {
     boot.initrd.verbose = false;
     boot.consoleLogLevel = 0;
     boot.initrd.systemd.enable = true;
-    boot.kernelPackages = pkgs.linuxPackages;#unstable.linuxPackages_latest;
+    boot.kernelPackages = unstable.linuxPackages;
     boot.kernelParams = [
         "quiet"
         "udev.log_level=3"
