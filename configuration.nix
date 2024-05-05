@@ -199,7 +199,7 @@ in {
                 NUMBER_LIMIT_IMPORTANT = "1";
             };
         };
-        snapshotInterval = "daily";
+        snapshotInterval = "yearly";
         cleanupInterval = "1m";
     };
     services.tlp.enable = true;
@@ -383,7 +383,7 @@ in {
         inkscape
         jstest-gtk
         kdenlive
-        kicad
+        unstable.kicad
         kid3
         lemonade
         libreoffice

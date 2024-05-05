@@ -11,6 +11,14 @@ let
             ref = "master";
         };
     };
+    vim-asm-ca65 = pkgs.vimUtils.buildVimPlugin {
+        pname = "vim-asm_ca65";
+        version = "master";
+        src = builtins.fetchGit {
+            url = "https://github.com/maxbane/vim-asm_ca65";
+            ref = "master";
+        };
+    };
 in {
     home-manager.users.dylan.home.file.".config/nvim/coc-settings.json".source =
         .config/nvim/coc-settings.json;
@@ -165,6 +173,12 @@ in {
                 augroup godot | au!
                     au FileType gdscript call GodotSettings()
                 augroup end
+
+                \" CA65 Assembly:
+                filetype plugin indent on
+                augroup filetypedetect
+                    au BufNewFile,BufRead *.s,*.inc set ft=asm_ca65
+                augroup END
             ";
             packages.myVimPackage = with pkgs.vimPlugins; {
                 start = [
@@ -190,6 +204,7 @@ in {
                     telescope-nvim
                     telescope-media-files-nvim
                     ultisnips
+                    vim-asm-ca65
                     vim-devicons
                     vim-snippets
                     vim-startify
