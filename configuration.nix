@@ -353,7 +353,7 @@ in {
         breeze-plymouth
         brightnessctl
         chafa
-        cura
+        unstable.cura
         discord
         dolphin-emu
         dunst
@@ -362,7 +362,7 @@ in {
         feh
         fd
         fontforge
-        freecad
+        unstable.freecad
         gimp
         glaxnimate
         gnome.cheese
