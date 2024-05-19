@@ -31,6 +31,7 @@ in {
         ./common-hardware.nix
         ./display.nix
         ./home-configuration.nix
+        #./custom/cura-appimage.nix
         #./custom/freetube-appimage.nix
         ./custom/paleofetch.nix
         #./custom/gnome-shell-extension-pop-shell.nix
@@ -353,7 +354,7 @@ in {
         breeze-plymouth
         brightnessctl
         chafa
-        #unstable.cura - on flatpak instead
+        unstable.cura
         discord
         dolphin-emu
         dunst
