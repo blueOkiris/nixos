@@ -353,7 +353,7 @@ in {
         breeze-plymouth
         brightnessctl
         chafa
-        unstable.cura
+        #unstable.cura - on flatpak instead
         discord
         dolphin-emu
         dunst
