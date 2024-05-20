@@ -14,8 +14,8 @@ let
             name = "cura";
             extraPkgs = pkgs: [];
             src = builtins.fetchurl {
-            url = "https://github.com/${gh_user}/${gh_proj}/releases/download/${version}/"
-                + "${gh_user}-${gh_proj}-${version}-linux-X64.AppImage";
+                url = "https://github.com/${gh_user}/${gh_proj}/releases/download/${version}/"
+                    + "${gh_user}-${gh_proj}-${version}-linux-X64.AppImage";
                 sha256 = "${hash}";
             };
         }
