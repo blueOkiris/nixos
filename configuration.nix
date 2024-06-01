@@ -48,7 +48,7 @@ in {
     boot.initrd.verbose = false;
     boot.consoleLogLevel = 0;
     boot.initrd.systemd.enable = true;
-    boot.kernelPackages = unstable.linuxPackages;
+    boot.kernelPackages = pkgs.linuxPackages;
     boot.kernelParams = [
         "quiet"
         "udev.log_level=3"
@@ -388,6 +388,7 @@ in {
         kid3
         lemonade
         libreoffice
+        libthai
         libusb
         libusb1
         lutris

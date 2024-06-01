@@ -8,8 +8,8 @@ let
             app_name = "Faster_Project_Plus-x86-64.AppImage";
             gh_proj = "FPM-AppImage";
             gh_user = "jlambert360";
-            version = "2.4.2";
-            hash = "0vgg9xvlk94mp0ip5473py381l2bpd2anqibpyp0jkp4xq6wdkm3";
+            version = "2.5.2";
+            hash = "10ysd2d209bzvga8axjmxs69j3lg8j6gpjwakpkh3wv3w0wv8d57";
         in pkgs.appimageTools.wrapType2 {
             name = "project+";
             extraPkgs = pkgs: [
