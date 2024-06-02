@@ -6,6 +6,7 @@
 
 let
     unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+    deprecated = import <nixos-deprecated> { config = { allowUnfree = true; }; };
     tokyo-night-sddm = pkgs.libsForQt5.callPackage ./custom/tokyo-night-sddm.nix { };
 in {
     # This value determines the NixOS release from which the default
@@ -401,7 +402,7 @@ in {
         ncurses
         neofetch
         networkmanagerapplet
-        nextcloud-client
+        deprecated.nextcloud-client
         numlockx
         obs-studio
         omnisharp-roslyn
