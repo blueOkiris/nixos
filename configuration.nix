@@ -159,7 +159,7 @@ in {
     programs.gnupg = {
         agent = {
             enable = true;
-            pinentryFlavor = "gnome3";
+            pinentryPackage = pkgs.pinentry-gnome3;
         };
     };
     services.picom.enable = false;
@@ -167,7 +167,7 @@ in {
     # List services that you want to enable:
     services.avahi = {
         enable = true;
-        nssmdns = true;
+        nssmdns4 = true;
         openFirewall = true;
     };
     services.blueman.enable = true;

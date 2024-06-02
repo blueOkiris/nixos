@@ -3,9 +3,20 @@
 { config, pkgs, lib, ... }:
 
 {
+    services.displayManager = {
+        defaultSession = "hyprland";
+        sddm = {
+            enable = true;
+            wayland.enable = true;
+            autoNumlock = true;
+            #theme = "chili";
+            theme = "tokyo-night-sddm";
+        };
+    };
+
     services.xserver = {
-        layout = "us";
-        xkbVariant = "";
+        xkb.layout = "us";
+        xkb.variant = "";
         enable = true;
 
         desktopManager = {
@@ -14,33 +25,16 @@
             #gnome.enable = true;
         };
 
+        windowManager.i3 = {
+            enable = true;
+            extraPackages = with pkgs; [
+                i3lock-fancy
+                dex
+            ];
+            package = pkgs.i3-gaps;
+        };
+
         displayManager = {
-            defaultSession = "hyprland";
-            /*lightdm = {
-                enable = true;
-                greeters.slick = {
-                    enable = true;
-                    theme.name = "Arc-Dark";
-                    cursorTheme.name = "breeze_cursors";
-                    iconTheme.name = "Papirus-Dark";
-                    font.name = "Ubuntu Regular";
-                    draw-user-backgrounds = false;
-                };
-                background = ./gnu-linux-wide-wallpaper.png;
-                extraSeatDefaults = ''
-                    user-session=none+i3
-                '';
-                #extraSeatDefaults = ''
-                #    user-session=gnome-wayland
-                #'';
-            };*/
-            sddm = {
-                enable = true;
-                wayland.enable = true;
-                autoNumlock = true;
-                #theme = "chili";
-                theme = "tokyo-night-sddm";
-            };
             setupCommands =
                 let
                     big_mon = "DP-0";
@@ -80,14 +74,6 @@
                     fi
                     exit # Skip generated prime lines
                 '';
-        };
-        windowManager.i3 = {
-            enable = true;
-            extraPackages = with pkgs; [
-                i3lock-fancy
-                dex
-            ];
-            package = pkgs.i3-gaps;
         };
     };
     # We don't want everything that comes with the bigger DEs
@@ -130,7 +116,6 @@
     programs.hyprland = {
         enable = true;
         xwayland.enable = true;
-        enableNvidiaPatches = true;
     };
     services.dbus.enable = true;
     xdg.portal = {

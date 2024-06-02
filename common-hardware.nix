@@ -19,7 +19,7 @@
     hardware.bluetooth.enable = true;
 
     # Make mouse work the way any human would want it to
-    services.xserver.libinput = {
+    services.libinput = {
         touchpad = {
             naturalScrolling = true;
             tapping = true;
