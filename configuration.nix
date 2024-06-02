@@ -431,7 +431,7 @@ in {
                 mupen64plus
             ];
         })
-        rofi
+        rofi-wayland
         rust-analyzer
         ryujinx
         spice-gtk
