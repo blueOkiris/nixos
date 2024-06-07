@@ -113,10 +113,14 @@
             yelp
         ]);*/
     #environment.xfce.excludePackages = with pkgs.xfce; [ mousepad xfce4-terminal ];
+
     programs.hyprland = {
         enable = true;
         xwayland.enable = true;
     };
+
+    programs.hyprlock.enable = true;
+
     services.dbus.enable = true;
     xdg.portal = {
         enable = true;

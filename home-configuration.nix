@@ -36,6 +36,7 @@
         };
         home.file.".config/hypr/hyprland.conf".source = home-config/.config/hypr/hyprland.conf;
         home.file.".config/hypr/hyprpaper.conf".source = home-config/.config/hypr/hyprpaper.conf;
+        home.file.".config/hypr/hyprlock.conf".source = home-config/.config/hypr/hyprlock.conf;
         #home.file.".local/share/applications/cura.desktop".source =
         #    home-config/desktops/cura.desktop;
         home.file.".local/share/applications/lock-screen.desktop".source =
