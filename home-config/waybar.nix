@@ -89,7 +89,7 @@
                 clock = {
                     interval = 1;
                     timezone = "US/Central";
-                    format = "{:%a, %b %d %X}";
+                    format = "{:%a, %b %d %I:%M:%S%p}";
                     tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
                 };
                 "hyprland/workspaces" = {
