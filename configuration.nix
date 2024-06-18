@@ -378,6 +378,7 @@ in {
         #gnomeExtensions.tray-icons-reloaded
         #gnomeExtensions.user-themes
         godot_4
+        gpt4all
         sway-contrib.grimshot
         hplip
         htop

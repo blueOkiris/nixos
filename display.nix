@@ -5,13 +5,18 @@
 {
     services.displayManager = {
         defaultSession = "hyprland";
-        sddm = {
+        /*sddm = {
             enable = true;
             wayland.enable = true;
             autoNumlock = true;
             #theme = "chili";
             theme = "tokyo-night-sddm";
-        };
+            settings = {
+                Wayland = {
+                    OutputName = "DP-0";
+                };
+            };
+        };*/
     };
 
     services.xserver = {
@@ -35,6 +40,10 @@
         };
 
         displayManager = {
+            gdm = {
+                enable = true;
+                wayland = true;
+            };
             setupCommands =
                 let
                     big_mon = "DP-0";
