@@ -55,6 +55,8 @@ in {
         "udev.log_level=3"
         "gcadapter_oc.rate=1"
         #"module_blacklist=i915"
+        "intel_iommu=on"
+        "iommu=pt"
     ];
     boot.kernelModules = [
         "loop"
@@ -407,6 +409,7 @@ in {
         numlockx
         obs-studio
         omnisharp-roslyn
+        onlyoffice-bin
         openssl
         pandoc
         papirus-icon-theme
@@ -449,6 +452,7 @@ in {
         usbutils
         unzip
         virt-manager
+        virtiofsd
         vlc
         wdisplays
         wget
