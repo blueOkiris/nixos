@@ -61,7 +61,7 @@
                 echo \"\$1\" | bc
             }
 
-            paleofetch --recache
+            neofetch
         ";
         localVariables = {
             TERM = "xterm-256color";
