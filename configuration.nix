@@ -301,7 +301,7 @@ in {
         storageDriver = "btrfs";
     };
     programs.file-roller.enable = true;
-    programs.firefox.enable = true;
+    #programs.firefox.enable = true;
     services.flatpak.enable = true;
     programs.gamemode.enable = true;
     programs.git = {
@@ -388,10 +388,12 @@ in {
         inkscape
         jstest-gtk
         kdenlive
+        keepassxc
         unstable.kicad
         kid3
         lemonade
-        libreoffice
+        #libreoffice
+        librewolf
         libthai
         libusb
         libusb1

@@ -16,7 +16,7 @@
                 modules-left = [
                     "image#rofi"
                     "image#thunar"
-                    "image#firefox"
+                    "image#librewolf"
                     "image#tutanota"
                     "image#lutris"
                     "image#alacritty"
@@ -46,10 +46,10 @@
                     size = 22;
                     on-click = "thunar";
                 };
-                "image#firefox" = {
-                    path = "/etc/nixos/home-config/icons/firefox.svg";
-                    size = 22;
-                    on-click = "firefox";
+                "image#librewolf" = {
+                    path = "/etc/nixos/home-config/icons/librewolf.svg";
+                    size = 24;
+                    on-click = "librewolf";
                 };
                 "image#tutanota" = {
                     path = "/etc/nixos/home-config/icons/tutanota-desktop.svg";
@@ -168,7 +168,7 @@
             #image.thunar {
                 margin-right: 5px;
             }
-            #image.firefox {
+            #image.librewolf {
                 margin-right: 5px;
             }
             #image.tutanota {
