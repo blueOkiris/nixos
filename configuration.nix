@@ -438,6 +438,7 @@ in {
             ];
         })
         rofi-wayland
+        rofimoji
         rust-analyzer
         ryujinx
         spice-gtk
