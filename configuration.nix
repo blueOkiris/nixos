@@ -388,7 +388,6 @@ in {
         inkscape
         jstest-gtk
         kdenlive
-        keepassxc
         unstable.kicad
         kid3
         lemonade
