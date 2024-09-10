@@ -49,7 +49,7 @@ in {
     boot.initrd.verbose = false;
     boot.consoleLogLevel = 0;
     boot.initrd.systemd.enable = true;
-    boot.kernelPackages = pkgs.linuxPackages;
+    boot.kernelPackages = pkgs.linuxPackages_6_1;
     boot.kernelParams = [
         "quiet"
         "udev.log_level=3"
@@ -116,6 +116,8 @@ in {
         LC_PAPER = "en_US.UTF-8";
         LC_TELEPHONE = "en_US.UTF-8";
         LC_TIME = "en_US.UTF-8";
+        LC_ALL = "en_US.UTF-8";
+        LANG = "en_US.UTF-8";
     };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -226,6 +228,12 @@ in {
             { from = 6000; to = 6009; }     # Fightcade
             { from = 30562; to = 30562; }   # Parsec
             { from = 5357; to = 5357; }     # Samba
+            { from = 40118; to = 40118; }   # Drawing tablet
+
+            # Sunshine
+            { from = 47984; to = 47984; }
+            { from = 47989; to = 47989; }
+            { from = 48010; to = 48010; }
         ];
         allowedUDPPortRanges = [
             { from = 1714; to = 1764; }     # KDE Connect
@@ -237,6 +245,10 @@ in {
             { from = 6000; to = 6009; }     # Fightcade
             { from = 30562; to = 30562; }   # Parsec
             { from = 3702; to = 3702; }     # Samba
+            { from = 40118; to = 40118; }   # Drawing tablet
+
+            # Sunshine
+            { from = 47998; to = 48010; }
         ];
     };
     networking.firewall.allowPing = true;
@@ -319,6 +331,12 @@ in {
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
     };
+    services.sunshine = {
+        autoStart = true;
+        enable = true;
+        capSysAdmin = true;
+        openFirewall = true;
+    };
     programs.thunar = {
         enable = true;
         plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman thunar-media-tags-plugin ];
@@ -357,7 +375,7 @@ in {
         breeze-plymouth
         brightnessctl
         chafa
-        unstable.cura
+        cura
         discord
         dolphin-emu
         dunst
@@ -422,8 +440,9 @@ in {
         pinentry
         poppler_utils
         prismlauncher
+        protonvpn-gui
         pulseaudio
-        (python3.withPackages(ps: with ps; [ i3ipc pip ]))
+        (python3.withPackages(ps: with ps; [ i3ipc pip setuptools ]))
         qjackctl
         libsForQt5.qt5ct
         libsForQt5.qtstyleplugin-kvantum
