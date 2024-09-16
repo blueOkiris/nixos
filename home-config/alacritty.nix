@@ -16,7 +16,7 @@
                     family = "Ubuntu Mono";
                     style = "Regular";
                 };
-                size = 12;
+                size = 11;
             };
             window = {
                 decorations = "none";
