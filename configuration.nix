@@ -25,6 +25,7 @@ in {
         GTK_THEME = "Arc-Dark";
         GTK_ICON_THEME = "Papirus-Dark";
         RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+        CUDA_PATH = "${pkgs.cudatoolkit}";
     };
 
     imports = [
@@ -325,6 +326,10 @@ in {
     programs.kdeconnect.enable = true;
     virtualisation.libvirtd.enable = true;
     programs.nix-ld.enable = true;
+    services.ollama = {
+        enable = true;
+        acceleration = "cuda";
+    };
     virtualisation.spiceUSBRedirection.enable = true;
     programs.steam = {
         enable = true;
@@ -373,7 +378,16 @@ in {
                     ];
                 });
             });
-      })
+        })
+
+        # Allow using Llama w/ sgpt
+        (self: super: {
+            shell-gpt = super.shell-gpt.overrideAttrs (oldAttrs: {
+                propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
+                    pkgs.python3.pkgs.litellm
+                ];
+            });
+        })
     ];
 
     # Allow unfree packages
@@ -397,6 +411,8 @@ in {
         breeze-plymouth
         brightnessctl
         chafa
+        cudatoolkit
+        cudaPackages.cuda_nvcc
         cura
         discord
         dolphin-emu
@@ -420,7 +436,6 @@ in {
         #gnomeExtensions.tray-icons-reloaded
         #gnomeExtensions.user-themes
         godot_4
-        gpt4all
         sway-contrib.grimshot
         hplip
         htop
@@ -481,6 +496,7 @@ in {
         rofimoji
         rust-analyzer
         ryujinx
+        shell-gpt
         spice-gtk
         spotify
         system-config-printer
