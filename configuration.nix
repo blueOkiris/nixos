@@ -26,6 +26,7 @@ in {
         GTK_ICON_THEME = "Papirus-Dark";
         RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
         CUDA_PATH = "${pkgs.cudatoolkit}";
+        SSH_ASKPASS = lib.mkForce "";
     };
 
     imports = [
@@ -235,6 +236,8 @@ in {
             { from = 47984; to = 47984; }
             { from = 47989; to = 47989; }
             { from = 48010; to = 48010; }
+
+            { from = 9420; to = 9420; }     # DB Server Testing
         ];
         allowedUDPPortRanges = [
             { from = 1714; to = 1764; }     # KDE Connect
@@ -250,6 +253,8 @@ in {
 
             # Sunshine
             { from = 47998; to = 48010; }
+
+            { from = 9420; to = 9420; }     # DB Server Testing
         ];
     };
     networking.firewall.allowPing = true;
@@ -419,7 +424,6 @@ in {
         dunst
         hidapi
         nodejs
-        feh
         fd
         fontforge
         unstable.freecad
@@ -451,6 +455,7 @@ in {
         libthai
         libusb
         libusb1
+        loupe
         lutris
         mediainfo
         minecraft-server
@@ -470,7 +475,7 @@ in {
         pandoc
         papirus-icon-theme
         pass
-        parsec-bin
+        #parsec-bin
         pavucontrol
         pciutils
         picom
