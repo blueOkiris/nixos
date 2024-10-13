@@ -416,6 +416,7 @@ in {
         breeze-plymouth
         brightnessctl
         chafa
+        csharp-ls
         cudatoolkit
         cudaPackages.cuda_nvcc
         cura

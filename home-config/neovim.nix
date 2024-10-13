@@ -19,6 +19,14 @@ let
             ref = "master";
         };
     };
+    omnisharp-vim = pkgs.vimUtils.buildVimPlugin {
+        pname = "omnisharp-vim";
+        version = "master";
+        src = builtins.fetchGit {
+            url = "https://github.com/OmniSharp/omnisharp-vim";
+            ref = "master";
+        };
+    };
 in {
     home-manager.users.dylan.home.file.".config/nvim/coc-settings.json".source =
         .config/nvim/coc-settings.json;
@@ -148,7 +156,9 @@ in {
 
                 \" C#
                 \"lua require('lspconfig').omnisharp.setup { cmd = { '/run/current-system/sw/bin/OmniSharp', '--languageserver', '--hostPID', tostring(vim.fn.getpid()) } }
-                lua require('lspconfig').csharp_ls.setup {}
+                \"lua require('lspconfig').csharp_ls.setup {}
+                let g:OmniSharp_server_use_net6 = 1
+                let g:OmniSharp_loglevel = 0
 
                 \" Godot
                 let g:godot_executable = '/run/current-system/sw/bin/godot4'
@@ -198,6 +208,7 @@ in {
                     nerdtree
                     nvim-dap
                     nvim-lspconfig
+                    omnisharp-vim
                     plenary-nvim
                     popup-nvim
                     rust-tools-nvim
