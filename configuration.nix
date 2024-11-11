@@ -238,6 +238,7 @@ in {
             { from = 48010; to = 48010; }
 
             { from = 9420; to = 9420; }     # DB Server Testing
+            { from = 3000; to = 3000; }     # Node Server Testing
         ];
         allowedUDPPortRanges = [
             { from = 1714; to = 1764; }     # KDE Connect
@@ -255,6 +256,7 @@ in {
             { from = 47998; to = 48010; }
 
             { from = 9420; to = 9420; }     # DB Server Testing
+            { from = 3000; to = 3000; }     # Node Server Testing
         ];
     };
     networking.firewall.allowPing = true;
@@ -331,10 +333,10 @@ in {
     programs.kdeconnect.enable = true;
     virtualisation.libvirtd.enable = true;
     programs.nix-ld.enable = true;
-    services.ollama = {
+    /*services.ollama = {
         enable = true;
         acceleration = "cuda";
-    };
+    };*/
     virtualisation.spiceUSBRedirection.enable = true;
     programs.steam = {
         enable = true;
@@ -386,13 +388,13 @@ in {
         })
 
         # Allow using Llama w/ sgpt
-        (self: super: {
+        /*(self: super: {
             shell-gpt = super.shell-gpt.overrideAttrs (oldAttrs: {
                 propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
                     pkgs.python3.pkgs.litellm
                 ];
             });
-        })
+        })*/
     ];
 
     # Allow unfree packages
@@ -447,7 +449,6 @@ in {
         hyprpaper
         inkscape
         jstest-gtk
-        kdenlive
         unstable.kicad
         kid3
         lemonade
@@ -470,6 +471,7 @@ in {
         deprecated.nextcloud-client
         numlockx
         obs-studio
+        ols
         omnisharp-roslyn
         onlyoffice-bin
         openssl
@@ -485,6 +487,7 @@ in {
         prismlauncher
         protonvpn-gui
         pulseaudio
+        pyright
         (python3.withPackages(ps: with ps; [ i3ipc pip setuptools ]))
         qjackctl
         libsForQt5.qt5ct
@@ -502,7 +505,7 @@ in {
         rofimoji
         rust-analyzer
         ryujinx
-        shell-gpt
+        #shell-gpt
         spice-gtk
         spotify
         system-config-printer

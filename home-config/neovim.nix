@@ -27,6 +27,14 @@ let
             ref = "master";
         };
     };
+    odin-vim = pkgs.vimUtils.buildVimPlugin {
+        pname = "odin-vim";
+        version = "master";
+        src = builtins.fetchGit {
+            url = "https://github.com/Tetralux/odin.vim";
+            ref = "master";
+        };
+    };
 in {
     home-manager.users.dylan.home.file.".config/nvim/coc-settings.json".source =
         .config/nvim/coc-settings.json;
@@ -189,6 +197,12 @@ in {
                 augroup filetypedetect
                     au BufNewFile,BufRead *.s,*.inc set ft=asm_ca65
                 augroup END
+
+                \" Odin
+                lua require('lspconfig').ols.setup({})
+                
+                \" Python
+                lua require('lspconfig').pyright.setup({})
             ";
             packages.myVimPackage = with pkgs.vimPlugins; {
                 start = [
@@ -209,6 +223,7 @@ in {
                     nvim-dap
                     nvim-lspconfig
                     omnisharp-vim
+                    odin-vim
                     plenary-nvim
                     popup-nvim
                     rust-tools-nvim
