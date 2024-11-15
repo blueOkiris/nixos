@@ -28,6 +28,9 @@ in {
         CUDA_PATH = "${pkgs.cudatoolkit}";
         SSH_ASKPASS = lib.mkForce "";
     };
+    environment.sessionVariables = {
+        NIXOS_OZONE_WL = "1";
+    };
 
     imports = [
         ./hardware-configuration.nix
@@ -427,6 +430,7 @@ in {
         dunst
         hidapi
         nodejs
+        fastfetch
         fd
         fontforge
         unstable.freecad
@@ -466,7 +470,7 @@ in {
         mupdf
         musescore
         ncurses
-        neofetch
+        #neofetch
         networkmanagerapplet
         deprecated.nextcloud-client
         numlockx
@@ -522,7 +526,6 @@ in {
         virt-manager
         virtiofsd
         vlc
-        vscode
         wdisplays
         wget
         wineWowPackages.stable

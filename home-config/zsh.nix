@@ -61,7 +61,7 @@
                 echo \"\$1\" | bc
             }
 
-            neofetch
+            fastfetch
         ";
         localVariables = {
             TERM = "xterm-256color";
