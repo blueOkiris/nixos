@@ -522,6 +522,7 @@ in {
         virt-manager
         virtiofsd
         vlc
+        vscode
         wdisplays
         wget
         wineWowPackages.stable
