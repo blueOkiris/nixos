@@ -8,8 +8,8 @@ let
             app_name = "tutanota-desktop-linux";
             gh_user = "tutao";
             gh_proj = "tutanota";
-            version = "246.241008.0";
-            hash = "02kijcwl4rpjc56vsr800psqyhzk5sw74sdj83b0rpbijc0fs6s1";
+            version = "252.241122.0";
+            hash = "1ff164lnxjzsk8hq4r73nfhmk0k9hdqk3g179lypcy2spf3cqzwp";
         in pkgs.appimageTools.wrapType2 {
             name = "tutanota";
             extraPkgs = pkgs: [

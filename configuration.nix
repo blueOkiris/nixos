@@ -129,7 +129,10 @@ in {
     users.users.dylan = {
         isNormalUser = true;
         description = "Dylan Turner";
-        extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "video" "dialout" ];
+        extraGroups = [
+            "networkmanager" "wheel" "docker" "libvirtd" "video" "dialout" "pipewire"
+            "audio" "bluetooth"
+        ];
         shell = pkgs.zsh;
     };
     programs.zsh = {
@@ -152,10 +155,13 @@ in {
     environment.etc = {
         "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
             bluez_monitor.properties = {
+                ["bluez5.enable"] = true;
+                ["bluez5.codecs"] = { "ldac", "aac", "aptx", "aptx_hd", "sbc", "sbc_xq" };
                 ["bluez5.enable-sbc-xq"] = true,
                 ["bluez5.enable-msbc"] = true,
                 ["bluez5.enable-hw-volume"] = true,
                 ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+                ["bluez5.hfp-backend"] = "none";
             }
         '';
     };
@@ -453,6 +459,7 @@ in {
         hyprpaper
         inkscape
         jstest-gtk
+        kdenlive
         unstable.kicad
         kid3
         lemonade
