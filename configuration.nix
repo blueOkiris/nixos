@@ -17,6 +17,13 @@ in {
     # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
     system.stateVersion = "23.05"; # Did you read the comment?
 
+    nixpkgs.config.allowBroken = true;
+    nixpkgs.config.permittedInsecurePackages = [
+        "dotnet-core-combined"
+        "dotnet-sdk-6.0.428"
+        "dotnet-sdk-wrapped-6.0.428"
+    ];
+
     # Environment settings
     environment.pathsToLink = [ "/libexec" "/share/zsh" ];
     environment.shells = with pkgs; [ zsh ];
@@ -220,7 +227,7 @@ in {
         cleanupInterval = "1m";
     };
     services.tlp.enable = true;
-    services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+    services.udev.packages = with pkgs; [ gnome-settings-daemon ];
 
     # Open ports in the firewall.
     # networking.firewall.allowedTCPPorts = [ ... ];
@@ -270,31 +277,6 @@ in {
     };
     networking.firewall.allowPing = true;
 
-    # Mount a samba share
-    services.samba-wsdd.enable = true; # make shares visible for windows 10 clients
-    services.samba = {
-        enable = true;
-        securityType = "user";
-        extraConfig = ''
-            workgroup = WORKGROUP
-            server string = msiraider
-            netbios name = msiraider
-            security = user
-            map to guest = bad user
-            guest acount = nobody
-        '';
-        shares = {
-            public = {
-                path = "/mnt/shares/Public";
-                writeable = "yes";
-                "guest ok" = "yes";
-                "read only" = "no";
-                "force user" = "nobody";
-                "directory mode" = "0555";
-            };
-        };
-    };
-
     # Fix QT themes
     qt = {
         enable = true;
@@ -313,7 +295,7 @@ in {
         liberation_ttf
         mplus-outline-fonts.githubRelease
         noto-fonts
-        noto-fonts-cjk
+        noto-fonts-cjk-sans
         noto-fonts-emoji
         noto-fonts-extra
         powerline-fonts
@@ -427,10 +409,12 @@ in {
         breeze-plymouth
         brightnessctl
         chafa
+        cheese
         csharp-ls
         cudatoolkit
         cudaPackages.cuda_nvcc
-        cura
+        #cura
+        dconf-editor
         discord
         dolphin-emu
         dunst
@@ -442,16 +426,6 @@ in {
         unstable.freecad
         gimp
         glaxnimate
-        gnome.cheese
-        gnome.dconf-editor
-        #gnome.gnome-screenshot
-        #gnome.gnome-tweaks
-        #gnomeExtensions.dash-to-dock
-        #gnomeExtensions.gsconnect
-        #gnomeExtensions.rounded-window-corners
-        #gnomeExtensions.sound-output-device-chooser
-        #gnomeExtensions.tray-icons-reloaded
-        #gnomeExtensions.user-themes
         godot_4
         sway-contrib.grimshot
         hplip
@@ -466,7 +440,6 @@ in {
         #libreoffice
         librewolf
         libthai
-        libusb
         libusb1
         loupe
         lutris

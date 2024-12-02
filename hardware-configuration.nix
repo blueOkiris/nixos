@@ -52,10 +52,9 @@ in {
         lib.mkDefault config.hardware.enableRedistributableFirmware;
 
     # Nvidia
-    hardware.opengl = {
+    hardware.graphics = {
         enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
+        enable32Bit = true;
         extraPackages = with pkgs; [
             nvidia-vaapi-driver
             vaapiVdpau
@@ -73,7 +72,7 @@ in {
         };*/#.beta
 
         modesetting.enable = true;
-        #open = true;
+        open = true;
         powerManagement.enable = false;
         powerManagement.finegrained = false;
         nvidiaSettings = true;
