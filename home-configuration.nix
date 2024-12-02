@@ -50,6 +50,8 @@
             home-config/desktops/project+_logo.png;
         home.file.".local/share/applications/project+.desktop".source =
             home-config/desktops/project+.desktop;
+        home.file.".local/share/applications/cura.desktop".source =
+            home-config/desktops/cura.desktop;
         home.file.".local/share/icons/slippi.png".source =
             home-config/desktops/slippi_logo.png;
         home.file.".local/share/applications/slippi.desktop".source =

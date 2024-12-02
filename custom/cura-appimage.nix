@@ -8,8 +8,8 @@ let
             app_name = "cura";
             gh_user = "Ultimaker";
             gh_proj = "Cura";
-            version = "5.7.1";
-            hash = "0g01xbar432c1sjv70j4mri2avpg38wvsacv211jjk9wzb8h74rd";
+            version = "5.9.0";
+            hash = "17h2wy2l9djzcinmnjmi2c7d2y661f6p1dqk97ay7cqrrrw5afs9";
         in pkgs.appimageTools.wrapType2 {
             name = "cura";
             extraPkgs = pkgs: [];
