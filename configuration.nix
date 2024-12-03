@@ -323,7 +323,30 @@ in {
     programs.java.enable = true;
     programs.kdeconnect.enable = true;
     virtualisation.libvirtd.enable = true;
-    programs.nix-ld.enable = true;
+    programs.nix-ld = {
+        enable = true;
+        libraries = with pkgs; [
+            zlib
+            zstd
+            stdenv.cc.cc
+            stdenv.cc.cc.lib
+            udev
+            dbus
+            mesa
+            libglvnd
+            curl
+            openssl
+            attr
+            libssh
+            bzip2
+            libxml2
+            acl
+            libsodium
+            util-linux
+            xz
+            systemd
+        ];
+    };
     /*services.ollama = {
         enable = true;
         acceleration = "cuda";
@@ -445,14 +468,14 @@ in {
         lutris
         mediainfo
         minecraft-server
-        mission-center
+        #mission-center
         mpv
         mupdf
         musescore
         ncurses
         #neofetch
         networkmanagerapplet
-        deprecated.nextcloud-client
+        unstable.nextcloud-client
         numlockx
         obs-studio
         ols
