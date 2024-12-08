@@ -71,6 +71,10 @@
         };
         home.file.".local/share/applications/tutanota.desktop".source =
             home-config/desktops/tutanota.desktop;
+        home.file.".config/environment.d/gsk.conf".text =
+            ''
+            GSK_RENDERER=gl
+            '';
     };
 }
 

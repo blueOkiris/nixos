@@ -34,6 +34,7 @@ in {
         RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
         CUDA_PATH = "${pkgs.cudatoolkit}";
         SSH_ASKPASS = lib.mkForce "";
+        GSK_RENDERER = "gl";
     };
     environment.sessionVariables = {
         NIXOS_OZONE_WL = "1";
@@ -347,10 +348,10 @@ in {
             systemd
         ];
     };
-    /*services.ollama = {
+    services.ollama = {
         enable = true;
         acceleration = "cuda";
-    };*/
+    };
     virtualisation.spiceUSBRedirection.enable = true;
     programs.steam = {
         enable = true;
@@ -365,7 +366,11 @@ in {
     };
     programs.thunar = {
         enable = true;
-        plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman thunar-media-tags-plugin ];
+        plugins = with pkgs.xfce; [
+            thunar-archive-plugin
+            thunar-volman
+            thunar-media-tags-plugin
+        ];
     };
     programs.waybar.enable = true;
     #virtualisation.waydroid.enable = true;
@@ -402,13 +407,13 @@ in {
         })
 
         # Allow using Llama w/ sgpt
-        /*(self: super: {
+        (self: super: {
             shell-gpt = super.shell-gpt.overrideAttrs (oldAttrs: {
                 propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
                     pkgs.python3.pkgs.litellm
                 ];
             });
-        })*/
+        })
     ];
 
     # Allow unfree packages
@@ -438,7 +443,7 @@ in {
         cudaPackages.cuda_nvcc
         #cura
         dconf-editor
-        discord
+        unstable.discord
         dolphin-emu
         dunst
         hidapi
@@ -512,7 +517,7 @@ in {
         rofimoji
         rust-analyzer
         ryujinx
-        #shell-gpt
+        shell-gpt
         spice-gtk
         spotify
         system-config-printer
