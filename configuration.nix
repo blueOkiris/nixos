@@ -158,14 +158,15 @@ in {
         alsa.support32Bit = true;
         pulse.enable = true;
         jack.enable = true;
-        wireplumber.enable = true;
+        #wireplumber.enable = true;
     };
     hardware.pulseaudio.enable = false;
-    environment.etc = {
+    /*environment.etc = {
         "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
             bluez_monitor.properties = {
                 ["bluez5.enable"] = true;
                 ["bluez5.codecs"] = { "ldac", "aac", "aptx", "aptx_hd", "sbc", "sbc_xq" };
+                ["bluez5.enable-sbc"] = true,
                 ["bluez5.enable-sbc-xq"] = true,
                 ["bluez5.enable-msbc"] = true,
                 ["bluez5.enable-hw-volume"] = true,
@@ -173,7 +174,7 @@ in {
                 ["bluez5.hfp-backend"] = "none";
             }
         '';
-    };
+    };*/
     security.pam.loginLimits = [
         { domain = "@audio"; type = "-"; item = "memlock"; value = "unlimited"; }
     ];

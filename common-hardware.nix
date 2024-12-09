@@ -17,11 +17,6 @@
 
     # Bluetooth enable
     hardware.bluetooth.enable = true;
-    hardware.bluetooth.settings = {
-        General = {
-            Enable = "Source,Sink,Media,Socket";
-        };
-    };
 
     # Make mouse work the way any human would want it to
     services.libinput = {
