@@ -17,7 +17,7 @@ in {
     # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
     system.stateVersion = "23.05"; # Did you read the comment?
 
-    #nixpkgs.config.cudaSupport = true;
+    nixpkgs.config.cudaSupport = true;
     nixpkgs.config.permittedInsecurePackages = [
         "dotnet-core-combined"
         "dotnet-sdk-6.0.428"
@@ -33,7 +33,7 @@ in {
         GTK_THEME = "Arc-Dark";
         GTK_ICON_THEME = "Papirus-Dark";
         RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
-        #CUDA_PATH = "${pkgs.cudatoolkit}";
+        CUDA_PATH = "${pkgs.cudatoolkit}";
         SSH_ASKPASS = lib.mkForce "";
         GSK_RENDERER = "gl";
     };
@@ -63,7 +63,7 @@ in {
     boot.initrd.verbose = false;
     boot.consoleLogLevel = 0;
     boot.initrd.systemd.enable = true;
-    boot.kernelPackages = pkgs.linuxPackages_6_1;
+    boot.kernelPackages = pkgs.linuxPackages;
     boot.kernelParams = [
         "quiet"
         "udev.log_level=3"
@@ -349,10 +349,10 @@ in {
             systemd
         ];
     };
-    /*services.ollama = {
+    services.ollama = {
         enable = true;
         acceleration = "cuda";
-    };*/
+    };
     virtualisation.spiceUSBRedirection.enable = true;
     programs.steam = {
         enable = true;
@@ -440,8 +440,8 @@ in {
         chafa
         cheese
         csharp-ls
-        #cudatoolkit
-        #cudaPackages.cuda_nvcc
+        cudatoolkit
+        cudaPackages.cuda_nvcc
         #cura
         dconf-editor
         unstable.discord
@@ -518,7 +518,7 @@ in {
         rofimoji
         rust-analyzer
         ryujinx
-        #shell-gpt
+        shell-gpt
         spice-gtk
         spotify
         system-config-printer
