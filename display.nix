@@ -2,7 +2,9 @@
 
 { config, pkgs, lib, ... }:
 
-{
+let
+    unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in {
     services.displayManager = {
         defaultSession = "hyprland";
         /*sddm = {
@@ -126,6 +128,7 @@
     programs.hyprland = {
         enable = true;
         xwayland.enable = true;
+        package = unstable.hyprland;
     };
 
     services.hypridle.enable = true;
@@ -136,8 +139,8 @@
         enable = true;
         wlr.enable = true;
         extraPortals = [
-            #pkgs.xdg-desktop-portal-gtk
-            #pkgs.xdg-desktop-portal-gnome
+            pkgs.xdg-desktop-portal-gtk
+            pkgs.xdg-desktop-portal-gnome
             #pkgs.xdg-desktop-portal-hyprland
         ];
     };
