@@ -30,7 +30,7 @@ in {
     environment.shells = with pkgs; [ zsh ];
     environment.variables = {
         QT_STYLE_OVERRIDE = lib.mkForce "kvantum";
-        GTK_THEME = "Arc-Dark";
+        GTK_THEME = "Breeze";
         GTK_ICON_THEME = "Papirus-Dark";
         RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
         CUDA_PATH = "${pkgs.cudatoolkit}";
@@ -193,7 +193,7 @@ in {
             pinentryPackage = pkgs.pinentry-gnome3;
         };
     };
-    services.picom.enable = false;
+    #services.picom.enable = false;
 
     # List services that you want to enable:
     services.avahi = {
@@ -286,11 +286,11 @@ in {
     networking.firewall.allowPing = true;
 
     # Fix QT themes
-    qt = {
+    /*qt = {
         enable = true;
         style = "kvantum";
         platformTheme = "qt5ct";
-    };
+    };*/
 
     # Fonts. Font packages in systemPackages won't be accessible
     fonts.packages = with pkgs; [
@@ -319,7 +319,7 @@ in {
         enable = true;
         storageDriver = "btrfs";
     };
-    programs.file-roller.enable = true;
+    #programs.file-roller.enable = true;
     #programs.firefox.enable = true;
     services.flatpak.enable = true;
     programs.gamemode.enable = true;
@@ -371,47 +371,25 @@ in {
         capSysAdmin = true;
         openFirewall = true;
     };
-    programs.thunar = {
+    /*programs.thunar = {
         enable = true;
         plugins = with pkgs.xfce; [
             thunar-archive-plugin
             thunar-volman
             thunar-media-tags-plugin
         ];
-    };
-    programs.waybar.enable = true;
+    };*/
+    #programs.waybar.enable = true;
     #virtualisation.waydroid.enable = true;
 
     # Tweak some programs
     nixpkgs.overlays = [
         # Make waybar work with nvidia/Hyprland
-        (self: super: {
+        /*(self: super: {
             waybar = super.waybar.overrideAttrs (oldAttrs: {
                 mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
             });
-        })
-
-        # Allow wallpaper/color change on GDM
-        (self: super: {
-            gnome = super.gnome.overrideScope (selfg: superg: {
-                gnome-shell = superg.gnome-shell.overrideAttrs (old: {
-                    patches = (old.patches or []) ++ [
-                        (pkgs.writeText "gdm-bg-allow.patch"
-''
---- a/data/theme/gnome-shell-sass/widgets/_login-lock.scss
-+++ b/data/theme/gnome-shell-sass/widgets/_login-lock.scss
-@@ -15,4 +15,5 @@ $_gdm_dialog_width: 23em;
- /* Login Dialog */
- .login-dialog {
-   background-color: $_gdm_bg;
-+  background-image: url('file:///etc/nixos/wallpapers/linux-supremecy-2.png');
- }
-''
-                        )
-                    ];
-                });
-            });
-        })
+        })*/
 
         # Allow using Llama w/ sgpt
         (self: super: {
@@ -431,19 +409,19 @@ in {
         alacritty
         android-studio
         appimage-run
-        arandr
-        arc-theme
+        #arandr
+        #arc-theme
         ardour
         arduino
         arduino-cli
         audacity
-        baobab
-        bc
+        #baobab
+        #bc
         blender
         breeze-gtk
         breeze-plymouth
         brightnessctl
-        chafa
+        #chafa
         cheese
         csharp-ls
         cudatoolkit
@@ -452,7 +430,7 @@ in {
         dconf-editor
         unstable.discord
         dolphin-emu
-        dunst
+        #dunst
         hidapi
         nodejs
         fastfetch
@@ -462,10 +440,10 @@ in {
         gimp
         glaxnimate
         godot_4
-        sway-contrib.grimshot
+        #sway-contrib.grimshot
         hplip
         htop
-        hyprpaper
+        #hyprpaper
         inkscape
         jstest-gtk
         kdenlive
@@ -476,7 +454,7 @@ in {
         librewolf
         libthai
         libusb1
-        loupe
+        #loupe
         lutris
         mediainfo
         minecraft-server
@@ -488,7 +466,7 @@ in {
         #neofetch
         networkmanagerapplet
         unstable.nextcloud-client
-        numlockx
+        #numlockx
         obs-studio
         ols
         omnisharp-roslyn
@@ -500,7 +478,7 @@ in {
         #parsec-bin
         pavucontrol
         pciutils
-        picom
+        #picom
         pinentry
         poppler_utils
         prismlauncher
@@ -510,54 +488,51 @@ in {
         (python3.withPackages(ps: with ps; [ i3ipc pip setuptools ]))
         qjackctl
         libsForQt5.qt5ct
-        libsForQt5.qtstyleplugin-kvantum
+        #libsForQt5.qtstyleplugin-kvantum
         libsForQt5.qtstyleplugins
         libsForQt5.qt5.qtwayland
         qt6.qtwayland
-        remmina
+        #remmina
         (retroarch.override {
             cores = with libretro; [
                 mupen64plus
             ];
         })
-        rofi-wayland
-        rofimoji
+        #rofi-wayland
+        #rofimoji
         rust-analyzer
-        ryujinx
         shell-gpt
         spice-gtk
         spotify
         system-config-printer
         teensy-udev-rules
         texlive.combined.scheme-full
-        texstudio
         thunderbird
         tigervnc
         tokyo-night-sddm
         trash-cli
-        typst
         usbutils
         unzip
         virt-manager
         virtiofsd
         vlc
-        wdisplays
+        #wdisplays
         wget
         wineWowPackages.stable
         wl-clipboard
         xcape
         xclip
         xfce.exo
-        xfce.xfce4-panel
+        /*xfce.xfce4-panel
         xfce.xfce4-battery-plugin
         xfce.xfce4-clipman-plugin
         xfce.xfce4-datetime-plugin
         xfce.xfce4-fsguard-plugin
         xfce.xfce4-i3-workspaces-plugin
         xfce.xfce4-pulseaudio-plugin
-        xfce.xfce4-whiskermenu-plugin
-        xorg.xinit
-        xorg.xrandr
+        xfce.xfce4-whiskermenu-plugin*/
+        #xorg.xinit
+        #xorg.xrandr
         xwayland
         yabridge
         zoom-us

@@ -18,9 +18,9 @@
                 };
                 size = 11;
             };
-            window = {
+            /*window = {
                 decorations = "none";
-            };
+            };*/
             colors = { # Based on Dracula, but with a better blue
                 primary = {
                     background = "#282a37";

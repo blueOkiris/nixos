@@ -5,20 +5,19 @@
 let
     unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in {
-    services.displayManager = {
-        defaultSession = "hyprland";
-        /*sddm = {
-            enable = true;
-            wayland.enable = true;
-            autoNumlock = true;
-            #theme = "chili";
-            theme = "tokyo-night-sddm";
-            settings = {
-                Wayland = {
-                    OutputName = "DP-0";
-                };
+    services.desktopManager.plasma6.enable = true;
+    services.displayManager.defaultSession = "plasma";#"hyprland";
+    services.displayManager.sddm = {
+        enable = true;
+        wayland.enable = true;
+        autoNumlock = true;
+        #theme = "chili";
+        theme = "tokyo-night-sddm";
+        settings = {
+            wayland = {
+                outputname = "dp-0";
             };
-        };*/
+        };
     };
 
     services.xserver = {
@@ -32,20 +31,20 @@ in {
             #gnome.enable = true;
         };
 
-        windowManager.i3 = {
+        /*windowManager.i3 = {
             enable = true;
             extraPackages = with pkgs; [
                 i3lock-fancy
                 dex
             ];
             package = pkgs.i3-gaps;
-        };
+        };*/
 
         displayManager = {
-            gdm = {
+            /*gdm = {
                 enable = true;
                 wayland = true;
-            };
+            };*/
             setupCommands =
                 let
                     big_mon = "DP-0";
@@ -87,6 +86,7 @@ in {
                 '';
         };
     };
+
     # We don't want everything that comes with the bigger DEs
     /*environment.gnome.excludePackages =
         (with pkgs; [
@@ -124,15 +124,23 @@ in {
             yelp
         ]);*/
     #environment.xfce.excludePackages = with pkgs.xfce; [ mousepad xfce4-terminal ];
+    environment.plasma6.excludePackages = with pkgs.kdePackages; [
+        konsole
+        kate
+        elisa
+        okular
+        khelpcenter
+        discover
+    ];
 
-    programs.hyprland = {
+    /*programs.hyprland = {
         enable = true;
         xwayland.enable = true;
         package = unstable.hyprland;
-    };
+    };*/
 
-    services.hypridle.enable = true;
-    programs.hyprlock.enable = true;
+    #services.hypridle.enable = true;
+   # programs.hyprlock.enable = true;
 
     services.dbus.enable = true;
     xdg.portal = {

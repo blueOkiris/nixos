@@ -7,11 +7,11 @@
         <home-manager/nixos>
         ./home-config/alacritty.nix
         ./home-config/dunst.nix
-        ./home-config/i3.nix
+        #./home-config/i3.nix
         ./home-config/neovim.nix
-        ./home-config/picom.nix
-        ./home-config/waybar.nix
-        ./home-config/xfce4-panel.nix
+        #./home-config/picom.nix
+        #./home-config/waybar.nix
+        #./home-config/xfce4-panel.nix
         ./home-config/zsh.nix
     ];
     home-manager.useGlobalPkgs = true;
@@ -28,23 +28,23 @@
             home-config/desktops/freetube.desktop;
         gtk = {
             enable = true;
-            theme.name = "Arc-Dark";
+            theme.name = "Breeze";
             iconTheme.name = "Papirus-Dark";
             cursorTheme.name = "breeze_cursors";
         };
-        home.file.".config/hypr/hyprland.conf".source = home-config/.config/hypr/hyprland.conf;
-        home.file.".config/hypr/hyprpaper.conf".source = home-config/.config/hypr/hyprpaper.conf;
-        home.file.".config/hypr/hyprlock.conf".source = home-config/.config/hypr/hyprlock.conf;
-        services.hypridle.enable = true;
-        services.hypridle.settings = {
+        #home.file.".config/hypr/hyprland.conf".source = home-config/.config/hypr/hyprland.conf;
+        #home.file.".config/hypr/hyprpaper.conf".source = home-config/.config/hypr/hyprpaper.conf;
+        #home.file.".config/hypr/hyprlock.conf".source = home-config/.config/hypr/hyprlock.conf;
+        #services.hypridle.enable = true;
+        /*services.hypridle.settings = {
             general = {
                 lock_cmd = "hyprlock --immediate";
             };
-        };
+        };*/
         #home.file.".local/share/applications/cura.desktop".source =
         #    home-config/desktops/cura.desktop;
-        home.file.".local/share/applications/lock-screen.desktop".source =
-            home-config/desktops/lock-screen.desktop;
+        #home.file.".local/share/applications/lock-screen.desktop".source =
+        #    home-config/desktops/lock-screen.desktop;
         home.file.".profile".source = ./home-config/.profile;
         home.file.".local/share/icons/project-plus.png".source =
             home-config/desktops/project+_logo.png;
