@@ -6,7 +6,7 @@
     imports = [
         <home-manager/nixos>
         ./home-config/alacritty.nix
-        ./home-config/dunst.nix
+        #./home-config/dunst.nix
         #./home-config/i3.nix
         ./home-config/neovim.nix
         #./home-config/picom.nix
