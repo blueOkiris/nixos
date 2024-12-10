@@ -17,7 +17,14 @@ in {
             wayland = {
                 outputname = "dp-0";
             };
+            General = {
+                VerboseLogging = true;
+            };
         };
+
+        # Fix for QT6 to force back to QT5 due to file name conflict:
+        package = pkgs.lib.mkForce pkgs.libsForQt5.sddm;
+        extraPackages = pkgs.lib.mkForce [ pkgs.libsForQt5.qt5.qtgraphicaleffects ];
     };
 
     services.xserver = {
