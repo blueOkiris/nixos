@@ -430,7 +430,6 @@ in {
         dolphin-emu
         #dunst
         hidapi
-        nodejs
         fastfetch
         fd
         fontforge
@@ -447,6 +446,7 @@ in {
         kdenlive
         unstable.kicad
         kid3
+        kdePackages.qtstyleplugin-kvantum
         lemonade
         #libreoffice
         librewolf
@@ -464,6 +464,7 @@ in {
         #neofetch
         networkmanagerapplet
         unstable.nextcloud-client
+        nodejs
         #numlockx
         obs-studio
         ols
@@ -515,6 +516,16 @@ in {
         virt-manager
         virtiofsd
         vlc
+        (vscode.override {
+            commandLineArgs = [
+                "--verbose"
+                "--disable-gpu-sandbox"
+                "--ozone-platform=wayland"
+                "--enable-features=UseOzonePlatform"
+                "--disable-gpu"
+                "--disable-software-rasterizer"
+            ];
+        })
         #wdisplays
         wget
         wineWowPackages.stable
