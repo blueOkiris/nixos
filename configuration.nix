@@ -23,7 +23,7 @@ in {
         "dotnet-sdk-6.0.428"
         "dotnet-sdk-wrapped-6.0.428"
     ];
-    services.logind.lidSwitch = "hibernate";
+    services.logind.lidSwitch = "suspend";#"hibernate";
 
     # Environment settings
     environment.pathsToLink = [ "/libexec" "/share/zsh" ];
@@ -48,12 +48,12 @@ in {
         ./home-configuration.nix
         ./custom/cura-appimage.nix
         #./custom/freetube-appimage.nix
-        ./custom/paleofetch.nix
+        #./custom/paleofetch.nix
         #./custom/gnome-shell-extension-pop-shell.nix
         ./custom/project+.nix
         ./custom/slippi.nix
         #./custom/teams-for-linux.nix
-        ./custom/tutanota-appimage.nix
+        #./custom/tutanota-appimage.nix
         #./custom/shell-scripts.nix
     ];
 
@@ -390,15 +390,6 @@ in {
                 mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
             });
         })*/
-
-        # Allow using Llama w/ sgpt
-        (self: super: {
-            shell-gpt = super.shell-gpt.overrideAttrs (oldAttrs: {
-                propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
-                    pkgs.python3.pkgs.litellm
-                ];
-            });
-        })
     ];
 
     # Allow unfree packages
@@ -511,6 +502,7 @@ in {
         tigervnc
         tokyo-night-sddm
         trash-cli
+        tutanota-desktop
         usbutils
         unzip
         virt-manager
