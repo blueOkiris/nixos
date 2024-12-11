@@ -427,7 +427,6 @@ in {
         cudaPackages.cuda_nvcc
         #cura
         dconf-editor
-        unstable.discord
         dolphin-emu
         #dunst
         hidapi
