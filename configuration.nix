@@ -204,6 +204,14 @@ in {
     #services.blueman.enable = true;
     services.gnome.gnome-keyring.enable = true;
     services.gvfs.enable = true;
+    systemd.user.services.playLoginSound = {
+        description = "Play a sound at login.";
+        wantedBy = [ "default.target" ];
+        serviceConfig = {
+            ExecStart = "${pkgs.pulseaudio}/bin/paplay /etc/nixos/sounds/bootup.mp3";
+            Restart = "on-failure";
+        };
+    };
     networking.networkmanager = {
         enable = true;
     };
