@@ -372,6 +372,9 @@ in {
         enable = true;
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
+        extraCompatPackages = [
+            pkgs.proton-ge-bin
+        ];
     };
     services.sunshine = {
         autoStart = true;
@@ -428,6 +431,7 @@ in {
         #cura
         dconf-editor
         dolphin-emu
+        dotnet-sdk
         #dunst
         hidapi
         fastfetch
