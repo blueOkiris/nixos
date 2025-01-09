@@ -424,6 +424,7 @@ in {
         breeze-plymouth
         brightnessctl
         cargo
+        csfml
         #chafa
         cheese
         csharp-ls
@@ -432,7 +433,8 @@ in {
         #cura
         dconf-editor
         dolphin-emu
-        dotnet-sdk
+        #dotnet-sdk
+        dotnet-sdk_9
         #dunst
         hidapi
         fastfetch
@@ -508,6 +510,7 @@ in {
         #rofimoji
         rust-analyzer
         unstable.rustc
+        sfml
         shell-gpt
         spice-gtk
         #spotify
@@ -524,7 +527,7 @@ in {
         virt-manager
         virtiofsd
         vlc
-        (vscode.override {
+        /*(vscode.override {
             commandLineArgs = [
                 "--verbose"
                 "--disable-gpu-sandbox"
@@ -532,6 +535,34 @@ in {
                 "--enable-features=UseOzonePlatform"
                 "--disable-gpu"
                 "--disable-software-rasterizer"
+            ];
+        })*/
+        (vscode-with-extensions.override {
+            vscode = (vscode.override {
+                commandLineArgs = [
+                    "--verbose"
+                    "--disable-gpu-sandbox"
+                    "--ozone-platform=wayland"
+                    "--enable-features=UseOzonePlatform"
+                    "--disable-gpu"
+                    "--disable-software-rasterizer"
+                ];
+            });
+            vscodeExtensions = with vscode-extensions; [
+                ms-python.python
+                ms-python.vscode-pylance
+                ms-python.pylint
+                ms-python.debugpy
+                ms-dotnettools.csharp
+                ms-dotnettools.csdevkit
+                ms-dotnettools.vscode-dotnet-runtime
+                twxs.cmake
+                ms-vscode.cmake-tools
+                ms-vscode.cpptools
+                yzane.markdown-pdf
+                bbenoist.nix
+                jnoortheen.nix-ide
+                rust-lang.rust-analyzer
             ];
         })
         #wdisplays
