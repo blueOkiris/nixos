@@ -23,7 +23,7 @@ in {
         "dotnet-sdk-6.0.428"
         "dotnet-sdk-wrapped-6.0.428"
     ];
-    services.logind.lidSwitch = "suspend";#"hibernate";
+    services.logind.lidSwitch = "hibernate";
 
     # Environment settings
     environment.pathsToLink = [ "/libexec" "/share/zsh" ];
@@ -423,6 +423,7 @@ in {
         breeze-gtk
         breeze-plymouth
         brightnessctl
+        cargo
         #chafa
         cheese
         csharp-ls
@@ -438,6 +439,7 @@ in {
         fd
         fontforge
         unstable.freecad
+        gcc
         gimp
         glaxnimate
         godot_4
@@ -483,6 +485,7 @@ in {
         pciutils
         #picom
         pinentry
+        pkg-config
         poppler_utils
         prismlauncher
         protonvpn-gui
@@ -504,9 +507,10 @@ in {
         #rofi-wayland
         #rofimoji
         rust-analyzer
+        unstable.rustc
         shell-gpt
         spice-gtk
-        spotify
+        #spotify
         system-config-printer
         teensy-udev-rules
         texlive.combined.scheme-full
