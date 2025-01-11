@@ -48,7 +48,7 @@
             bindkey \"^[[3~\" delete-char
             zstyle ':completion:*' menu select
             export PATH=\"$HOME/.cargo/bin:$PATH\"
-            export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/run/current-system/sw/lib
+            export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/run/current-system/sw/lib:${pkgs.libgdiplus}/lib
 
             # Hot fix as the history substring search causes issues with \" vs '
             source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/"

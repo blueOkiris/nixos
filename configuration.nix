@@ -436,6 +436,8 @@ in {
         #dotnet-sdk
         dotnet-sdk_9
         #dunst
+        gdb
+        gnumake
         hidapi
         fastfetch
         fd
@@ -527,7 +529,7 @@ in {
         virt-manager
         virtiofsd
         vlc
-        /*(vscode.override {
+        (vscode.override {
             commandLineArgs = [
                 "--verbose"
                 "--disable-gpu-sandbox"
@@ -536,8 +538,8 @@ in {
                 "--disable-gpu"
                 "--disable-software-rasterizer"
             ];
-        })*/
-        (vscode-with-extensions.override {
+        })
+        /*(vscode-with-extensions.override {
             vscode = (vscode.override {
                 commandLineArgs = [
                     "--verbose"
@@ -554,7 +556,7 @@ in {
                 ms-python.pylint
                 ms-python.debugpy
                 ms-dotnettools.csharp
-                ms-dotnettools.csdevkit
+                #ms-dotnettools.csdevkit
                 ms-dotnettools.vscode-dotnet-runtime
                 twxs.cmake
                 ms-vscode.cmake-tools
@@ -564,7 +566,7 @@ in {
                 jnoortheen.nix-ide
                 rust-lang.rust-analyzer
             ];
-        })
+        })*/
         #wdisplays
         wget
         wineWowPackages.stable
