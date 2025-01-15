@@ -421,6 +421,7 @@ in {
         #baobab
         #bc
         blender
+        brave
         breeze-gtk
         breeze-plymouth
         brightnessctl
@@ -460,7 +461,7 @@ in {
         kdePackages.qtstyleplugin-kvantum
         lemonade
         #libreoffice
-        librewolf
+        #librewolf
         libthai
         libusb1
         #loupe
