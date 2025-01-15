@@ -305,6 +305,7 @@ in {
         cifs-utils
         corefonts
         dina-font
+        easyeda2kicad
         fira-code
         fira-code-symbols
         font-awesome
@@ -363,10 +364,10 @@ in {
             systemd
         ];
     };
-    services.ollama = {
+    /*services.ollama = {
         enable = true;
         acceleration = "cuda";
-    };
+    };*/
     virtualisation.spiceUSBRedirection.enable = true;
     programs.steam = {
         enable = true;
@@ -409,7 +410,7 @@ in {
     # List packages installed in system profile. To search, run:
     environment.systemPackages = with pkgs; [
         alacritty
-        android-studio
+        #android-studio
         appimage-run
         #arandr
         #arc-theme
