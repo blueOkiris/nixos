@@ -429,6 +429,7 @@ in {
         csfml
         #chafa
         cheese
+        cmake
         csharp-ls
         cudatoolkit
         cudaPackages.cuda_nvcc
@@ -525,7 +526,7 @@ in {
         tigervnc
         tokyo-night-sddm
         trash-cli
-        tutanota-desktop
+        unstable.tutanota-desktop
         usbutils
         unzip
         virt-manager
