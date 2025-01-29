@@ -7,6 +7,7 @@
 let
     unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
     deprecated = import <nixos-deprecated> { config = { allowUnfree = true; }; };
+    old-nextcloud = import <nixos-old-nextcloud> { config = { allowUnfree = true; }; };
     tokyo-night-sddm = pkgs.libsForQt5.callPackage ./custom/tokyo-night-sddm.nix { };
 in {
     # This value determines the NixOS release from which the default
@@ -29,13 +30,13 @@ in {
     environment.pathsToLink = [ "/libexec" "/share/zsh" ];
     environment.shells = with pkgs; [ zsh ];
     environment.variables = {
-        QT_STYLE_OVERRIDE = lib.mkForce "kvantum";
         GTK_THEME = "Breeze";
         GTK_ICON_THEME = "Papirus-Dark";
         RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
         CUDA_PATH = "${pkgs.cudatoolkit}";
         SSH_ASKPASS = lib.mkForce "";
         GSK_RENDERER = "gl";
+        LLVM_SYS_191_PREFIX = "${pkgs.llvmPackages_19.libllvm.dev}";
     };
     environment.sessionVariables = {
         NIXOS_OZONE_WL = "1";
@@ -438,6 +439,7 @@ in {
         dolphin-emu
         #dotnet-sdk
         dotnet-sdk_9
+        drawio
         #dunst
         gdb
         gnumake
@@ -461,10 +463,12 @@ in {
         kid3
         kdePackages.qtstyleplugin-kvantum
         lemonade
+        llvmPackages_19.libllvm
         #libreoffice
         #librewolf
         libthai
         libusb1
+        llvmPackages_19.llvm
         #loupe
         lutris
         mediainfo
@@ -476,7 +480,7 @@ in {
         ncurses
         #neofetch
         networkmanagerapplet
-        unstable.nextcloud-client
+        nextcloud-client
         nodejs
         #numlockx
         obs-studio
@@ -498,7 +502,7 @@ in {
         protonvpn-gui
         pulseaudio
         pyright
-        (python3.withPackages(ps: with ps; [ i3ipc pip setuptools ]))
+        (python3.withPackages(ps: with ps; [ i3ipc pip setuptools requests ]))
         qjackctl
         libsForQt5.qt5ct
         #libsForQt5.qtstyleplugin-kvantum
@@ -519,6 +523,7 @@ in {
         shell-gpt
         spice-gtk
         #spotify
+        stm32cubemx
         system-config-printer
         teensy-udev-rules
         texlive.combined.scheme-full
@@ -585,10 +590,13 @@ in {
         xfce.xfce4-i3-workspaces-plugin
         xfce.xfce4-pulseaudio-plugin
         xfce.xfce4-whiskermenu-plugin*/
+        xml2
         #xorg.xinit
         #xorg.xrandr
+        xorg.xhost
         xwayland
         yabridge
+        zlib
         zoom-us
         zsh-autocomplete
         zsh-history-substring-search
