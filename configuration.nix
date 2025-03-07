@@ -9,6 +9,7 @@ let
     deprecated = import <nixos-deprecated> { config = { allowUnfree = true; }; };
     old-nextcloud = import <nixos-old-nextcloud> { config = { allowUnfree = true; }; };
     tokyo-night-sddm = pkgs.libsForQt5.callPackage ./custom/tokyo-night-sddm.nix { };
+    #vscode-fhs = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
 in {
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
@@ -18,7 +19,7 @@ in {
     # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
     system.stateVersion = "23.05"; # Did you read the comment?
 
-    nixpkgs.config.cudaSupport = true;
+    nixpkgs.config.cudaSupport = false;#true;
     nixpkgs.config.permittedInsecurePackages = [
         "dotnet-core-combined"
         "dotnet-sdk-6.0.428"
@@ -33,7 +34,7 @@ in {
         GTK_THEME = "Breeze";
         GTK_ICON_THEME = "Papirus-Dark";
         RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
-        CUDA_PATH = "${pkgs.cudatoolkit}";
+        #CUDA_PATH = "${pkgs.cudatoolkit}";
         SSH_ASKPASS = lib.mkForce "";
         GSK_RENDERER = "gl";
         LLVM_SYS_191_PREFIX = "${pkgs.llvmPackages_19.libllvm.dev}";
@@ -432,8 +433,8 @@ in {
         cheese
         cmake
         csharp-ls
-        cudatoolkit
-        cudaPackages.cuda_nvcc
+        #cudatoolkit
+        #cudaPackages.cuda_nvcc
         #cura
         dconf-editor
         dolphin-emu
@@ -457,12 +458,15 @@ in {
         htop
         #hyprpaper
         inkscape
+        jdk8
         jstest-gtk
         kdenlive
+        kdiskmark
         unstable.kicad
         kid3
         kdePackages.qtstyleplugin-kvantum
         lemonade
+        libinput
         llvmPackages_19.libllvm
         #libreoffice
         #librewolf
@@ -484,9 +488,10 @@ in {
         nodejs
         #numlockx
         obs-studio
+        unstable.odin
         ols
         omnisharp-roslyn
-        onlyoffice-bin
+        unstable.onlyoffice-desktopeditors
         openssl
         pandoc
         papirus-icon-theme
@@ -537,14 +542,11 @@ in {
         virt-manager
         virtiofsd
         vlc
+        #vscode-fhs
         (vscode.override {
             commandLineArgs = [
-                "--verbose"
                 "--disable-gpu-sandbox"
-                "--ozone-platform=wayland"
-                "--enable-features=UseOzonePlatform"
                 "--disable-gpu"
-                "--disable-software-rasterizer"
             ];
         })
         /*(vscode-with-extensions.override {
